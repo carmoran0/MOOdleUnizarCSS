@@ -26,6 +26,19 @@
         function applyCustomStyles() {
             const style = document.createElement('style');
             style.textContent = `
+            body {
+            font-family: Comic Sans MS;
+            background-color:#99ffaa;
+background-image:
+radial-gradient(at 12% 87%, hsla(222,65%,83%,1) 0px, transparent 50%),
+radial-gradient(at 33% 40%, hsla(110,65%,83%,1) 0px, transparent 50%),
+radial-gradient(at 77% 77%, hsla(266,65%,83%,1) 0px, transparent 50%),
+radial-gradient(at 77% 70%, hsla(231,65%,83%,1) 0px, transparent 50%),
+radial-gradient(at 72% 86%, hsla(324,65%,83%,1) 0px, transparent 50%),
+radial-gradient(at 51% 29%, hsla(225,65%,83%,1) 0px, transparent 50%),
+radial-gradient(at 19% 19%, hsla(354,65%,83%,1) 0px, transparent 50%);
+            }
+
                 .bg-primary {
                     background-color: #c1c1c1 !important;
                     background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/abstract-seamless-pattern-with-cow-spots-vector.jpg') !important;
