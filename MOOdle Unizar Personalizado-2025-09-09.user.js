@@ -33,7 +33,7 @@
                     background-size: 50% !important;
                     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
                 }
-                
+
                 .nav-link {
                     color: #000 !important;
                     border-radius: 4px !important;
@@ -41,16 +41,20 @@
                     margin: 0 2px !important;
                     transition: all 0.3s ease !important;
                 }
-                
+
                 #themeboostunioninfobanner2 {
                     display: none !important;
                 }
-                
+
+                .navbar.fixed-top{
+                height: 71px;
+                }
+
                 .nav-link:hover {
                     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 2px 4px rgba(0, 0, 0, 0.1) !important;
                     background-color: rgba(255, 255, 255, 0.2) !important;
                 }
-                
+
                 .nav-link.active, .nav-link[aria-current="page"] {
                     background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05)) !important;
                     backdrop-filter: blur(15px) !important;
@@ -61,6 +65,16 @@
                     overflow: hidden !important;
                     transition: all 0.3s ease !important;
                     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+                }
+                .pagelayout-standard #page.drawers .main-inner, body.limitedwidth #page.drawers .main-inner {
+                    max-width: none !important;
+                }
+                .navbar.navbar-dark.bg-dark .editmode-switch-form, .navbar.navbar-dark.bg-dark .editmode-switch-form label, .navbar.navbar-dark.bg-primary .editmode-switch-form, .navbar.navbar-dark.bg-primary .editmode-switch-form label {
+                color: #000 !important;
+
+                }
+                .navbar.navbar-dark.bg-primary .nav-link .icon, .navbar.navbar-dark.bg-primary .nav-link a .icon, .navbar.navbar-dark.bg-primary .usermenu .dropdown-toggle {
+                color: #3e3e3e !important;
                 }
             `;
             document.head.appendChild(style);
