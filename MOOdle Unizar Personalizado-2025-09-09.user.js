@@ -109,6 +109,19 @@
             });
         }
 
+        // Reemplazar imagen de perfil de usuario
+        function replaceUserPicture() {
+            // Buscar imagen de perfil específica por la clase userpicture
+            const userPictures = document.querySelectorAll('img.userpicture');
+            userPictures.forEach(function(imgElement) {
+                // Verificar si el src contiene la URL específica de Moodle
+                if (imgElement.src && imgElement.src.includes('moodle.unizar.es/add/pluginfile.php')) {
+                    imgElement.src = 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/mesc.png';
+                    console.log('Imagen de perfil de usuario reemplazada');
+                }
+            });
+        }
+
         // Función para añadir párrafo personalizado al banner de información
         function addCustomParagraph() {
             waitForElement('#themeboostunioninfobanner1', function(bannerElement) {
@@ -133,10 +146,12 @@
                 document.addEventListener('DOMContentLoaded', function() {
                     applyCustomStyles();
                     addCustomParagraph();
+                    replaceUserPicture();
                 });
             } else {
                 applyCustomStyles();
                 addCustomParagraph();
+                replaceUserPicture();
             }
 
             // Reemplazar el logo
@@ -148,6 +163,7 @@
                     if (mutation.addedNodes.length > 0) {
                         replaceLogo();
                         addCustomParagraph();
+                        replaceUserPicture();
                     }
                 });
             });
