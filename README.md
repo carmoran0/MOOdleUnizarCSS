@@ -1,6 +1,6 @@
-# MOOdleUnizarCSS
+# ***MOOdleUnizarCSS***:cool::cool:
 Userscript para personalizar un poco Moodle
-## Cómo instalar
+## Cómo instalar :shipit:
 1. Necesitas alguna extensión para inyectar userscript. Yo uso tampermonkey. Usa tampermonkey.
    Tienes que buscar y **descargar la extensión Tampermonkey**
    (En Chrome es un poco más díficil de aplicar)
@@ -10,7 +10,7 @@ Userscript para personalizar un poco Moodle
 4. Puedes activar y desactivar la extensión o simplemente el script desde el menú de la extensión
    ![cómo desactivar](https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/howto.png)
 
-## Lista de funciones
+## Lista de funciones 
 - Todos los usuarios tienen la misma foto
 - Barra de navegación mejorada
 - Fuente más amigable
