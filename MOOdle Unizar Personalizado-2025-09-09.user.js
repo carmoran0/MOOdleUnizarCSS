@@ -36,16 +36,31 @@
                 
                 .nav-link {
                     color: #000 !important;
-                    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
                     border-radius: 4px !important;
                     padding: 8px 12px !important;
                     margin: 0 2px !important;
                     transition: all 0.3s ease !important;
                 }
                 
+                #themeboostunioninfobanner2 {
+                    display: none !important;
+                }
+                
                 .nav-link:hover {
                     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 2px 4px rgba(0, 0, 0, 0.1) !important;
                     background-color: rgba(255, 255, 255, 0.2) !important;
+                }
+                
+                .nav-link.active, .nav-link[aria-current="page"] {
+                    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05)) !important;
+                    backdrop-filter: blur(15px) !important;
+                    -webkit-backdrop-filter: blur(15px) !important;
+                    border-radius: 50px !important;
+                    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+                    padding: 0.8rem 1.5rem !important;
+                    overflow: hidden !important;
+                    transition: all 0.3s ease !important;
+                    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
                 }
             `;
             document.head.appendChild(style);
@@ -56,12 +71,6 @@
             waitForElement('img.logo', function(logoElement) {
                 // Opción 1: Usar una URL de imagen online
                 logoElement.src = 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/mooodle.png';
-
-                // Opción 2: Usar base64 (necesitarás convertir tu imagen)
-                // Para convertir tu imagen a base64, puedes usar: https://www.base64-image.de/
-                // logoElement.src = 'data:image/png;base64,TU_IMAGEN_EN_BASE64_AQUI';
-
-                // Opción 3: Usar una imagen de ejemplo (reemplaza con tu imagen convertida a base64)
                 console.log('Logo encontrado, listo para reemplazar');
                 console.log('Agrega tu imagen en base64 o URL en la línea correspondiente');
             });
