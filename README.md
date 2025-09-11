@@ -1,11 +1,11 @@
-# ***MOOdleUnizarCSS***:cool::cool:
-Userscript para personalizar un poco Moodle
+# ***MOOdle 2: Premium edition***:cool::cool:
+Userscript para personalizar Moodle. Esta extensión es únicamente estética, no toca nada de más, es solo estético. Moodle **debería** funcionar igual.
 ## Cómo instalar en firefox (fácil) :shipit:
 1. Ve a [releases](https://github.com/carmoran0/MOOdleUnizarCSS/releases) a la derecha de esta página\
    ![releases](https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/comof1.png)
 2. Descarga el archivo xpi (solamente descargando ya debería abrir la ventana de instalación)\
    ![](https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/comof2.png)
-3. Termina la instalación y ya.\
+3. Termina la instalación y ya. Además, también debería actualizarse automáticamente.\
    ![](https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/comof3.png)
 
 ## Cómo instalar en Chrome (díficil)
@@ -19,7 +19,7 @@ Userscript para personalizar un poco Moodle
    ![cómo desactivar](https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/howto.png)
 
 ## Lista de funciones 
-- Todos los usuarios tienen la misma foto
+- Todos los usuarios tienen la misma foto de una persona que no existe
 - Barra de navegación mejorada
 - Fuente más amigable
 - Ahora la interfaz no es una mierda y no se te limita solo al centro de la pantalla

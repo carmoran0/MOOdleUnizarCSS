@@ -7,7 +7,7 @@
 // @match        https://moodle.unizar.es/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=unizar.es
 // @updateURL    https://github.com/carmoran0/MOOdleUnizarCSS/raw/refs/heads/main/MOOdle%20Unizar%20Personalizado-2025-09-09.user.js
-// @downloadURL  https://github.com/carmoran0/MOOdleUnizarCSS/raw/refs/heads/main/MOOdle%20Unizar%20Personalizado-2025-09-09.user.js
+// @downloadURL    https://github.com/carmoran0/MOOdleUnizarCSS/raw/refs/heads/main/MOOdle%20Unizar%20Personalizado-2025-09-09.user.js
 // @grant        none
 // ==/UserScript==
 
@@ -109,6 +109,19 @@
             });
         }
 
+        // Reemplazar imagen de perfil de usuario
+        function replaceUserPicture() {
+            // Buscar imagen de perfil específica por la clase userpicture
+            const userPictures = document.querySelectorAll('img.userpicture');
+            userPictures.forEach(function(imgElement) {
+                // Verificar si el src contiene la URL específica de Moodle
+                if (imgElement.src && imgElement.src.includes('moodle.unizar.es/add/pluginfile.php')) {
+                    imgElement.src = 'https://www.thispersondoesnotexist.com/';
+                    console.log('Imagen de perfil de usuario reemplazada');
+                }
+            });
+        }
+
         // Función para añadir párrafo personalizado al banner de información
         function addCustomParagraph() {
             waitForElement('#themeboostunioninfobanner1', function(bannerElement) {
@@ -133,10 +146,12 @@
                 document.addEventListener('DOMContentLoaded', function() {
                     applyCustomStyles();
                     addCustomParagraph();
+                    replaceUserPicture();
                 });
             } else {
                 applyCustomStyles();
                 addCustomParagraph();
+                replaceUserPicture();
             }
 
             // Reemplazar el logo
@@ -148,6 +163,7 @@
                     if (mutation.addedNodes.length > 0) {
                         replaceLogo();
                         addCustomParagraph();
+                        replaceUserPicture();
                     }
                 });
             });
