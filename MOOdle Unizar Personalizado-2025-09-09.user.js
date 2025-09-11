@@ -108,17 +108,26 @@
 
         // Función para aplicar imagen de fondo a elementos específicos
         function applyBackgroundToElements() {
-            const elements = document.querySelectorAll('.rounded.list-image.mw-100');
-            elements.forEach(function(element) {
-                // Verificar si ya se aplicó el estilo para evitar duplicados
-                if (!element.hasAttribute('data-custom-bg-applied')) {
-                    element.style.backgroundImage = 'url("https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/peter.jpg")';
-                    element.style.backgroundSize = 'cover';
-                    element.style.backgroundPosition = 'center';
-                    element.style.backgroundRepeat = 'no-repeat';
-                    element.setAttribute('data-custom-bg-applied', 'true');
-                    console.log('Imagen de fondo aplicada a elemento con clase rounded list-image mw-100');
-                }
+            // Seleccionar todos los elementos con las clases especificadas
+            const selectors = [
+                '.rounded.list-image.mw-100',
+                '.summary-image.rounded.mw-100', 
+                '.card-img-top'
+            ];
+            
+            selectors.forEach(function(selector) {
+                const elements = document.querySelectorAll(selector);
+                elements.forEach(function(element) {
+                    // Verificar si ya se aplicó el estilo para evitar duplicados
+                    if (!element.hasAttribute('data-custom-bg-applied')) {
+                        element.style.backgroundImage = 'url("https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/peter.jpg")';
+                        element.style.backgroundSize = 'cover';
+                        element.style.backgroundPosition = 'center';
+                        element.style.backgroundRepeat = 'no-repeat';
+                        element.setAttribute('data-custom-bg-applied', 'true');
+                        console.log(`Imagen de fondo aplicada a elemento con selector: ${selector}`);
+                    }
+                });
             });
         }
 
