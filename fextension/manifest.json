@@ -12,7 +12,8 @@
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "moodle-unizar-personalizado@carmoran"
+      "id": "moodle-unizar-personalizado@carmoran",
+      "update_url": "https://carmoran0.github.io/MOOdleUnizarCSS/updates.json"
     }
   }
 }
