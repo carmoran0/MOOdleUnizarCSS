@@ -95,9 +95,32 @@
                 border-radius: 5px !important;
                 text-align: center !important;
             }
+            /* Estilo personalizado para elementos con clase rounded list-image mw-100 */
+            .rounded.list-image.mw-100 {
+                background-image: url('https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/peter.jpg') !important;
+                background-size: cover !important;
+                background-position: center !important;
+                background-repeat: no-repeat !important;
+            }
         `;
         document.head.appendChild(style);
     }
+
+        // Función para aplicar imagen de fondo a elementos específicos
+        function applyBackgroundToElements() {
+            const elements = document.querySelectorAll('.rounded.list-image.mw-100');
+            elements.forEach(function(element) {
+                // Verificar si ya se aplicó el estilo para evitar duplicados
+                if (!element.hasAttribute('data-custom-bg-applied')) {
+                    element.style.backgroundImage = 'url("https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/peter.jpg")';
+                    element.style.backgroundSize = 'cover';
+                    element.style.backgroundPosition = 'center';
+                    element.style.backgroundRepeat = 'no-repeat';
+                    element.setAttribute('data-custom-bg-applied', 'true');
+                    console.log('Imagen de fondo aplicada a elemento con clase rounded list-image mw-100');
+                }
+            });
+        }
 
         // Reemplazar el logo
         function replaceLogo() {
@@ -147,11 +170,13 @@
                     applyCustomStyles();
                     addCustomParagraph();
                     replaceUserPicture();
+                    applyBackgroundToElements();
                 });
             } else {
                 applyCustomStyles();
                 addCustomParagraph();
                 replaceUserPicture();
+                applyBackgroundToElements();
             }
 
             // Reemplazar el logo
@@ -164,6 +189,7 @@
                         replaceLogo();
                         addCustomParagraph();
                         replaceUserPicture();
+                        applyBackgroundToElements();
                     }
                 });
             });
