@@ -1,6 +1,14 @@
 # ***MOOdleUnizarCSS***:cool::cool:
 Userscript para personalizar un poco Moodle
-## Cómo instalar :shipit:
+## Cómo instalar en firefox (fácil) :shipit:
+1. Ve a [releases](https://github.com/carmoran0/MOOdleUnizarCSS/releases) a la derecha de esta página\
+   ![releases](https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/comof1.png)
+2. Descarga el archivo xpi (solamente descargando ya debería abrir la ventana de instalación)\
+   ![](https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/comof2.png)
+3. Termina la instalación y ya.\
+   ![](https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/comof3.png)
+
+## Cómo instalar en Chrome (díficil)
 1. Necesitas alguna extensión para inyectar userscript. Yo uso tampermonkey. Usa tampermonkey.
    Tienes que buscar y **descargar la extensión Tampermonkey**
    (En Chrome es un poco más díficil de aplicar)
