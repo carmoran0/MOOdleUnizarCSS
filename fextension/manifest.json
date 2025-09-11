@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "MOOdle Unizar Personalizado",
+  "version": "1.1",
+  "description": "Personaliza el aspecto de Moodle Unizar automáticamente",
+  "content_scripts": [
+    {
+      "matches": ["https://moodle.unizar.es/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "moodle-unizar-personalizado@carmoran"
+    }
+  }
+}
