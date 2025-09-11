@@ -1,0 +1,66 @@
+name: Release Firefox Extension
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Versión nueva (ej: 1.1)"
+        required: true
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install web-ext
+        run: npm install --global web-ext
+
+      - name: Build extension
+        run: |
+          mkdir build
+          zip -r build/extension.zip fextension
+
+      - name: Sign extension on AMO
+        run: |
+          web-ext sign \
+            --source-dir fextension \
+            --artifacts-dir signed \
+            --api-key ${{ secrets.AMO_JWT_ISSUER }} \
+            --api-secret ${{ secrets.AMO_JWT_SECRET }}
+
+      - name: Get XPI filename
+        id: xpi
+        run: echo "file=$(ls signed/*.xpi)" >> $GITHUB_OUTPUT
+
+      - name: Update updates.json
+        run: |
+          XPI_URL="https://github.com/${{ github.repository }}/releases/download/${{ github.event.inputs.version }}/$(basename ${{ steps.xpi.outputs.file }})"
+          jq --arg ver "${{ github.event.inputs.version }}" \
+             --arg url "$XPI_URL" \
+             '.addons["moodle-unizar-personalizado@carmoran"].updates = 
+                [{version: $ver, update_link: $url}]' \
+             updates.json > tmp.json && mv tmp.json updates.json
+
+      - name: Commit updates.json
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add updates.json
+          git commit -m "chore: update updates.json to version ${{ github.event.inputs.version }}"
+          git push
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.inputs.version }}
+          files: |
+            ${{ steps.xpi.outputs.file }}
+            updates.json
