@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MOOdle Personalizado
 // @namespace    http://tampermonkey.net/
-// @version      2025-09-09
+// @version      2025-09-11
 // @description  Personaliza el aspecto de Moodle
 // @author       Calo
 // @match        https://moodle.unizar.es/*
@@ -205,4 +205,4 @@
 
         // Inicializar el script
         init();
-    })();
+    })();   
