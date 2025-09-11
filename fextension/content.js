@@ -52,7 +52,7 @@
                 display: none !important;
             }
             .navbar.fixed-top{
-            height: 71px;
+                height: 71px;
             }
             .nav-link:hover {
                 box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 2px 4px rgba(0, 0, 0, 0.1) !important;
@@ -73,11 +73,38 @@
                 max-width: 1000px !important;
             }
             .navbar.navbar-dark.bg-dark .editmode-switch-form, .navbar.navbar-dark.bg-dark .editmode-switch-form label, .navbar.navbar-dark.bg-primary .editmode-switch-form, .navbar.navbar-dark.bg-primary .editmode-switch-form label {
-            color: #000 !important;
+                color: #000 !important;
             }
             .navbar.navbar-dark.bg-primary .nav-link .icon, .navbar.navbar-dark.bg-primary .nav-link a .icon, .navbar.navbar-dark.bg-primary .usermenu .dropdown-toggle {
-            color: #3e3e3e !important;
+                color: #3e3e3e !important;
             }
+            
+            /* Ocultar elementos específicos de la navbar */
+            .nav-link[href*="recursos"],
+            .nav-link[href*="manuales"],
+            .dropdown-toggle:has-text("Recursos y manuales"),
+            a.dropdown-toggle:contains("Recursos y manuales"),
+            .nav-link:contains("ADD"),
+            .nav-link:contains("Política de privacidad"),
+            a[href*="add.unizar.es"],
+            a[href*="privacidad"] {
+                display: none !important;
+            }
+            
+            /* Ocultar por texto contenido */
+            .navbar .nav-link {
+                &:has-text("Recursos y manuales"),
+                &:has-text("ADD"),
+                &:has-text("Política de privacidad") {
+                    display: none !important;
+                }
+            }
+
+            /* Ocultar el botón del footer */
+            .btn-footer-popover {
+                display: none !important;
+            }
+
             /* Estilos para el párrafo personalizado */
             .custom-info-paragraph {
                 font-weight: bold !important;
@@ -98,6 +125,49 @@
             }
         `;
         document.head.appendChild(style);
+    }
+
+    // Función para ocultar elementos específicos de la navbar
+    function hideNavbarElements() {
+        // Lista de textos a buscar para ocultar
+        const textsToHide = [
+            'Recursos y manuales',
+            'ADD',
+            'Política de privacidad'
+        ];
+
+        // Buscar todos los enlaces de navegación
+        const navLinks = document.querySelectorAll('.navbar .nav-link, .navbar .dropdown-toggle, .navbar a');
+        
+        navLinks.forEach(function(link) {
+            const linkText = link.textContent.trim();
+            const linkHref = link.getAttribute('href') || '';
+            
+            // Verificar si el texto coincide con alguno de los que queremos ocultar
+            if (textsToHide.some(text => linkText.includes(text))) {
+                link.style.display = 'none';
+                console.log(`Elemento oculto: ${linkText}`);
+            }
+            
+            // También ocultar por URL si contiene ciertas palabras clave
+            if (linkHref.includes('add.unizar.es') || 
+                linkHref.includes('privacidad') ||
+                linkHref.includes('recursos') ||
+                linkHref.includes('manuales')) {
+                link.style.display = 'none';
+                console.log(`Elemento oculto por URL: ${linkHref}`);
+            }
+        });
+
+        // También buscar en elementos padre que puedan contener estos enlaces
+        const dropdownItems = document.querySelectorAll('.dropdown-menu .dropdown-item, .nav-item');
+        dropdownItems.forEach(function(item) {
+            const itemText = item.textContent.trim();
+            if (textsToHide.some(text => itemText.includes(text))) {
+                item.style.display = 'none';
+                console.log(`Dropdown item oculto: ${itemText}`);
+            }
+        });
     }
 
         // Función para aplicar imagen de fondo a elementos específicos
@@ -174,12 +244,14 @@
                     addCustomParagraph();
                     replaceUserPicture();
                     applyBackgroundToElements();
+                    hideNavbarElements();
                 });
             } else {
                 applyCustomStyles();
                 addCustomParagraph();
                 replaceUserPicture();
                 applyBackgroundToElements();
+                hideNavbarElements();
             }
 
             // Reemplazar el logo
@@ -193,6 +265,7 @@
                         addCustomParagraph();
                         replaceUserPicture();
                         applyBackgroundToElements();
+                        hideNavbarElements();
                     }
                 });
             });
@@ -205,4 +278,4 @@
 
         // Inicializar el script
         init();
-    })();   
+    })();
