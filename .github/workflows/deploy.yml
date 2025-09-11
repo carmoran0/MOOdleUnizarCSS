@@ -2,6 +2,10 @@ name: Release Firefox Extension
 
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: "Versión nueva (ej: 1.1)"
+        required: false
 
 jobs:
   build-and-publish:
@@ -16,13 +20,21 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install web-ext
-        run: npm install --global web-ext jq
+      - name: Install web-ext and jq
+        run: |
+          npm install --global web-ext
+          sudo apt-get update
+          sudo apt-get install -y jq
 
-      - name: Read version from manifest.json
+      - name: Determine version
         id: manifest
         run: |
-          VERSION=$(jq -r .version fextension/manifest.json)
+          DEFAULT_VERSION=$(jq -r .version fextension/manifest.json)
+          # Usa el input de workflow si existe, sino usa el manifest.json
+          VERSION="${{ github.event.inputs.version }}"
+          if [ -z "$VERSION" ]; then
+            VERSION="$DEFAULT_VERSION"
+          fi
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Build extension zip (optional)
