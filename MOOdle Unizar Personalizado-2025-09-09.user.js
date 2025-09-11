@@ -31,20 +31,14 @@
             body {
                 font-family: Comic Sans MS;
                 background-color:#99ffaa;
-                background-image:
-                    radial-gradient(at 12% 87%, hsla(222,65%,83%,1) 0px, transparent 50%),
-                    radial-gradient(at 33% 40%, hsla(110,65%,83%,1) 0px, transparent 50%),
-                    radial-gradient(at 77% 77%, hsla(266,65%,83%,1) 0px, transparent 50%),
-                    radial-gradient(at 77% 70%, hsla(231,65%,83%,1) 0px, transparent 50%),
-                    radial-gradient(at 72% 86%, hsla(324,65%,83%,1) 0px, transparent 50%),
-                    radial-gradient(at 51% 29%, hsla(225,65%,83%,1) 0px, transparent 50%),
-                    radial-gradient(at 19% 19%, hsla(354,65%,83%,1) 0px, transparent 50%);
+                background-image: url("https://s1.qwant.com/thumbr/474x474/0/d/afef2c0aa4d40ded4f56f7055cf255addff9ed837a94408471461f7c77961b/OIP.ixcKrGLJCCuVROv8nthNvgHaHa.jpg?u=https%3A%2F%2Ftse.mm.bing.net%2Fth%2Fid%2FOIP.ixcKrGLJCCuVROv8nthNvgHaHa%3Fpid%3DApi&q=0&b=1&p=0&a=0");
+                background-repeat: repeat;
             }
             .bg-primary {
                 background-color: #c1c1c1 !important;
-                background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/abstract-seamless-pattern-with-cow-spots-vector.jpg') !important;
-                background-repeat: repeat-x !important;
-                background-size: 50% !important;
+                background-image: url('https://s1.qwant.com/thumbr/474x265/9/1/e52e6b2330f6536c9375616bb7da1e718fa55b02ac61a0657387988063aa52/OIP.bGWSYd6GLFp-L5SWV_VL3gHaEJ.jpg?u=https%3A%2F%2Ftse.mm.bing.net%2Fth%2Fid%2FOIP.bGWSYd6GLFp-L5SWV_VL3gHaEJ%3Fr%3D0%26pid%3DApi&q=0&b=1&p=0&a=0') !important;
+                background-repeat: repeat !important;
+                background-size: 10% !important;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
             }
             .nav-link {
@@ -76,7 +70,7 @@
                 box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
             }
             .pagelayout-standard #page.drawers .main-inner, body.limitedwidth #page.drawers .main-inner {
-                max-width: none !important;
+                max-width: 1000px !important;
             }
             .navbar.navbar-dark.bg-dark .editmode-switch-form, .navbar.navbar-dark.bg-dark .editmode-switch-form label, .navbar.navbar-dark.bg-primary .editmode-switch-form, .navbar.navbar-dark.bg-primary .editmode-switch-form label {
             color: #000 !important;
@@ -111,10 +105,10 @@
             // Seleccionar todos los elementos con las clases especificadas
             const selectors = [
                 '.rounded.list-image.mw-100',
-                '.summary-image.rounded.mw-100', 
+                '.summary-image.rounded.mw-100',
                 '.card-img-top'
             ];
-            
+
             selectors.forEach(function(selector) {
                 const elements = document.querySelectorAll(selector);
                 elements.forEach(function(element) {
