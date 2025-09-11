@@ -7,7 +7,7 @@
 // @match        https://moodle.unizar.es/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=unizar.es
 // @updateURL    https://github.com/carmoran0/MOOdleUnizarCSS/raw/refs/heads/main/MOOdle%20Unizar%20Personalizado-2025-09-09.user.js
-// @downloadURL    https://github.com/carmoran0/MOOdleUnizarCSS/raw/refs/heads/main/MOOdle%20Unizar%20Personalizado-2025-09-09.user.js
+// @downloadURL  https://github.com/carmoran0/MOOdleUnizarCSS/raw/refs/heads/main/MOOdle%20Unizar%20Personalizado-2025-09-09.user.js
 // @grant        none
 // ==/UserScript==
 
