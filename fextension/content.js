@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         MOOdle Personalizado
 // @namespace    http://tampermonkey.net/
-// @version      2025-09-15
-// @description  Personaliza el aspecto de Moodle
+// @version      2025-09-15-optimized
+// @description  Personaliza el aspecto de Moodle (Versión Optimizada)
 // @author       Calo
 // @match        https://moodle.unizar.es/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=unizar.es
@@ -38,21 +38,13 @@
         urlsToHide: ['add.unizar.es', 'privacidad', 'recursos', 'manuales']
     };
 
-    // Función utilitaria para esperar elementos
-    function waitForElement(selector, callback, timeout = 5000) {
-        const startTime = Date.now();
-        function check() {
-            const element = document.querySelector(selector);
-            if (element) {
-                callback(element);
-            } else if (Date.now() - startTime < timeout) {
-                setTimeout(check, 100);
-            }
-        }
-        check();
-    }
+    // Cache para elementos ya procesados
+    const processedElements = new WeakSet();
+    
+    // Flag para evitar ejecuciones múltiples
+    let isInitialized = false;
 
-    // Aplicar estilos CSS personalizados
+    // Aplicar estilos CSS personalizados (solo una vez)
     function applyCustomStyles() {
         if (document.querySelector('#moodle-custom-styles')) return;
 
@@ -133,122 +125,134 @@
         document.head.appendChild(style);
     }
 
-    // Función unificada para ocultar elementos de navegación
+    // Función optimizada para ocultar elementos (usando delegación de eventos)
     function hideNavbarElements() {
+        // Crear un único selector combinado
         const allElements = document.querySelectorAll(`${CONFIG.selectors.navbar}, ${CONFIG.selectors.dropdowns}`);
 
+        // Usar DocumentFragment para operaciones batch
         allElements.forEach(element => {
+            if (processedElements.has(element)) return;
+            
             const text = element.textContent.trim();
             const href = element.getAttribute('href') || '';
 
-            // Verificar texto
-            const shouldHideByText = CONFIG.textsToHide.some(hideText => text.includes(hideText));
+            const shouldHide = CONFIG.textsToHide.some(hideText => text.includes(hideText)) ||
+                             CONFIG.urlsToHide.some(hideUrl => href.includes(hideUrl));
 
-            // Verificar URL
-            const shouldHideByUrl = CONFIG.urlsToHide.some(hideUrl => href.includes(hideUrl));
-
-            if (shouldHideByText || shouldHideByUrl) {
+            if (shouldHide) {
                 element.style.display = 'none';
-                console.log(`Elemento oculto: ${text || href}`);
+                processedElements.add(element);
             }
         });
     }
 
-    // Función unificada para reemplazar imágenes
+    // Función optimizada para reemplazar imágenes
     function replaceImages() {
         const replacements = [
             {
-                selector: CONFIG.selectors.pdfIcons,
+                elements: document.querySelectorAll(CONFIG.selectors.pdfIcons),
                 newSrc: CONFIG.images.peterPng,
-                attribute: 'data-pdf-replaced',
-                logMessage: 'Icono PDF reemplazado'
+                condition: null
             },
             {
-                selector: CONFIG.selectors.userPictures,
+                elements: document.querySelectorAll(CONFIG.selectors.userPictures),
                 newSrc: CONFIG.images.userProfile,
-                attribute: 'data-user-replaced',
-                logMessage: 'Imagen de usuario reemplazada',
                 condition: (img) => img.src.includes('moodle.unizar.es/add/pluginfile.php')
             },
             {
-                selector: CONFIG.selectors.logo,
+                elements: document.querySelectorAll(CONFIG.selectors.logo),
                 newSrc: CONFIG.images.logo,
-                attribute: 'data-logo-replaced',
-                logMessage: 'Logo reemplazado'
+                condition: null
             }
         ];
 
-        replacements.forEach(({ selector, newSrc, attribute, logMessage, condition }) => {
-            const images = document.querySelectorAll(selector);
-            images.forEach(img => {
-                if (!img.hasAttribute(attribute) && (!condition || condition(img))) {
+        replacements.forEach(({ elements, newSrc, condition }) => {
+            elements.forEach(img => {
+                if (processedElements.has(img)) return;
+                
+                if (!condition || condition(img)) {
                     img.src = newSrc;
-                    img.setAttribute(attribute, 'true');
-                    console.log(logMessage);
+                    processedElements.add(img);
                 }
             });
         });
     }
 
-    // Función para aplicar fondos personalizados
+    // Función optimizada para aplicar fondos
     function applyCustomBackgrounds() {
         CONFIG.selectors.backgroundElements.forEach(selector => {
             const elements = document.querySelectorAll(selector);
             elements.forEach(element => {
-                if (!element.hasAttribute('data-custom-bg-applied')) {
-                    Object.assign(element.style, {
-                        backgroundImage: `url("${CONFIG.images.peter}")`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat'
-                    });
-                    element.setAttribute('data-custom-bg-applied', 'true');
-                    console.log(`Fondo personalizado aplicado: ${selector}`);
-                }
+                if (processedElements.has(element)) return;
+                
+                Object.assign(element.style, {
+                    backgroundImage: `url("${CONFIG.images.peter}")`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat'
+                });
+                processedElements.add(element);
             });
         });
     }
 
-    // Función para añadir párrafo personalizado
+    // Función optimizada para añadir párrafo personalizado
     function addCustomParagraph() {
-        waitForElement(CONFIG.selectors.banner, (bannerElement) => {
-            if (!bannerElement.querySelector('.custom-info-paragraph')) {
-                const customParagraph = document.createElement('div');
-                customParagraph.className = 'custom-info-paragraph';
+        const bannerElement = document.querySelector(CONFIG.selectors.banner);
+        if (!bannerElement || bannerElement.querySelector('.custom-info-paragraph')) return;
 
-                const titleText = document.createElement('div');
-                titleText.textContent = '"MOODLE 2: Premium edition" HECHO POR Carlos Moreno';
+        const customParagraph = document.createElement('div');
+        customParagraph.className = 'custom-info-paragraph';
+        customParagraph.innerHTML = `
+            <div>"MOODLE 2: Premium edition" HECHO POR Carlos Moreno</div>
+            <br>
+            <a href="https://github.com/carmoran0/MOOdleUnizarCSS/issues" target="_blank" class="custom-suggestions-link">
+                Sugerencias y reportes
+            </a>
+        `;
+        
+        bannerElement.insertBefore(customParagraph, bannerElement.firstChild);
+    }
 
-                const suggestionsLink = document.createElement('a');
-                suggestionsLink.href = 'https://github.com/carmoran0/MOOdleUnizarCSS/issues';
-                suggestionsLink.target = '_blank';
-                suggestionsLink.className = 'custom-suggestions-link';
-                suggestionsLink.textContent = 'Sugerencias y reportes';
-
-                customParagraph.appendChild(titleText);
-                customParagraph.appendChild(document.createElement('br'));
-                customParagraph.appendChild(suggestionsLink);
-
-                bannerElement.insertBefore(customParagraph, bannerElement.firstChild);
-                console.log('Párrafo personalizado con enlace de sugerencias añadido');
-            }
+    // Función para aplicar todas las modificaciones de una vez
+    function applyAllModifications() {
+        // Usar requestAnimationFrame para mejor rendimiento
+        requestAnimationFrame(() => {
+            replaceImages();
+            applyCustomBackgrounds();
+            hideNavbarElements();
+            addCustomParagraph();
         });
     }
 
-    // Función para aplicar todas las modificaciones
-    function applyAllModifications() {
-        replaceImages();
-        applyCustomBackgrounds();
-        hideNavbarElements();
-        addCustomParagraph();
-    }
-
-    // Observer optimizado
+    // Observer más eficiente con debounce incorporado
     function setupDOMObserver() {
-        let timeoutId;
-        const observer = new MutationObserver(() => {
-            clearTimeout(timeoutId);
-            timeoutId = setTimeout(applyAllModifications, 100);
+        let isObserving = false;
+        
+        const observer = new MutationObserver((mutations) => {
+            if (isObserving) return;
+            isObserving = true;
+            
+            // Solo procesar si hay cambios relevantes
+            const hasRelevantChanges = mutations.some(mutation => 
+                mutation.type === 'childList' && 
+                mutation.addedNodes.length > 0 &&
+                Array.from(mutation.addedNodes).some(node => 
+                    node.nodeType === Node.ELEMENT_NODE && 
+                    (node.matches?.('img, .nav-link, .navbar, .card-img-top') || 
+                     node.querySelector?.('img, .nav-link, .navbar, .card-img-top'))
+                )
+            );
+
+            if (hasRelevantChanges) {
+                requestAnimationFrame(() => {
+                    applyAllModifications();
+                    isObserving = false;
+                });
+            } else {
+                isObserving = false;
+            }
         });
 
         observer.observe(document.body, {
@@ -259,19 +263,27 @@
         return observer;
     }
 
-    // Función principal
+    // Función principal optimizada
     function init() {
+        if (isInitialized) return;
+        isInitialized = true;
+
+        // Aplicar estilos CSS inmediatamente
         applyCustomStyles();
 
+        // Aplicar modificaciones iniciales
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', applyAllModifications);
+            document.addEventListener('DOMContentLoaded', applyAllModifications, { once: true });
         } else {
             applyAllModifications();
         }
 
-        setupDOMObserver();
+        // Configurar observer solo después de la carga inicial
+        setTimeout(() => {
+            setupDOMObserver();
+        }, 500);
     }
 
-    // Inicializar
+    // Inicializar inmediatamente
     init();
 })();
