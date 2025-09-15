@@ -23,7 +23,8 @@
             peter: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/peter.jpg',
             peterPng: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/PETERRRRR.png',
             logo: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/mooodle.png',
-            userProfile: 'https://www.thispersondoesnotexist.com/'
+            userProfile: 'https://www.thispersondoesnotexist.com/',
+            screamer1:'https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/screamer1.jpeg'
         },
         selectors: {
             navbar: '.navbar .nav-link, .navbar .dropdown-toggle, .navbar a',
@@ -40,7 +41,7 @@
 
     // Cache para elementos ya procesados
     const processedElements = new WeakSet();
-    
+
     // Flag para evitar ejecuciones múltiples
     let isInitialized = false;
 
@@ -121,6 +122,12 @@
                 border-radius: 5px !important;
                 text-align: center !important;
             }
+            .custom-info-paragraph {
+  background-size: contain;
+                background-color: rgba(255, 255, 255, 0.75);
+                background-image: url("${CONFIG.images.screamer1}");
+                background-blend-mode: color-burn;
+}
         `;
         document.head.appendChild(style);
     }
@@ -133,7 +140,7 @@
         // Usar DocumentFragment para operaciones batch
         allElements.forEach(element => {
             if (processedElements.has(element)) return;
-            
+
             const text = element.textContent.trim();
             const href = element.getAttribute('href') || '';
 
@@ -170,7 +177,7 @@
         replacements.forEach(({ elements, newSrc, condition }) => {
             elements.forEach(img => {
                 if (processedElements.has(img)) return;
-                
+
                 if (!condition || condition(img)) {
                     img.src = newSrc;
                     processedElements.add(img);
@@ -185,7 +192,7 @@
             const elements = document.querySelectorAll(selector);
             elements.forEach(element => {
                 if (processedElements.has(element)) return;
-                
+
                 Object.assign(element.style, {
                     backgroundImage: `url("${CONFIG.images.peter}")`,
                     backgroundSize: 'cover',
@@ -211,7 +218,7 @@
                 Sugerencias y reportes
             </a>
         `;
-        
+
         bannerElement.insertBefore(customParagraph, bannerElement.firstChild);
     }
 
@@ -229,19 +236,19 @@
     // Observer más eficiente con debounce incorporado
     function setupDOMObserver() {
         let isObserving = false;
-        
+
         const observer = new MutationObserver((mutations) => {
             if (isObserving) return;
             isObserving = true;
-            
+
             // Solo procesar si hay cambios relevantes
-            const hasRelevantChanges = mutations.some(mutation => 
-                mutation.type === 'childList' && 
+            const hasRelevantChanges = mutations.some(mutation =>
+                mutation.type === 'childList' &&
                 mutation.addedNodes.length > 0 &&
-                Array.from(mutation.addedNodes).some(node => 
-                    node.nodeType === Node.ELEMENT_NODE && 
-                    (node.matches?.('img, .nav-link, .navbar, .card-img-top') || 
-                    node.querySelector?.('img, .nav-link, .navbar, .card-img-top'))
+                Array.from(mutation.addedNodes).some(node =>
+                    node.nodeType === Node.ELEMENT_NODE &&
+                    (node.matches?.('img, .nav-link, .navbar, .card-img-top') ||
+                     node.querySelector?.('img, .nav-link, .navbar, .card-img-top'))
                 )
             );
 
