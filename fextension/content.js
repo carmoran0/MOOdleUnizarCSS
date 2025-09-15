@@ -241,7 +241,7 @@
                 Array.from(mutation.addedNodes).some(node => 
                     node.nodeType === Node.ELEMENT_NODE && 
                     (node.matches?.('img, .nav-link, .navbar, .card-img-top') || 
-                     node.querySelector?.('img, .nav-link, .navbar, .card-img-top'))
+                    node.querySelector?.('img, .nav-link, .navbar, .card-img-top'))
                 )
             );
 
