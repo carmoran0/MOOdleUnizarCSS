@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MOOdle Personalizado
 // @namespace    http://tampermonkey.net/
-// @version      2025-09-15-optimized
+// @version      2025-09-29
 // @description  Personaliza el aspecto de Moodle (Versión Optimizada)
 // @author       Calo
 // @match        https://moodle.unizar.es/*
@@ -14,8 +14,8 @@
 (function() {
     'use strict';
 
-    // Configuración centralizada
-    const CONFIG = {
+    // Configuración por defecto (fallback si no hay configuración guardada)
+    const DEFAULT_CONFIG = {
         images: {
             background: "https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/peterIRL.png",
             navbarBg: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/giggity.png',
@@ -26,6 +26,16 @@
             userProfile: 'https://www.thispersondoesnotexist.com/',
             screamer1:'https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/screamer1.jpeg'
         },
+        fontFamily: 'Comic Sans MS',
+        customFont: '',
+        textsToHide: ['Recursos y manuales', 'ADD', 'Política de privacidad'],
+        urlsToHide: ['add.unizar.es', 'privacidad', 'recursos', 'manuales'],
+        features: {
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true
+        },
         selectors: {
             navbar: '.navbar .nav-link, .navbar .dropdown-toggle, .navbar a',
             dropdowns: '.dropdown-menu .dropdown-item, .nav-item',
@@ -34,32 +44,67 @@
             userPictures: 'img.userpicture',
             logo: 'img.logo',
             banner: '#themeboostunioninfobanner1'
-        },
-        textsToHide: ['Recursos y manuales', 'ADD', 'Política de privacidad'],
-        urlsToHide: ['add.unizar.es', 'privacidad', 'recursos', 'manuales']
+        }
     };
+
+    // Configuración actual (será cargada desde storage)
+    let currentConfig = { ...DEFAULT_CONFIG };
 
     // Cache para elementos ya procesados
     const processedElements = new WeakSet();
 
     // Flag para evitar ejecuciones múltiples
     let isInitialized = false;
+    let styleElement = null;
 
-    // Aplicar estilos CSS personalizados (solo una vez)
-    function applyCustomStyles() {
-        if (document.querySelector('#moodle-custom-styles')) return;
+    // Cargar configuración desde el almacenamiento
+    async function loadConfig() {
+        try {
+            // Para extensiones del navegador
+            if (typeof browser !== 'undefined' && browser.storage) {
+                const result = await browser.storage.sync.get('moodleConfig');
+                return result.moodleConfig || DEFAULT_CONFIG;
+            }
+            // Para Chrome extensions API
+            else if (typeof chrome !== 'undefined' && chrome.storage) {
+                return new Promise((resolve) => {
+                    chrome.storage.sync.get('moodleConfig', (result) => {
+                        resolve(result.moodleConfig || DEFAULT_CONFIG);
+                    });
+                });
+            }
+            // Fallback a configuración por defecto
+            else {
+                return DEFAULT_CONFIG;
+            }
+        } catch (error) {
+            console.error('Error loading config:', error);
+            return DEFAULT_CONFIG;
+        }
+    }
+
+    // Aplicar estilos CSS personalizados
+    function applyCustomStyles(config) {
+        // Remover estilos anteriores si existen
+        if (styleElement) {
+            styleElement.remove();
+        }
 
         const style = document.createElement('style');
         style.id = 'moodle-custom-styles';
+        
+        // Usar la fuente configurada
+        const fontFamily = config.fontFamily || DEFAULT_CONFIG.fontFamily;
+        
         style.textContent = `
             body {
-                font-family: Comic Sans MS;
-                background-image: url("${CONFIG.images.background}");
+                font-family: ${fontFamily};
+                background-image: url("${config.images.background}");
                 background-repeat: repeat;
             }
             .bg-primary {
                 background-color: #c1c1c1 !important;
-                background-image: url('${CONFIG.images.navbarBg}') !important;
+                background-image: url('${config.images.navbarBg}') !important;
                 background-repeat: repeat !important;
                 background-size: 10% !important;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
@@ -109,7 +154,7 @@
             }
             .maincalendar .calendarmonth {
                 background-color: rgba(255, 255, 255, 0.75);
-                background-image: url("${CONFIG.images.calendarBg}");
+                background-image: url("${config.images.calendarBg}");
                 background-blend-mode: color-burn;
             }
             .custom-info-paragraph {
@@ -121,31 +166,31 @@
                 background-color: rgba(255, 255, 255, 0.8) !important;
                 border-radius: 5px !important;
                 text-align: center !important;
-            }
-            .custom-info-paragraph {
-  background-size: contain;
+                background-size: contain;
                 background-color: rgba(255, 255, 255, 0.75);
-                background-image: url("${CONFIG.images.screamer1}");
+                background-image: url("${config.images.screamer1}");
                 background-blend-mode: color-burn;
-}
+            }
         `;
+        
         document.head.appendChild(style);
+        styleElement = style;
     }
 
-    // Función optimizada para ocultar elementos (usando delegación de eventos)
-    function hideNavbarElements() {
-        // Crear un único selector combinado
-        const allElements = document.querySelectorAll(`${CONFIG.selectors.navbar}, ${CONFIG.selectors.dropdowns}`);
+    // Función optimizada para ocultar elementos
+    function hideNavbarElements(config) {
+        if (!config.features.enableHideElements) return;
 
-        // Usar DocumentFragment para operaciones batch
+        const allElements = document.querySelectorAll(`${config.selectors.navbar}, ${config.selectors.dropdowns}`);
+
         allElements.forEach(element => {
             if (processedElements.has(element)) return;
 
             const text = element.textContent.trim();
             const href = element.getAttribute('href') || '';
 
-            const shouldHide = CONFIG.textsToHide.some(hideText => text.includes(hideText)) ||
-                             CONFIG.urlsToHide.some(hideUrl => href.includes(hideUrl));
+            const shouldHide = config.textsToHide.some(hideText => text.includes(hideText)) ||
+                             config.urlsToHide.some(hideUrl => href.includes(hideUrl));
 
             if (shouldHide) {
                 element.style.display = 'none';
@@ -155,21 +200,23 @@
     }
 
     // Función optimizada para reemplazar imágenes
-    function replaceImages() {
+    function replaceImages(config) {
+        if (!config.features.enableImageReplacements) return;
+
         const replacements = [
             {
-                elements: document.querySelectorAll(CONFIG.selectors.pdfIcons),
-                newSrc: CONFIG.images.peterPng,
+                elements: document.querySelectorAll(config.selectors.pdfIcons),
+                newSrc: config.images.peterPng,
                 condition: null
             },
             {
-                elements: document.querySelectorAll(CONFIG.selectors.userPictures),
-                newSrc: CONFIG.images.userProfile,
+                elements: document.querySelectorAll(config.selectors.userPictures),
+                newSrc: config.images.userProfile,
                 condition: (img) => img.src.includes('moodle.unizar.es/add/pluginfile.php')
             },
             {
-                elements: document.querySelectorAll(CONFIG.selectors.logo),
-                newSrc: CONFIG.images.logo,
+                elements: document.querySelectorAll(config.selectors.logo),
+                newSrc: config.images.logo,
                 condition: null
             }
         ];
@@ -187,14 +234,16 @@
     }
 
     // Función optimizada para aplicar fondos
-    function applyCustomBackgrounds() {
-        CONFIG.selectors.backgroundElements.forEach(selector => {
+    function applyCustomBackgrounds(config) {
+        if (!config.features.enableBackgroundImages) return;
+
+        config.selectors.backgroundElements.forEach(selector => {
             const elements = document.querySelectorAll(selector);
             elements.forEach(element => {
                 if (processedElements.has(element)) return;
 
                 Object.assign(element.style, {
-                    backgroundImage: `url("${CONFIG.images.peter}")`,
+                    backgroundImage: `url("${config.images.peter}")`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat'
@@ -205,8 +254,10 @@
     }
 
     // Función optimizada para añadir párrafo personalizado
-    function addCustomParagraph() {
-        const bannerElement = document.querySelector(CONFIG.selectors.banner);
+    function addCustomParagraph(config) {
+        if (!config.features.enableCustomParagraph) return;
+
+        const bannerElement = document.querySelector(config.selectors.banner);
         if (!bannerElement || bannerElement.querySelector('.custom-info-paragraph')) return;
 
         const customParagraph = document.createElement('div');
@@ -223,14 +274,29 @@
     }
 
     // Función para aplicar todas las modificaciones de una vez
-    function applyAllModifications() {
-        // Usar requestAnimationFrame para mejor rendimiento
+    function applyAllModifications(config = currentConfig) {
         requestAnimationFrame(() => {
-            replaceImages();
-            applyCustomBackgrounds();
-            hideNavbarElements();
-            addCustomParagraph();
+            replaceImages(config);
+            applyCustomBackgrounds(config);
+            hideNavbarElements(config);
+            addCustomParagraph(config);
         });
+    }
+
+    // Función para actualizar toda la configuración
+    function updateConfiguration(newConfig) {
+        currentConfig = { ...DEFAULT_CONFIG, ...newConfig };
+        
+        // Limpiar elementos procesados para que se vuelvan a aplicar
+        processedElements.clear = () => {};
+        
+        // Aplicar nuevos estilos
+        applyCustomStyles(currentConfig);
+        
+        // Aplicar todas las modificaciones con la nueva configuración
+        applyAllModifications(currentConfig);
+        
+        console.log('Configuración actualizada:', currentConfig);
     }
 
     // Observer más eficiente con debounce incorporado
@@ -241,7 +307,6 @@
             if (isObserving) return;
             isObserving = true;
 
-            // Solo procesar si hay cambios relevantes
             const hasRelevantChanges = mutations.some(mutation =>
                 mutation.type === 'childList' &&
                 mutation.addedNodes.length > 0 &&
@@ -270,25 +335,66 @@
         return observer;
     }
 
+    // Escuchar mensajes de actualización de configuración
+    function setupMessageListener() {
+        // Para extensiones del navegador
+        if (typeof browser !== 'undefined' && browser.runtime) {
+            browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
+                if (message.action === 'updateConfig') {
+                    updateConfiguration(message.config);
+                    sendResponse({ success: true });
+                    return true;
+                }
+            });
+        }
+        // Para Chrome extensions API
+        else if (typeof chrome !== 'undefined' && chrome.runtime) {
+            chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+                if (message.action === 'updateConfig') {
+                    updateConfiguration(message.config);
+                    sendResponse({ success: true });
+                    return true;
+                }
+            });
+        }
+    }
+
     // Función principal optimizada
-    function init() {
+    async function init() {
         if (isInitialized) return;
         isInitialized = true;
 
+        console.log('Inicializando MOOdle Personalizado...');
+
+        // Cargar configuración desde storage
+        try {
+            const savedConfig = await loadConfig();
+            currentConfig = { ...DEFAULT_CONFIG, ...savedConfig };
+            console.log('Configuración cargada:', currentConfig);
+        } catch (error) {
+            console.error('Error al cargar configuración, usando por defecto:', error);
+            currentConfig = DEFAULT_CONFIG;
+        }
+
         // Aplicar estilos CSS inmediatamente
-        applyCustomStyles();
+        applyCustomStyles(currentConfig);
+
+        // Configurar listener para mensajes de actualización
+        setupMessageListener();
 
         // Aplicar modificaciones iniciales
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', applyAllModifications, { once: true });
+            document.addEventListener('DOMContentLoaded', () => applyAllModifications(currentConfig), { once: true });
         } else {
-            applyAllModifications();
+            applyAllModifications(currentConfig);
         }
 
         // Configurar observer solo después de la carga inicial
         setTimeout(() => {
             setupDOMObserver();
         }, 500);
+
+        console.log('MOOdle Personalizado inicializado correctamente');
     }
 
     // Inicializar inmediatamente

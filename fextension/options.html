@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOOdle Personalizado - Configuración</title>
+    <link rel="stylesheet" href="options.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MOOdle 2: Premium Edition</h1>
+            <p>Configuración</p>
+        </header>
+
+        <div class="config-section">
+            <h2>Imágenes</h2>
+            
+            <div class="config-item">
+                <label for="background">Imagen de fondo:</label>
+                <input type="url" id="background" placeholder="URL de la imagen de fondo">
+                <button class="preview-btn" data-target="background">Vista previa</button>
+            </div>
+
+            <div class="config-item">
+                <label for="navbarBg">Fondo de barra de navegación:</label>
+                <input type="url" id="navbarBg" placeholder="URL del fondo de la navbar">
+                <button class="preview-btn" data-target="navbarBg">Vista previa</button>
+            </div>
+
+            <div class="config-item">
+                <label for="calendarBg">Fondo del calendario:</label>
+                <input type="url" id="calendarBg" placeholder="URL del fondo del calendario">
+                <button class="preview-btn" data-target="calendarBg">Vista previa</button>
+            </div>
+
+            <div class="config-item">
+                <label for="peter">Imagen de Peter (fondos de tarjetas):</label>
+                <input type="url" id="peter" placeholder="URL de imagen para fondos">
+                <button class="preview-btn" data-target="peter">Vista previa</button>
+            </div>
+
+            <div class="config-item">
+                <label for="peterPng">Imagen de Peter PNG (iconos PDF):</label>
+                <input type="url" id="peterPng" placeholder="URL de imagen PNG para PDFs">
+                <button class="preview-btn" data-target="peterPng">Vista previa</button>
+            </div>
+
+            <div class="config-item">
+                <label for="logo">Logo personalizado:</label>
+                <input type="url" id="logo" placeholder="URL del logo personalizado">
+                <button class="preview-btn" data-target="logo">Vista previa</button>
+            </div>
+
+            <div class="config-item">
+                <label for="userProfile">Imagen de perfil de usuario:</label>
+                <input type="url" id="userProfile" placeholder="URL de imagen de perfil">
+                <button class="preview-btn" data-target="userProfile">Vista previa</button>
+            </div>
+
+        <div class="config-section">
+            <h2>Tipografía</h2>
+            
+            <div class="config-item">
+                <label for="fontFamily">Fuente:</label>
+                <select id="fontFamily">
+                    <option value="Comic Sans MS">Comic Sans MS</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                    <option value="Helvetica">Helvetica</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Courier New">Courier New</option>
+                    <option value="Impact">Impact</option>
+                    <option value="Trebuchet MS">Trebuchet MS</option>
+                    <option value="Tahoma">Tahoma</option>
+                    <option value="custom">Personalizada...</option>
+                </select>
+                <input type="text" id="customFont" placeholder="Nombre de fuente personalizada" style="display: none;">
+            </div>
+        </div>
+
+        <div class="config-section">
+            <h2>Elementos a ocultar</h2>
+            
+            <div class="config-item">
+                <label for="textsToHide">Textos a ocultar (separados por comas):</label>
+                <input type="text" id="textsToHide" placeholder="Recursos y manuales, ADD, Política de privacidad">
+            </div>
+
+            <div class="config-item">
+                <label for="urlsToHide">URLs a ocultar (separados por comas):</label>
+                <input type="text" id="urlsToHide" placeholder="add.unizar.es, privacidad, recursos, manuales">
+            </div>
+        </div>
+
+        <div class="config-section">
+            <h2>Configuración avanzada</h2>
+            
+            <div class="config-item">
+                <label>
+                    <input type="checkbox" id="enableBackgroundImages"> 
+                    Habilitar imágenes de fondo personalizadas en las clases
+                </label>
+            </div>
+
+            <div class="config-item">
+                <label>
+                    <input type="checkbox" id="enableImageReplacements"> 
+                    Habilitar reemplazo de imágenes (Logo y fotos de perfil)
+                </label>
+            </div>
+
+            <div class="config-item">
+                <label>
+                    <input type="checkbox" id="enableHideElements"> 
+                    Habilitar ocultación de elementos (navbar)
+                </label>
+            </div>
+
+            <div class="config-item">
+                <label>
+                    <input type="checkbox" id="enableCustomParagraph"> 
+                    Mostrar intro en página principal
+                </label>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button id="saveConfig" class="btn-primary">💾 Guardar configuración</button>
+            <button id="resetConfig" class="btn-secondary">🔄 Restaurar valores por defecto</button>
+            <button id="exportConfig" class="btn-secondary">📤 Exportar configuración</button>
+            <button id="importConfig" class="btn-secondary">📥 Importar configuración</button>
+            <input type="file" id="importFile" accept=".json" style="display: none;">
+        </div>
+
+        <div class="status" id="status"></div>
+
+        <!-- Modal para vista previa de imágenes -->
+        <div id="previewModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <img id="previewImage" src="" alt="Vista previa">
+                <p id="previewError" style="display: none; color: red;">Error al cargar la imagen</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="options.js"></script>
+</body>
+</html>

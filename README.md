@@ -21,5 +21,6 @@ Userscript para personalizar Moodle. Esta extensión es únicamente estética, n
 ## Lista de funciones 
 - Todos los usuarios tienen la misma foto de una persona que no existe
 - Barra de navegación mejorada
-- Fuente más amigable
+- Fuente más guay
 - Ahora la interfaz no es una mierda y no se te limita solo al centro de la pantalla
+- TODO ESTO AHORA ES OPCIONAL Y CUSTOMIZABLE (trabajando en hacer unos cuantos temas predeterminados)(solo en firefox(no esta en mis planes llevarlo a chromium))
