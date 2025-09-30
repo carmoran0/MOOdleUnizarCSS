@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         MOOdle Personalizado
 // @namespace    http://tampermonkey.net/
-// @version      2025-09-29
-// @description  Personaliza el aspecto de Moodle (Versión Optimizada)
+// @version      2025-09-30
+// @description  Personaliza el aspecto de Moodle
 // @author       Calo
 // @match        https://moodle.unizar.es/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=unizar.es
