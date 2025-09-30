@@ -7,12 +7,9 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #ffffff 0%, #535353 100%);
-    min-height: 100vh;
-    padding: 20px;
 }
 
 .container {
-    max-width: 800px;
     margin: 0 auto;
     background: rgba(255, 255, 255, 0.95);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
@@ -20,9 +17,8 @@ body {
 }
 
 header {
-    background: linear-gradient(135deg, #fff86b, #afa717);
+    background: linear-gradient(135deg, #ff3838, #af1717);
     color: white;
-    padding: 30px;
     text-align: center;
 }
 
@@ -33,7 +29,7 @@ header h1 {
 }
 
 header p {
-    font-size: 1.2em;
+    font-size: 0.85em;
     opacity: 0.9;
 }
 
@@ -50,7 +46,7 @@ header p {
     font-size: 1.5em;
     margin-bottom: 20px;
     color: #2c3e50;
-    border-left: 4px solid #fff86b;
+    border-left: 4px solid #ff3838;
     padding-left: 15px;
 }
 
@@ -61,10 +57,20 @@ header p {
     gap: 8px;
 }
 
+.config-item.compact {
+    margin-bottom: 12px;
+    gap: 6px;
+}
+
 .config-item label {
     font-weight: 600;
     color: #34495e;
     font-size: 0.95em;
+}
+
+.config-item.compact label {
+    font-size: 0.85em;
+    font-weight: 500;
 }
 
 .config-item input[type="url"],
@@ -78,11 +84,18 @@ header p {
     background: white;
 }
 
+.config-item.compact input[type="url"],
+.config-item.compact input[type="text"],
+.config-item.compact select {
+    padding: 8px 12px;
+    font-size: 13px;
+}
+
 .config-item input[type="url"]:focus,
 .config-item input[type="text"]:focus,
 .config-item select:focus {
     outline: none;
-    border-color: #fff86b;
+    border-color: #ff3838;
     box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
 }
 
@@ -127,7 +140,7 @@ header p {
 
 .btn-primary {
     padding: 12px 30px;
-    background: linear-gradient(135deg, #fff86b, #afa717);
+    background: linear-gradient(135deg, #ff3838, #af1717);
     color: white;
     border: none;
     border-radius: 8px;
@@ -290,10 +303,57 @@ header p {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #fff86b, #afa717);
+    background: linear-gradient(135deg, #ff3838, #af1717);
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #afa717, #fff86b);
+    background: linear-gradient(135deg, #af1717, #ff3838);
+}
+
+/* Estilos para menú colapsable */
+.collapsible-header {
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+}
+
+.collapsible-header:hover {
+    background-color: rgba(255, 56, 56, 0.05);
+    transform: translateY(-1px);
+}
+
+.toggle-icon {
+    font-size: 0.8em;
+    transition: transform 0.3s ease;
+    margin-left: 10px;
+}
+
+.collapsible-content {
+    display: none;
+    padding: 10px 0;
+    animation: slideDown 0.3s ease-out;
+}
+
+.collapsible-content.show {
+    display: block;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        max-height: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        max-height: 500px;
+        transform: translateY(0);
+    }
 }

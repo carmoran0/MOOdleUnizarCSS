@@ -10,8 +10,25 @@
     <div class="container">
         <header>
             <h1>MOOdle 2: Premium Edition</h1>
-            <p>Configuración</p>
+            <p>(Puede que para algunos cambios sea necesario recargar la página)</p>
         </header>
+
+        <div class="config-section">
+            <h2>Temas Predeterminados</h2>
+            
+            <div class="config-item">
+                <label for="selectedTheme">Seleccionar tema:</label>
+                <select id="selectedTheme">
+                    <option value="default">Family guy claro (default)</option>
+                    <option value="dark">Family guy oscuro</option>
+                    <option value="moodle">Moodle Base</option>
+                    <option value="custom">Personalizado</option>
+                </select>
+                <small style="display: block; margin-top: 5px; color: #666;">
+                    Selecciona un tema predeterminado o "Personalizado" para configurar manualmente
+                </small>
+            </div>
+        </div>
 
         <div class="config-section">
             <h2>Imágenes</h2>
@@ -62,6 +79,16 @@
             <h2>Tipografía</h2>
             
             <div class="config-item">
+                <label>
+                    <input type="checkbox" id="enableCustomFont" checked> 
+                    Habilitar fuente personalizada
+                </label>
+                <small style="display: block; margin-top: 5px; color: #666;">
+                    Desmarcar para usar la fuente predeterminada de Moodle
+                </small>
+            </div>
+            
+            <div class="config-item" id="fontSection">
                 <label for="fontFamily">Fuente:</label>
                 <select id="fontFamily">
                     <option value="Comic Sans MS">Comic Sans MS</option>
@@ -81,48 +108,48 @@
         </div>
 
         <div class="config-section">
-            <h2>Elementos a ocultar</h2>
-            
-            <div class="config-item">
-                <label for="textsToHide">Textos a ocultar (separados por comas):</label>
-                <input type="text" id="textsToHide" placeholder="Recursos y manuales, ADD, Política de privacidad">
-            </div>
+            <h2 class="collapsible-header" id="advancedConfigHeader">
+                <span>Configuración avanzada</span>
+                <span class="toggle-icon">▼</span>
+            </h2>
+            <div class="collapsible-content" id="advancedConfigContent">
+                <div class="config-item compact">
+                    <label for="textsToHide">Textos a ocultar (separados por comas):</label>
+                    <input type="text" id="textsToHide" placeholder="Recursos y manuales, ADD, Política de privacidad">
+                </div>
 
-            <div class="config-item">
-                <label for="urlsToHide">URLs a ocultar (separados por comas):</label>
-                <input type="text" id="urlsToHide" placeholder="add.unizar.es, privacidad, recursos, manuales">
-            </div>
-        </div>
+                <div class="config-item compact">
+                    <label for="urlsToHide">URLs a ocultar (separados por comas):</label>
+                    <input type="text" id="urlsToHide" placeholder="add.unizar.es, privacidad, recursos, manuales">
+                </div>
+                
+                <div class="config-item compact">
+                    <label>
+                        <input type="checkbox" id="enableBackgroundImages"> 
+                        Habilitar imágenes de fondo personalizadas en las clases
+                    </label>
+                </div>
 
-        <div class="config-section">
-            <h2>Configuración avanzada</h2>
-            
-            <div class="config-item">
-                <label>
-                    <input type="checkbox" id="enableBackgroundImages"> 
-                    Habilitar imágenes de fondo personalizadas en las clases
-                </label>
-            </div>
+                <div class="config-item compact">
+                    <label>
+                        <input type="checkbox" id="enableImageReplacements"> 
+                        Habilitar reemplazo de imágenes (Logo y fotos de perfil)
+                    </label>
+                </div>
 
-            <div class="config-item">
-                <label>
-                    <input type="checkbox" id="enableImageReplacements"> 
-                    Habilitar reemplazo de imágenes (Logo y fotos de perfil)
-                </label>
-            </div>
+                <div class="config-item compact">
+                    <label>
+                        <input type="checkbox" id="enableHideElements"> 
+                        Habilitar ocultación de elementos (navbar)
+                    </label>
+                </div>
 
-            <div class="config-item">
-                <label>
-                    <input type="checkbox" id="enableHideElements"> 
-                    Habilitar ocultación de elementos (navbar)
-                </label>
-            </div>
-
-            <div class="config-item">
-                <label>
-                    <input type="checkbox" id="enableCustomParagraph"> 
-                    Mostrar intro en página principal
-                </label>
+                <div class="config-item compact">
+                    <label>
+                        <input type="checkbox" id="enableCustomParagraph"> 
+                        Mostrar intro en página principal
+                    </label>
+                </div>
             </div>
         </div>
 

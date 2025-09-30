@@ -17,11 +17,11 @@
     // Configuración por defecto (fallback si no hay configuración guardada)
     const DEFAULT_CONFIG = {
         images: {
-            background: "https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/peterIRL.png",
-            navbarBg: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/giggity.png',
-            calendarBg: "https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/gatos.gif",
-            peter: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/peter.jpg',
-            peterPng: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/PETERRRRR.png',
+            background: chrome.runtime.getURL("assets/default/peterIRL.png"),
+            navbarBg: chrome.runtime.getURL("assets/default/giggity.png"),
+            calendarBg: chrome.runtime.getURL("assets/default/gatos.gif"),
+            peter: chrome.runtime.getURL("assets/default/peter.jpg"),
+            peterPng: chrome.runtime.getURL("assets/default/PETERRRRR.png"),
             logo: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/mooodle.png',
             userProfile: 'https://www.thispersondoesnotexist.com/',
             screamer1:'https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/screamer1.jpeg'
@@ -34,7 +34,8 @@
             enableBackgroundImages: true,
             enableImageReplacements: true,
             enableHideElements: true,
-            enableCustomParagraph: true
+            enableCustomParagraph: true,
+            enableCustomFont: true
         },
         selectors: {
             navbar: '.navbar .nav-link, .navbar .dropdown-toggle, .navbar a',
@@ -93,24 +94,34 @@
         const style = document.createElement('style');
         style.id = 'moodle-custom-styles';
         
-        // Usar la fuente configurada
-        const fontFamily = config.fontFamily || DEFAULT_CONFIG.fontFamily;
+        // Usar la fuente configurada solo si está habilitada y no está vacía
+        let fontStyles = '';
+        if (config.features.enableCustomFont && config.fontFamily && config.fontFamily.trim()) {
+            fontStyles = `font-family: ${config.fontFamily};`;
+        }
+        
+        // Usar imagen de fondo solo si no está vacía
+        let backgroundStyles = '';
+        if (config.images.background && config.images.background.trim()) {
+            backgroundStyles = `
+                background-image: url("${config.images.background}");
+                background-repeat: repeat;`;
+        }
         
         style.textContent = `
             body {
-                font-family: ${fontFamily};
-                background-image: url("${config.images.background}");
-                background-repeat: repeat;
+                ${fontStyles}
+                ${backgroundStyles}
             }
             .bg-primary {
-                background-color: #c1c1c1 !important;
+                ${config.images.navbarBg && config.images.navbarBg.trim() ? `
                 background-image: url('${config.images.navbarBg}') !important;
                 background-repeat: repeat !important;
-                background-size: 10% !important;
+                background-size: 10% !important;` : ''}
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
             }
             .nav-link {
-                color: #000 !important;
+                color: #878787b1 !important;
                 border-radius: 4px !important;
                 padding: 8px 12px !important;
                 margin: 0 2px !important;
@@ -154,8 +165,9 @@
             }
             .maincalendar .calendarmonth {
                 background-color: rgba(255, 255, 255, 0.75);
+                ${config.images.calendarBg && config.images.calendarBg.trim() ? `
                 background-image: url("${config.images.calendarBg}");
-                background-blend-mode: color-burn;
+                background-blend-mode: color-burn;` : ''}
             }
             .custom-info-paragraph {
                 font-weight: bold !important;
@@ -168,8 +180,9 @@
                 text-align: center !important;
                 background-size: contain;
                 background-color: rgba(255, 255, 255, 0.75);
+                ${config.images.screamer1 && config.images.screamer1.trim() ? `
                 background-image: url("${config.images.screamer1}");
-                background-blend-mode: color-burn;
+                background-blend-mode: color-burn;` : ''}
             }
         `;
         
@@ -222,6 +235,9 @@
         ];
 
         replacements.forEach(({ elements, newSrc, condition }) => {
+            // Solo aplicar reemplazo si la URL no está vacía
+            if (!newSrc || !newSrc.trim()) return;
+            
             elements.forEach(img => {
                 if (processedElements.has(img)) return;
 
@@ -236,6 +252,9 @@
     // Función optimizada para aplicar fondos
     function applyCustomBackgrounds(config) {
         if (!config.features.enableBackgroundImages) return;
+        
+        // Solo aplicar fondos si la imagen no está vacía
+        if (!config.images.peter || !config.images.peter.trim()) return;
 
         config.selectors.backgroundElements.forEach(selector => {
             const elements = document.querySelectorAll(selector);

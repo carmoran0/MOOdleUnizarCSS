@@ -1,15 +1,63 @@
+// Temas predeterminados
+const PREDEFINED_THEMES = {
+    default: {
+        name: 'Family guy claro (default)',
+        images: {
+            background: chrome.runtime.getURL("assets/default/peterIRL.png"),
+            navbarBg: chrome.runtime.getURL("assets/default/giggity.png"),
+            calendarBg: "https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/gatos.gif",
+            peter: chrome.runtime.getURL("assets/default/peter.jpg"),
+            peterPng: chrome.runtime.getURL("assets/default/PETERRRRR.png"),
+            logo: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/mooodle.png',
+            userProfile: 'https://www.thispersondoesnotexist.com/',
+            screamer1:'https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/screamer1.jpeg'
+        },
+        fontFamily: 'Comic Sans MS'
+    },
+        dark: {
+        name: 'Family guy oscuro',
+        images: {
+            background: chrome.runtime.getURL("assets/dark/background.png"),
+            navbarBg: chrome.runtime.getURL("assets/dark/clevnavb.jpeg"),
+            calendarBg: chrome.runtime.getURL("assets/dark/calendar.png"),
+            peter: chrome.runtime.getURL("assets/dark/cocje.png"), //ESTA SON LAS TARJETAS
+            peterPng: chrome.runtime.getURL("assets/dark/pdf.png"), // ESTE ES EL PDF
+            logo: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/mooodle.png',
+            userProfile: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
+            screamer1: ''
+        },
+        fontFamily: 'Comic Sans MS'
+    },
+    moodle: {
+        name: 'Moodle Base',
+        images: {
+            background: '',
+            navbarBg: '',
+            calendarBg: '',
+            peter: '',
+            peterPng: '',
+            logo: '',
+            userProfile: '',
+            screamer1: ''
+        },
+        fontFamily: 'Arial'
+    },
+};
+
 // Configuración por defecto
 const DEFAULT_CONFIG = {
-    images: {
-        background: "https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/peterIRL.png",
-        navbarBg: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/giggity.png',
-        calendarBg: "https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/gatos.gif",
-        peter: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/peter.jpg',
-        peterPng: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/PETERRRRR.png',
-        logo: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/mooodle.png',
-        userProfile: 'https://www.thispersondoesnotexist.com/',
-        screamer1: 'https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/screamer1.jpeg'
-    },
+    selectedTheme: 'default',
+        images: {
+            background: chrome.runtime.getURL("assets/default/peterIRL.png"),
+            navbarBg: chrome.runtime.getURL("assets/default/giggity.png"),
+            calendarBg: "https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/gatos.gif",
+            peter: chrome.runtime.getURL("assets/default/peter.jpg"),
+            peterPng: chrome.runtime.getURL("assets/default/PETERRRRR.png"),
+            logo: chrome.runtime.getURL("assets/mooodle.png"),
+            userProfile: 'https://www.thispersondoesnotexist.com/',
+            screamer1:'https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/screamer1.jpeg'
+        },
+
     fontFamily: 'Comic Sans MS',
     customFont: '',
     textsToHide: ['Recursos y manuales', 'ADD', 'Política de privacidad'],
@@ -18,7 +66,8 @@ const DEFAULT_CONFIG = {
         enableBackgroundImages: true,
         enableImageReplacements: true,
         enableHideElements: true,
-        enableCustomParagraph: true
+        enableCustomParagraph: true,
+        enableCustomFont: true
     }
 };
 
@@ -58,23 +107,42 @@ function showStatus(message, type = 'info', duration = 3000) {
 
 // Llenar formulario con configuración
 function fillForm(config) {
+    // Tema predeterminado
+    const themeSelect = document.getElementById('selectedTheme');
+    if (themeSelect && config.selectedTheme) {
+        themeSelect.value = config.selectedTheme;
+    }
+    
     // Imágenes
     Object.keys(config.images).forEach(key => {
         const input = document.getElementById(key);
-        if (input) input.value = config.images[key];
+        if (input) input.value = config.images[key] || '';
     });
+    
+    // Fuente personalizada habilitada/deshabilitada
+    const enableCustomFontCheckbox = document.getElementById('enableCustomFont');
+    const fontSection = document.getElementById('fontSection');
+    if (enableCustomFontCheckbox) {
+        enableCustomFontCheckbox.checked = config.features.enableCustomFont !== false;
+        if (fontSection) {
+            fontSection.style.opacity = enableCustomFontCheckbox.checked ? '1' : '0.5';
+            fontSection.style.pointerEvents = enableCustomFontCheckbox.checked ? 'auto' : 'none';
+        }
+    }
     
     // Fuente
     const fontSelect = document.getElementById('fontFamily');
     const customFontInput = document.getElementById('customFont');
     
-    if (Object.values(fontSelect.options).some(opt => opt.value === config.fontFamily)) {
-        fontSelect.value = config.fontFamily;
-        customFontInput.style.display = 'none';
-    } else {
-        fontSelect.value = 'custom';
-        customFontInput.value = config.fontFamily;
-        customFontInput.style.display = 'block';
+    if (config.features.enableCustomFont !== false) {
+        if (Object.values(fontSelect.options).some(opt => opt.value === config.fontFamily)) {
+            fontSelect.value = config.fontFamily;
+            customFontInput.style.display = 'none';
+        } else {
+            fontSelect.value = 'custom';
+            customFontInput.value = config.fontFamily;
+            customFontInput.style.display = 'block';
+        }
     }
     
     // Textos y URLs a ocultar
@@ -95,33 +163,39 @@ function getFormConfig() {
         features: {}
     };
     
-    // Imágenes
+    // Tema seleccionado
+    const themeSelect = document.getElementById('selectedTheme');
+    config.selectedTheme = themeSelect ? themeSelect.value : 'default';
+    
+    // Imágenes (campos vacíos = sin personalización)
     Object.keys(DEFAULT_CONFIG.images).forEach(key => {
         const input = document.getElementById(key);
-        if (input) config.images[key] = input.value || DEFAULT_CONFIG.images[key];
+        if (input) {
+            config.images[key] = input.value.trim(); // Permitir campos vacíos
+        }
     });
     
     // Fuente
     const fontSelect = document.getElementById('fontFamily');
     const customFontInput = document.getElementById('customFont');
+    const enableCustomFontCheckbox = document.getElementById('enableCustomFont');
     
-    if (fontSelect.value === 'custom') {
-        config.fontFamily = customFontInput.value || DEFAULT_CONFIG.fontFamily;
+    if (enableCustomFontCheckbox && !enableCustomFontCheckbox.checked) {
+        // Si la fuente personalizada está deshabilitada, usar fuente por defecto de Moodle
+        config.fontFamily = '';
+    } else if (fontSelect.value === 'custom') {
+        config.fontFamily = customFontInput.value.trim() || '';
     } else {
         config.fontFamily = fontSelect.value;
     }
     config.customFont = customFontInput.value;
     
     // Textos y URLs a ocultar
-    config.textsToHide = document.getElementById('textsToHide').value
-        .split(',')
-        .map(text => text.trim())
-        .filter(text => text);
+    const textsValue = document.getElementById('textsToHide').value.trim();
+    config.textsToHide = textsValue ? textsValue.split(',').map(text => text.trim()).filter(text => text) : [];
         
-    config.urlsToHide = document.getElementById('urlsToHide').value
-        .split(',')
-        .map(url => url.trim())
-        .filter(url => url);
+    const urlsValue = document.getElementById('urlsToHide').value.trim();
+    config.urlsToHide = urlsValue ? urlsValue.split(',').map(url => url.trim()).filter(url => url) : [];
     
     // Features
     Object.keys(DEFAULT_CONFIG.features).forEach(key => {
@@ -267,6 +341,37 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
     
+    // Manejar selector de temas predeterminados
+    document.getElementById('selectedTheme').addEventListener('change', (e) => {
+        const selectedTheme = e.target.value;
+        if (selectedTheme !== 'custom' && PREDEFINED_THEMES[selectedTheme]) {
+            const theme = PREDEFINED_THEMES[selectedTheme];
+            
+            // Aplicar imágenes del tema
+            Object.keys(theme.images).forEach(key => {
+                const input = document.getElementById(key);
+                if (input) input.value = theme.images[key];
+            });
+            
+            // Aplicar fuente del tema
+            const fontSelect = document.getElementById('fontFamily');
+            const customFontInput = document.getElementById('customFont');
+            fontSelect.value = theme.fontFamily;
+            customFontInput.style.display = 'none';
+        }
+    });
+
+    // Manejar checkbox de fuente personalizada
+    document.getElementById('enableCustomFont').addEventListener('change', (e) => {
+        const fontSection = document.getElementById('fontSection');
+        const isEnabled = e.target.checked;
+        
+        if (fontSection) {
+            fontSection.style.opacity = isEnabled ? '1' : '0.5';
+            fontSection.style.pointerEvents = isEnabled ? 'auto' : 'none';
+        }
+    });
+
     // Manejar fuente personalizada
     document.getElementById('fontFamily').addEventListener('change', (e) => {
         const customFontInput = document.getElementById('customFont');
@@ -275,6 +380,22 @@ document.addEventListener('DOMContentLoaded', async () => {
             customFontInput.focus();
         } else {
             customFontInput.style.display = 'none';
+        }
+    });
+
+    // Manejar menú colapsable de configuración avanzada
+    document.getElementById('advancedConfigHeader').addEventListener('click', () => {
+        const content = document.getElementById('advancedConfigContent');
+        const toggleIcon = document.querySelector('#advancedConfigHeader .toggle-icon');
+        
+        if (content.style.display === 'none' || content.style.display === '') {
+            content.style.display = 'block';
+            toggleIcon.textContent = '▲';
+            toggleIcon.style.transform = 'rotate(180deg)';
+        } else {
+            content.style.display = 'none';
+            toggleIcon.textContent = '▼';
+            toggleIcon.style.transform = 'rotate(0deg)';
         }
     });
     
@@ -317,6 +438,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             modal.style.display = 'none';
         }
     });
+
+    // Inicializar menú de configuración avanzada como colapsado
+    const advancedContent = document.getElementById('advancedConfigContent');
+    const toggleIcon = document.querySelector('#advancedConfigHeader .toggle-icon');
+    if (advancedContent && toggleIcon) {
+        advancedContent.style.display = 'none';
+        toggleIcon.textContent = '▼';
+        toggleIcon.style.transform = 'rotate(0deg)';
+    }
     
     showStatus('⚙️ Configuración cargada', 'info', 2000);
 });
