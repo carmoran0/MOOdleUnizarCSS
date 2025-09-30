@@ -1,5 +1,11 @@
 # ***MOOdle 2: Premium edition***:cool::cool:
-Userscript para personalizar Moodle. Esta extensión es únicamente estética, no toca nada de más, es solo estético. Moodle **debería** funcionar igual.
+
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/carmoran0/MOOdleUnizarCSS)
+![GitHub last commit](https://img.shields.io/github/last-commit/carmoran0/MOOdleUnizarCSS)
+![GitHub issues](https://img.shields.io/github/issues/carmoran0/MOOdleUnizarCSS)
+
+**Una extensión estética para personalizar la interfaz de Moodle Unizar con estilo.** Esta extensión es únicamente visual y no afecta a la funcionalidad de Moodle. Al menos debería.
+
 ## Cómo instalar en firefox (fácil) :shipit:
 1. Ve a [releases](https://github.com/carmoran0/MOOdleUnizarCSS/releases) a la derecha de esta página\
    ![releases](https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/comof1.png)
@@ -23,4 +29,21 @@ Userscript para personalizar Moodle. Esta extensión es únicamente estética, n
 - Barra de navegación mejorada
 - Fuente más guay
 - Ahora la interfaz no es una mierda y no se te limita solo al centro de la pantalla
-- TODO ESTO AHORA ES OPCIONAL Y CUSTOMIZABLE (trabajando en hacer unos cuantos temas predeterminados)(solo en firefox(no esta en mis planes llevarlo a chromium))
+- TODO ESTO AHORA ES OPCIONAL Y CUSTOMIZABLE **CON TEMAS PERSONALIZADOS PREDETERMINADOS Y LA OPCIÓN DE EXPORTARLOS**
+
+## **Estructura del Proyecto**
+```
+├── fextension/               # Extensión de Firefox
+│   ├── manifest.json     
+│   ├── content.js            # Contenido principal
+│   ├── options.html/css/js   # Panel de configuración
+│   └── assets/           
+├── MOOdle Unizar...user.js   # Userscript para Tampermonkey (VERSIÓN VIEJA, SE ROMPE A PARTIR DE 1.5)
+└── assets/               
+```
+
+---
+
+## Contribuir
+Sientete libre de pedir cualquier cosa o añadir cualquier cosa con algun pull request: [Issues](https://github.com/carmoran0/MOOdleUnizarCSS/issues)
+
