@@ -3,8 +3,11 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/carmoran0/MOOdleUnizarCSS)
 ![GitHub last commit](https://img.shields.io/github/last-commit/carmoran0/MOOdleUnizarCSS)
 ![GitHub issues](https://img.shields.io/github/issues/carmoran0/MOOdleUnizarCSS)
-![](assets\preview.png)
+
 **Una extensión estética para personalizar la interfaz de Moodle Unizar con estilo.** Esta extensión es únicamente visual y no afecta a la funcionalidad de Moodle. Al menos debería.
+
+![](https://github.com/carmoran0/MOOdleUnizarCSS/blob/main/assets/preview.png?raw=true)
+<p align="center"><em>Vista previa de la extensión en acción, hay otros temas disponibles</em></p>
 
 ## Cómo instalar en firefox (fácil) :shipit:
 1. Ve a [releases](https://github.com/carmoran0/MOOdleUnizarCSS/releases) a la derecha de esta página\
