@@ -6,13 +6,22 @@ const PREDEFINED_THEMES = {
             background: chrome.runtime.getURL("assets/default/peterIRL.png"),
             navbarBg: chrome.runtime.getURL("assets/default/giggity.png"),
             calendarBg: "https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/gatos.gif",
-            peter: chrome.runtime.getURL("assets/default/peter.jpg"),
+            tarjeta: 'https://github.com/carmoran0/MOOdleUnizarCSS/blob/main/fextension/assets/default/peter.jpg?raw=true',
             peterPng: chrome.runtime.getURL("assets/default/PETERRRRR.png"),
             logo: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/mooodle.png',
             userProfile: 'https://www.thispersondoesnotexist.com/',
             screamer1:'https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/screamer1.jpeg'
         },
-        fontFamily: 'Comic Sans MS'
+        fontFamily: 'Comic Sans MS',
+        navbarColor: '#213C70',
+        features: {
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: true,
+            enableLiquidGlass: true
+        }
     },
         dark: {
         name: 'Family guy oscuro',
@@ -20,13 +29,22 @@ const PREDEFINED_THEMES = {
             background: chrome.runtime.getURL("assets/dark/background.png"),
             navbarBg: chrome.runtime.getURL("assets/dark/clevnavb.jpeg"),
             calendarBg: chrome.runtime.getURL("assets/dark/calendar.png"),
-            peter: chrome.runtime.getURL("assets/dark/cocje.png"), //ESTA SON LAS TARJETAS
+            tarjeta: 'https://github.com/carmoran0/MOOdleUnizarCSS/blob/main/fextension/assets/dark/cocje.png?raw=true', //ESTA SON LAS TARJETAS
             peterPng: chrome.runtime.getURL("assets/dark/pdf.png"), // ESTE ES EL PDF
             logo: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/mooodle.png',
             userProfile: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
             screamer1: ''
         },
-        fontFamily: 'Comic Sans MS'
+        fontFamily: 'Comic Sans MS',
+        navbarColor: '#2c3e50',
+        features: {
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: true,
+            enableLiquidGlass: false
+        }
     },
     moodle: {
         name: 'Moodle Base',
@@ -34,13 +52,22 @@ const PREDEFINED_THEMES = {
             background: '',
             navbarBg: '',
             calendarBg: '',
-            peter: '',
+            tarjeta: '',
             peterPng: '',
             logo: '',
             userProfile: '',
             screamer1: ''
         },
-        fontFamily: 'Arial'
+        fontFamily: '',
+        navbarColor: '',
+        features: {
+            enableBackgroundImages: false,
+            enableImageReplacements: false,
+            enableHideElements: false,
+            enableCustomParagraph: true,
+            enableCustomFont: false,
+            enableLiquidGlass: false
+        }
     },
 };
 
@@ -51,15 +78,16 @@ const DEFAULT_CONFIG = {
             background: chrome.runtime.getURL("assets/default/peterIRL.png"),
             navbarBg: chrome.runtime.getURL("assets/default/giggity.png"),
             calendarBg: "https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/gatos.gif",
-            peter: chrome.runtime.getURL("assets/default/peter.jpg"),
+            tarjeta: 'https://github.com/carmoran0/MOOdleUnizarCSS/blob/main/fextension/assets/default/peter.jpg?raw=true',
             peterPng: chrome.runtime.getURL("assets/default/PETERRRRR.png"),
-            logo: chrome.runtime.getURL("assets/mooodle.png"),
+            logo: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/mooodle.png',
             userProfile: 'https://www.thispersondoesnotexist.com/',
             screamer1:'https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/screamer1.jpeg'
         },
 
     fontFamily: 'Comic Sans MS',
     customFont: '',
+    navbarColor: '#213C70',
     textsToHide: ['Recursos y manuales', 'ADD', 'Política de privacidad'],
     urlsToHide: ['add.unizar.es', 'privacidad', 'recursos', 'manuales'],
     features: {
@@ -67,7 +95,8 @@ const DEFAULT_CONFIG = {
         enableImageReplacements: true,
         enableHideElements: true,
         enableCustomParagraph: true,
-        enableCustomFont: true
+        enableCustomFont: true,
+        enableLiquidGlass: true
     }
 };
 
@@ -145,6 +174,16 @@ function fillForm(config) {
         }
     }
     
+    // Color de navbar
+    const navbarColorInput = document.getElementById('navbarColor');
+    const navbarColorPreview = document.getElementById('navbarColorPreview');
+    if (navbarColorInput && config.navbarColor) {
+        navbarColorInput.value = config.navbarColor;
+        if (navbarColorPreview) {
+            navbarColorPreview.style.backgroundColor = config.navbarColor;
+        }
+    }
+    
     // Textos y URLs a ocultar
     document.getElementById('textsToHide').value = config.textsToHide.join(', ');
     document.getElementById('urlsToHide').value = config.urlsToHide.join(', ');
@@ -189,6 +228,15 @@ function getFormConfig() {
         config.fontFamily = fontSelect.value;
     }
     config.customFont = customFontInput.value;
+    
+    // Color de navbar
+    const navbarColorInput = document.getElementById('navbarColor');
+    let navbarColor = navbarColorInput ? navbarColorInput.value.trim() : '#213C70';
+    // Validar que sea un color hexadecimal válido
+    if (!/^#[0-9A-Fa-f]{6}$/.test(navbarColor)) {
+        navbarColor = '#213C70'; // Color por defecto si no es válido
+    }
+    config.navbarColor = navbarColor;
     
     // Textos y URLs a ocultar
     const textsValue = document.getElementById('textsToHide').value.trim();
@@ -358,6 +406,35 @@ document.addEventListener('DOMContentLoaded', async () => {
             const customFontInput = document.getElementById('customFont');
             fontSelect.value = theme.fontFamily;
             customFontInput.style.display = 'none';
+            
+            // Aplicar color de navbar del tema
+            const navbarColorInput = document.getElementById('navbarColor');
+            const navbarColorPreview = document.getElementById('navbarColorPreview');
+            if (navbarColorInput && theme.navbarColor) {
+                navbarColorInput.value = theme.navbarColor;
+                if (navbarColorPreview) {
+                    navbarColorPreview.style.backgroundColor = theme.navbarColor;
+                }
+            }
+            
+            // Aplicar features del tema
+            if (theme.features) {
+                Object.keys(theme.features).forEach(featureKey => {
+                    const checkbox = document.getElementById(featureKey);
+                    if (checkbox) {
+                        checkbox.checked = theme.features[featureKey];
+                        
+                        // Manejar casos especiales
+                        if (featureKey === 'enableCustomFont') {
+                            const fontSection = document.getElementById('fontSection');
+                            if (fontSection) {
+                                fontSection.style.opacity = checkbox.checked ? '1' : '0.5';
+                                fontSection.style.pointerEvents = checkbox.checked ? 'auto' : 'none';
+                            }
+                        }
+                    }
+                });
+            }
         }
     });
 
@@ -428,6 +505,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
     
+    // Manejar vista previa del color de navbar
+    const navbarColorInput = document.getElementById('navbarColor');
+    const navbarColorPreview = document.getElementById('navbarColorPreview');
+    if (navbarColorInput && navbarColorPreview) {
+        navbarColorInput.addEventListener('input', (e) => {
+            const color = e.target.value.trim();
+            if (/^#[0-9A-Fa-f]{6}$/.test(color)) {
+                navbarColorPreview.style.backgroundColor = color;
+                e.target.style.borderColor = '#ccc';
+            } else {
+                e.target.style.borderColor = '#ff0000';
+            }
+        });
+    }
+
     // Atajos de teclado
     document.addEventListener('keydown', (e) => {
         if (e.ctrlKey && e.key === 's') {

@@ -7,6 +7,8 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #ffffff 0%, #535353 100%);
+    max-width: 350px;
+    font-size: 16px;
 }
 
 .container {
@@ -23,18 +25,19 @@ header {
 }
 
 header h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
+    font-size: 1.6em;
+    margin-bottom: 6px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 header p {
-    font-size: 0.85em;
+    font-size: 0.75em;
     opacity: 0.9;
 }
 
+
 .config-section {
-    padding: 30px;
+    padding: 2px 0 2px 0;
     border-bottom: 1px solid #e9ecef;
 }
 
@@ -43,43 +46,44 @@ header p {
 }
 
 .config-section h2 {
-    font-size: 1.5em;
-    margin-bottom: 20px;
+    font-size: 1.1em;
+    margin-bottom: 5px;
     color: #2c3e50;
     border-left: 4px solid #ff3838;
-    padding-left: 15px;
+    padding-left: 10px;
 }
 
+
 .config-item {
-    margin-bottom: 20px;
+    margin-bottom: 2px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 4px;
 }
 
 .config-item.compact {
-    margin-bottom: 12px;
-    gap: 6px;
+    margin-bottom: 6px;
+    gap: 3px;
 }
 
 .config-item label {
     font-weight: 600;
     color: #34495e;
-    font-size: 0.95em;
+    font-size: 0.85em;
 }
 
 .config-item.compact label {
-    font-size: 0.85em;
+    font-size: 0.75em;
     font-weight: 500;
 }
 
 .config-item input[type="url"],
 .config-item input[type="text"],
 .config-item select {
-    padding: 12px 15px;
+    padding: 7px 10px;
     border: 2px solid #e9ecef;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 12px;
     transition: all 0.3s ease;
     background: white;
 }
@@ -87,8 +91,8 @@ header p {
 .config-item.compact input[type="url"],
 .config-item.compact input[type="text"],
 .config-item.compact select {
-    padding: 8px 12px;
-    font-size: 13px;
+    padding: 5px 8px;
+    font-size: 11px;
 }
 
 .config-item input[type="url"]:focus,
@@ -112,16 +116,16 @@ header p {
 }
 
 .preview-btn {
-    padding: 8px 16px;
+    padding: 5px 10px;
     background: linear-gradient(135deg, #74b9ff, #0984e3);
     color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 11px;
     transition: all 0.3s ease;
     align-self: flex-start;
-    margin-top: 5px;
+    margin-top: 2px;
 }
 
 .preview-btn:hover {
@@ -130,21 +134,21 @@ header p {
 }
 
 .actions {
-    padding: 30px;
+    padding: 12px;
     background: #f8f9fa;
     display: flex;
-    gap: 15px;
+    gap: 7px;
     flex-wrap: wrap;
     justify-content: center;
 }
 
 .btn-primary {
-    padding: 12px 30px;
+    padding: 8px 18px;
     background: linear-gradient(135deg, #ff3838, #af1717);
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -157,12 +161,12 @@ header p {
 }
 
 .btn-secondary {
-    padding: 12px 24px;
+    padding: 8px 14px;
     background: linear-gradient(135deg, #74b9ff, #0984e3);
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -175,9 +179,10 @@ header p {
 }
 
 .status {
-    padding: 15px 30px;
+    padding: 7px 10px;
     text-align: center;
     font-weight: 600;
+    font-size: 0.9em;
     transition: all 0.3s ease;
 }
 

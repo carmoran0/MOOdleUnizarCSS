@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MOOdle Personalizado
 // @namespace    http://tampermonkey.net/
-// @version      2025-09-30
+// @version      2025-10-01
 // @description  Personaliza el aspecto de Moodle
 // @author       Calo
 // @match        https://moodle.unizar.es/*
@@ -19,8 +19,8 @@
         images: {
             background: chrome.runtime.getURL("assets/default/peterIRL.png"),
             navbarBg: chrome.runtime.getURL("assets/default/giggity.png"),
-            calendarBg: chrome.runtime.getURL("assets/default/gatos.gif"),
-            peter: chrome.runtime.getURL("assets/default/peter.jpg"),
+            calendarBg: 'https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/gatos.gif',
+            tarjeta: 'https://github.com/carmoran0/MOOdleUnizarCSS/blob/main/fextension/assets/default/peter.jpg?raw=true',
             peterPng: chrome.runtime.getURL("assets/default/PETERRRRR.png"),
             logo: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/mooodle.png',
             userProfile: 'https://www.thispersondoesnotexist.com/',
@@ -28,6 +28,7 @@
         },
         fontFamily: 'Comic Sans MS',
         customFont: '',
+        navbarColor: '#213C70',
         textsToHide: ['Recursos y manuales', 'ADD', 'Política de privacidad'],
         urlsToHide: ['add.unizar.es', 'privacidad', 'recursos', 'manuales'],
         features: {
@@ -35,7 +36,8 @@
             enableImageReplacements: true,
             enableHideElements: true,
             enableCustomParagraph: true,
-            enableCustomFont: true
+            enableCustomFont: true,
+            enableLiquidGlass: true
         },
         selectors: {
             navbar: '.navbar .nav-link, .navbar .dropdown-toggle, .navbar a',
@@ -108,30 +110,22 @@
                 background-repeat: repeat;`;
         }
         
-        style.textContent = `
-            body {
-                ${fontStyles}
-                ${backgroundStyles}
-            }
-            .bg-primary {
-                ${config.images.navbarBg && config.images.navbarBg.trim() ? `
-                background-image: url('${config.images.navbarBg}') !important;
-                background-repeat: repeat !important;
-                background-size: 10% !important;` : ''}
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
-            }
+        // Usar color personalizado de navbar si está configurado
+        let navbarColorStyles = '';
+        if (config.navbarColor && config.navbarColor.trim()) {
+            navbarColorStyles = `background-color: ${config.navbarColor} !important;`;
+        }
+        
+        // Aplicar estilos avanzados solo si está habilitado
+        let advancedNavbarStyles = '';
+        if (config.features.enableLiquidGlass) {
+            advancedNavbarStyles = `
             .nav-link {
                 color: #878787b1 !important;
                 border-radius: 4px !important;
                 padding: 8px 12px !important;
                 margin: 0 2px !important;
                 transition: all 0.3s ease !important;
-            }
-            #themeboostunioninfobanner2 {
-                display: none !important;
-            }
-            .navbar.fixed-top {
-                height: 71px;
             }
             .nav-link:hover {
                 box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 2px 4px rgba(0, 0, 0, 0.1) !important;
@@ -147,6 +141,42 @@
                 overflow: hidden !important;
                 transition: all 0.3s ease !important;
                 box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+            }
+            .bg-primary {
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+            }`;
+        } else {
+            // Estilos básicos cuando los efectos avanzados están desactivados
+            advancedNavbarStyles = `
+            .nav-link {
+                color: #767676ff !important;
+            }
+            .nav-link:hover {
+                background-color: rgba(255, 255, 255, 0.1) !important;
+            }
+            .nav-link.active, .nav-link[aria-current="page"] {
+                background-color: rgba(255, 255, 255, 0.2) !important;
+            }`;
+        }
+        
+        style.textContent = `
+            body {
+                ${fontStyles}
+                ${backgroundStyles}
+            }
+            .bg-primary {
+                ${navbarColorStyles}
+                ${config.images.navbarBg && config.images.navbarBg.trim() ? `
+                background-image: url('${config.images.navbarBg}') !important;
+                background-repeat: repeat !important;
+                background-size: 10% !important;` : ''}
+            }
+            ${advancedNavbarStyles}
+            #themeboostunioninfobanner2 {
+                display: none !important;
+            }
+            .navbar.fixed-top {
+                height: 71px;
             }
             .pagelayout-standard #page.drawers .main-inner, body.limitedwidth #page.drawers .main-inner {
                 max-width: 1000px !important;
@@ -254,7 +284,7 @@
         if (!config.features.enableBackgroundImages) return;
         
         // Solo aplicar fondos si la imagen no está vacía
-        if (!config.images.peter || !config.images.peter.trim()) return;
+        if (!config.images.tarjeta || !config.images.tarjeta.trim()) return;
 
         config.selectors.backgroundElements.forEach(selector => {
             const elements = document.querySelectorAll(selector);
@@ -262,7 +292,7 @@
                 if (processedElements.has(element)) return;
 
                 Object.assign(element.style, {
-                    backgroundImage: `url("${config.images.peter}")`,
+                    backgroundImage: `url("${config.images.tarjeta}")`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat'

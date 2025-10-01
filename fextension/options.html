@@ -8,14 +8,22 @@
 </head>
 <body>
     <div class="container">
+
         <header>
             <h1>MOOdle 2: Premium Edition</h1>
             <p>(Puede que para algunos cambios sea necesario recargar la página)</p>
         </header>
 
+        <div class="actions">
+            <button id="saveConfig" class="btn-primary">💾 Guardar configuración</button>
+            <button id="resetConfig" class="btn-secondary">🔄 Restaurar valores por defecto</button>
+            <button id="exportConfig" class="btn-secondary">📤 Exportar configuración</button>
+            <button id="importConfig" class="btn-secondary">📥 Importar configuración</button>
+            <input type="file" id="importFile" accept=".json" style="display: none;">
+        </div>
+
         <div class="config-section">
             <h2>Temas Predeterminados</h2>
-            
             <div class="config-item">
                 <label for="selectedTheme">Seleccionar tema:</label>
                 <select id="selectedTheme">
@@ -52,9 +60,9 @@
             </div>
 
             <div class="config-item">
-                <label for="peter">Imagen de Peter (fondos de tarjetas):</label>
-                <input type="url" id="peter" placeholder="URL de imagen para fondos">
-                <button class="preview-btn" data-target="peter">Vista previa</button>
+                <label for="tarjeta">Imagen de tarjetas:</label>
+                <input type="url" id="tarjeta" placeholder="URL de imagen para fondos">
+                <button class="preview-btn" data-target="tarjeta">Vista previa</button>
             </div>
 
             <div class="config-item">
@@ -74,6 +82,27 @@
                 <input type="url" id="userProfile" placeholder="URL de imagen de perfil">
                 <button class="preview-btn" data-target="userProfile">Vista previa</button>
             </div>
+        </div>
+
+        <div class="config-section">
+            <h2>Personalización de la Navbar</h2>
+            
+            <div class="config-item">
+                <label for="navbarColor">Color de fondo de la navbar:</label>
+                <input type="text" id="navbarColor" value="#213C70" placeholder="#213C70" pattern="^#[0-9A-Fa-f]{6}$">
+                <div id="navbarColorPreview" style="width: 30px; height: 30px; border: 1px solid #ccc; display: inline-block; margin-left: 10px; border-radius: 4px; background-color: #213C70;"></div>
+                <small style="display: block; margin-top: 5px; color: #666;">
+                    Introduce un color hexadecimal (ej: #213C70) para la barra de navegación
+                </small>
+            </div>
+
+            <div class="config-item">
+                <label>
+                    <input type="checkbox" id="enableLiquidGlass" checked> 
+                    Habilitar efectos guays en la navbar
+                </label>
+            </div>
+        </div>
 
         <div class="config-section">
             <h2>Tipografía</h2>
@@ -153,13 +182,6 @@
             </div>
         </div>
 
-        <div class="actions">
-            <button id="saveConfig" class="btn-primary">💾 Guardar configuración</button>
-            <button id="resetConfig" class="btn-secondary">🔄 Restaurar valores por defecto</button>
-            <button id="exportConfig" class="btn-secondary">📤 Exportar configuración</button>
-            <button id="importConfig" class="btn-secondary">📥 Importar configuración</button>
-            <input type="file" id="importFile" accept=".json" style="display: none;">
-        </div>
 
         <div class="status" id="status"></div>
 
