@@ -17,11 +17,11 @@
     // Configuración por defecto (fallback si no hay configuración guardada)
     const DEFAULT_CONFIG = {
         images: {
-            background: "https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/peterIRL.png",
-            navbarBg: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/giggity.png',
+            background: "https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/fextension/assets/default/peterIRL.png",
+            navbarBg: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/fextension/assets/default/giggity.png',
             calendarBg: "https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/gatos.gif",
-            peter: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/peter.jpg',
-            peterPng: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/PETERRRRR.png',
+            peter: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/fextension/assets/default/peter.jpg',
+            peterPng: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/fextension/assets/default/PETERRRRR.png',
             logo: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/mooodle.png',
             userProfile: 'https://www.thispersondoesnotexist.com/',
             screamer1:'https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/screamer1.jpeg'
