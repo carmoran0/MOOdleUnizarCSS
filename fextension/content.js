@@ -37,7 +37,8 @@
             enableHideElements: true,
             enableCustomParagraph: true,
             enableCustomFont: true,
-            enableLiquidGlass: true
+            enableLiquidGlass: true,
+            enableOneko: true
         },
         selectors: {
             navbar: '.navbar .nav-link, .navbar .dropdown-toggle, .navbar a',
@@ -322,6 +323,54 @@
         bannerElement.insertBefore(customParagraph, bannerElement.firstChild);
     }
 
+    // Función para cargar el script de oneko
+    function loadOnekoScript(config) {
+        const existingOneko = document.getElementById('oneko');
+        const existingScript = document.getElementById('oneko-script');
+
+        // Si se ha deshabilitado, eliminar tanto el elemento como el script si existen
+        if (!config.features.enableOneko) {
+            if (existingOneko) existingOneko.remove();
+            if (existingScript) existingScript.remove();
+            return;
+        }
+
+        // Si el script ya existe
+        if (existingScript) {
+            // Si el div #oneko ya está presente, no hacemos nada
+            if (existingOneko) return;
+
+            // Si el script está pero el div falta (posible race), reinyectar el script para re-ejecutarlo
+            existingScript.remove();
+            // continuamos para inyectar uno nuevo
+        }
+
+        // Inyectar script nuevo
+        const script = document.createElement('script');
+        script.id = 'oneko-script';
+
+        // Resolver la función getURL de runtime apropiada (chrome o browser)
+        let getURL = null;
+        if (typeof chrome !== 'undefined' && chrome.runtime && typeof chrome.runtime.getURL === 'function') {
+            getURL = chrome.runtime.getURL.bind(chrome.runtime);
+        } else if (typeof browser !== 'undefined' && browser.runtime && typeof browser.runtime.getURL === 'function') {
+            getURL = browser.runtime.getURL.bind(browser.runtime);
+        }
+
+        // Pasar la URL del GIF mediante dataset.cat cuando sea posible
+        if (getURL) {
+            try {
+                script.dataset.cat = getURL('oneko.gif');
+            } catch (e) {
+                // ignore
+            }
+        }
+
+        // Establecer la src del script usando la URL del runtime si existe, en caso contrario usar la ruta genérica
+        script.src = getURL ? getURL('oneko.js') : 'oneko.js';
+        document.head.appendChild(script);
+    }
+
     // Función para aplicar todas las modificaciones de una vez
     function applyAllModifications(config = currentConfig) {
         requestAnimationFrame(() => {
@@ -329,6 +378,7 @@
             applyCustomBackgrounds(config);
             hideNavbarElements(config);
             addCustomParagraph(config);
+            loadOnekoScript(config);
         });
     }
 

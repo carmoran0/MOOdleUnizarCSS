@@ -20,7 +20,8 @@ const PREDEFINED_THEMES = {
             enableHideElements: true,
             enableCustomParagraph: true,
             enableCustomFont: true,
-            enableLiquidGlass: true
+            enableLiquidGlass: true,
+            enableOneko: true
         }
     },
         dark: {
@@ -43,7 +44,8 @@ const PREDEFINED_THEMES = {
             enableHideElements: true,
             enableCustomParagraph: true,
             enableCustomFont: true,
-            enableLiquidGlass: false
+            enableLiquidGlass: false,
+            enableOneko: false
         }
     },
     moodle: {
@@ -66,7 +68,8 @@ const PREDEFINED_THEMES = {
             enableHideElements: false,
             enableCustomParagraph: true,
             enableCustomFont: false,
-            enableLiquidGlass: false
+            enableLiquidGlass: false,
+            enableOneko: false
         }
     },
 };
@@ -96,7 +99,8 @@ const DEFAULT_CONFIG = {
         enableHideElements: true,
         enableCustomParagraph: true,
         enableCustomFont: true,
-        enableLiquidGlass: true
+        enableLiquidGlass: true,
+        enableOneko: false
     }
 };
 

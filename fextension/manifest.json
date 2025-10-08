@@ -30,6 +30,12 @@
       "run_at": "document_idle"
     }
   ],
+  "web_accessible_resources": [
+    {
+      "resources": ["oneko.js", "oneko.gif", "assets/default/*", "assets/dark/*"],
+      "matches": ["https://moodle.unizar.es/*"]
+    }
+  ],
   "browser_specific_settings": {
     "gecko": {
       "id": "moodle-unizar-personalizado@carmoran",
