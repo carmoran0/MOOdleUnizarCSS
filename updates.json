@@ -3,8 +3,8 @@
     "moodle-unizar-personalizado@carmoran": {
       "updates": [
         {
-          "version": "1.6.1",
-          "update_link": "https://github.com/carmoran0/MOOdleUnizarCSS/releases/download/1.6.1/moodle_carmoran-1.6.1.xpi"
+          "version": "1.7",
+          "update_link": "https://github.com/carmoran0/MOOdleUnizarCSS/releases/download/1.7/moodle_carmoran-1.7.xpi"
         }
       ]
     }
