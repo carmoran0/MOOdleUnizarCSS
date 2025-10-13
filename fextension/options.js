@@ -492,6 +492,32 @@ function showImagePreview(url) {
     
     previewError.style.display = 'none';
     previewImg.style.display = 'block';
+
+    // Sanitize the URL before using it
+    let safeUrl = '';
+    try {
+        const parsedUrl = new URL(url, window.location.origin);
+        // Allow only http, https, chrome-extension protocols
+        if (
+            parsedUrl.protocol === 'http:' ||
+            parsedUrl.protocol === 'https:' ||
+            parsedUrl.protocol === 'chrome-extension:'
+        ) {
+            safeUrl = parsedUrl.href;
+        } 
+    } catch (e) {
+        // Invalid URL
+        safeUrl = '';
+    }
+
+    // If the URL is not safe, show error
+    if (!safeUrl) {
+        previewImg.style.display = 'none';
+        previewError.style.display = 'block';
+        previewError.textContent = 'Error: URL inválida o no permitida. Solo se permiten imágenes de http(s) u origenes conocidos.';
+        modal.style.display = 'block';
+        return;
+    }
     
     previewImg.onload = () => {
         modal.style.display = 'block';
@@ -504,7 +530,7 @@ function showImagePreview(url) {
         modal.style.display = 'block';
     };
     
-    previewImg.src = url;
+    previewImg.src = safeUrl;
 }
 
 // Exportar configuración
