@@ -7,20 +7,19 @@ const PREDEFINED_THEMES = {
             navbarBg: chrome.runtime.getURL("assets/default/giggity.png"),
             calendarBg: "https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/gatos.gif",
             tarjeta: 'https://github.com/carmoran0/MOOdleUnizarCSS/blob/main/fextension/assets/default/peter.jpg?raw=true',
-            peterPng: chrome.runtime.getURL("assets/default/PETERRRRR.png"),
-            logo: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/mooodle.png',
+            iconoPDF: chrome.runtime.getURL("assets/default/PETERRRRR.png"),
+            logo: chrome.runtime.getURL("assets/mooodle.png"),
             userProfile: 'https://www.thispersondoesnotexist.com/',
             screamer1:'https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/screamer1.jpeg'
         },
         fontFamily: 'Comic Sans MS',
         navbarColor: '#213C70',
-        features: {
+            features: {
             enableBackgroundImages: true,
             enableImageReplacements: true,
             enableHideElements: true,
             enableCustomParagraph: true,
             enableCustomFont: true,
-            enableLiquidGlass: true,
             enableOneko: true
         }
     },
@@ -31,8 +30,8 @@ const PREDEFINED_THEMES = {
             navbarBg: chrome.runtime.getURL("assets/dark/clevnavb.jpeg"),
             calendarBg: chrome.runtime.getURL("assets/dark/calendar.png"),
             tarjeta: 'https://github.com/carmoran0/MOOdleUnizarCSS/blob/main/fextension/assets/dark/cocje.png?raw=true', //ESTA SON LAS TARJETAS
-            peterPng: chrome.runtime.getURL("assets/dark/pdf.png"), // ESTE ES EL PDF
-            logo: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/mooodle.png',
+            iconoPDF: chrome.runtime.getURL("assets/dark/pdf.png"), // ESTE ES EL PDF
+            logo: chrome.runtime.getURL("assets/mooodle.png"),
             userProfile: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
             screamer1: ''
         },
@@ -44,7 +43,6 @@ const PREDEFINED_THEMES = {
             enableHideElements: true,
             enableCustomParagraph: true,
             enableCustomFont: true,
-            enableLiquidGlass: false,
             enableOneko: false
         }
     },
@@ -55,7 +53,7 @@ const PREDEFINED_THEMES = {
             navbarBg: '',
             calendarBg: '',
             tarjeta: '',
-            peterPng: '',
+            iconoPDF: '',
             logo: '',
             userProfile: '',
             screamer1: ''
@@ -68,7 +66,236 @@ const PREDEFINED_THEMES = {
             enableHideElements: false,
             enableCustomParagraph: true,
             enableCustomFont: false,
-            enableLiquidGlass: false,
+            enableOneko: false
+        }
+    },
+    'bar-atrio': {
+        name: 'bar atrio',
+        images: {
+            background: chrome.runtime.getURL("assets/atrio/cocteles.png"),
+            navbarBg: '',
+            calendarBg: '',
+            tarjeta: '',
+            iconoPDF: chrome.runtime.getURL("assets/atrio/chupitos.png"),
+            logo: chrome.runtime.getURL("assets/atrio/logo.png"),
+            userProfile: '',
+            screamer1: ''
+        },
+        fontFamily: '',
+        navbarColor: '#702121',
+        features: {
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: false,
+            enableOneko: true
+        }
+    },
+    'vaca': {
+        name: 'vaca',
+        images: {
+            background: chrome.runtime.getURL("assets/vaca/vacapatin.jpeg"),
+            navbarBg: chrome.runtime.getURL("assets/vaca/navbar.jpeg"),
+            calendarBg: '',
+            tarjeta: '',
+            iconoPDF: '',
+            logo: chrome.runtime.getURL("assets/vaca/logo.JPG"),
+            userProfile: '',
+            screamer1: ''
+        },
+        fontFamily: '',
+        navbarColor: '',
+        features: {
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: true,
+            enableOneko: true
+        }
+    },
+    'psoe': {
+        name: 'psoe',
+        images: {
+            background: chrome.runtime.getURL("assets/pesoe/background.png"),
+            navbarBg: '',
+            calendarBg: '',
+            tarjeta: '',
+            iconoPDF: '',
+            logo: chrome.runtime.getURL("assets/pesoe/aragon_horizontal-linea-blanco.png"),
+            userProfile: '',
+            screamer1: ''
+        },
+        fontFamily: '',
+        navbarColor: '#E20025',
+        features: {
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: true,
+            enableOneko: true
+        }
+    },
+    'boykisser': {
+        name: 'boykisser',
+        images: {
+            background: '',
+            navbarBg: '',
+            calendarBg: '',
+            tarjeta: '',
+            iconoPDF: '',
+            logo: '',
+            userProfile: '',
+            screamer1: ''
+        },
+        fontFamily: '',
+        navbarColor: '',
+        features: {
+            enableBackgroundImages: false,
+            enableImageReplacements: false,
+            enableHideElements: false,
+            enableCustomParagraph: false,
+            enableCustomFont: false,
+            enableOneko: false
+        }
+    },
+    'hatsune-miku': {
+        name: 'hatsune miku',
+        images: {
+            background: '',
+            navbarBg: '',
+            calendarBg: '',
+            tarjeta: '',
+            iconoPDF: '',
+            logo: '',
+            userProfile: '',
+            screamer1: ''
+        },
+        fontFamily: '',
+        navbarColor: '',
+        features: {
+            enableBackgroundImages: false,
+            enableImageReplacements: false,
+            enableHideElements: false,
+            enableCustomParagraph: false,
+            enableCustomFont: false,
+            enableOneko: false
+        }
+    },
+    'doctor-house': {
+        name: 'doctor house',
+        images: {
+            background: '',
+            navbarBg: '',
+            calendarBg: '',
+            tarjeta: '',
+            iconoPDF: '',
+            logo: '',
+            userProfile: '',
+            screamer1: ''
+        },
+        fontFamily: '',
+        navbarColor: '',
+        features: {
+            enableBackgroundImages: false,
+            enableImageReplacements: false,
+            enableHideElements: false,
+            enableCustomParagraph: false,
+            enableCustomFont: false,
+            enableOneko: false
+        }
+    },
+    'breaking-bad': {
+        name: 'breaking bad',
+        images: {
+            background: '',
+            navbarBg: '',
+            calendarBg: '',
+            tarjeta: '',
+            iconoPDF: '',
+            logo: '',
+            userProfile: '',
+            screamer1: ''
+        },
+        fontFamily: '',
+        navbarColor: '',
+        features: {
+            enableBackgroundImages: false,
+            enableImageReplacements: false,
+            enableHideElements: false,
+            enableCustomParagraph: false,
+            enableCustomFont: false,
+            enableOneko: false
+        }
+    },
+    'smiling-friends': {
+        name: 'smiling friends',
+        images: {
+            background: '',
+            navbarBg: '',
+            calendarBg: '',
+            tarjeta: '',
+            iconoPDF: '',
+            logo: '',
+            userProfile: '',
+            screamer1: ''
+        },
+        fontFamily: '',
+        navbarColor: '',
+        features: {
+            enableBackgroundImages: false,
+            enableImageReplacements: false,
+            enableHideElements: false,
+            enableCustomParagraph: false,
+            enableCustomFont: false,
+            enableOneko: false
+        }
+    },
+    'rick-morty-irl': {
+        name: 'rick y morty irl',
+        images: {
+            background: '',
+            navbarBg: '',
+            calendarBg: '',
+            tarjeta: '',
+            iconoPDF: '',
+            logo: '',
+            userProfile: '',
+            screamer1: ''
+        },
+        fontFamily: '',
+        navbarColor: '',
+        features: {
+            enableBackgroundImages: false,
+            enableImageReplacements: false,
+            enableHideElements: false,
+            enableCustomParagraph: false,
+            enableCustomFont: false,
+            enableOneko: false
+        }
+    },
+    'pipotam': {
+        name: 'pipotam',
+        images: {
+            background: '',
+            navbarBg: '',
+            calendarBg: '',
+            tarjeta: '',
+            iconoPDF: '',
+            logo: '',
+            userProfile: '',
+            screamer1: ''
+        },
+        fontFamily: '',
+        navbarColor: '',
+        features: {
+            enableBackgroundImages: false,
+            enableImageReplacements: false,
+            enableHideElements: false,
+            enableCustomParagraph: false,
+            enableCustomFont: false,
             enableOneko: false
         }
     },
@@ -82,8 +309,8 @@ const DEFAULT_CONFIG = {
             navbarBg: chrome.runtime.getURL("assets/default/giggity.png"),
             calendarBg: "https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/gatos.gif",
             tarjeta: 'https://github.com/carmoran0/MOOdleUnizarCSS/blob/main/fextension/assets/default/peter.jpg?raw=true',
-            peterPng: chrome.runtime.getURL("assets/default/PETERRRRR.png"),
-            logo: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/mooodle.png',
+            iconoPDF: chrome.runtime.getURL("assets/default/PETERRRRR.png"),
+            logo: chrome.runtime.getURL("assets/mooodle.png"),
             userProfile: 'https://www.thispersondoesnotexist.com/',
             screamer1:'https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/screamer1.jpeg'
         },
@@ -99,7 +326,6 @@ const DEFAULT_CONFIG = {
         enableHideElements: true,
         enableCustomParagraph: true,
         enableCustomFont: true,
-        enableLiquidGlass: true,
         enableOneko: false
     }
 };
@@ -109,7 +335,7 @@ async function loadConfig() {
     try {
         const result = await browser.storage.sync.get('moodleConfig');
         return result.moodleConfig || DEFAULT_CONFIG;
-    } catch (error) {
+    } catch (error) { 
         console.error('Error loading config:', error);
         return DEFAULT_CONFIG;
     }

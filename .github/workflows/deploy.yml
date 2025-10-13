@@ -5,7 +5,7 @@ on:
     inputs:
       version:
         description: "Versión nueva (ej: 1.1)"
-        required: false
+        required: true
 
 permissions:
   contents: write

@@ -32,7 +32,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["oneko.js", "oneko.gif", "assets/default/*", "assets/dark/*"],
+      "resources": ["oneko.js", "oneko.gif", "assets/*"],
       "matches": ["https://moodle.unizar.es/*"]
     }
   ],

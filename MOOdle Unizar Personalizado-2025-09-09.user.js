@@ -21,7 +21,7 @@
             navbarBg: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/fextension/assets/default/giggity.png',
             calendarBg: "https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/gatos.gif",
             peter: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/fextension/assets/default/peter.jpg',
-            peterPng: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/fextension/assets/default/PETERRRRR.png',
+            iconoPDF: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/fextension/assets/default/PETERRRRR.png',
             logo: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/mooodle.png',
             userProfile: 'https://www.thispersondoesnotexist.com/',
             screamer1:'https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/screamer1.jpeg'
@@ -206,7 +206,7 @@
         const replacements = [
             {
                 elements: document.querySelectorAll(config.selectors.pdfIcons),
-                newSrc: config.images.peterPng,
+                newSrc: config.images.iconoPDF,
                 condition: null
             },
             {

@@ -21,8 +21,8 @@
             navbarBg: chrome.runtime.getURL("assets/default/giggity.png"),
             calendarBg: 'https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/gatos.gif',
             tarjeta: 'https://github.com/carmoran0/MOOdleUnizarCSS/blob/main/fextension/assets/default/peter.jpg?raw=true',
-            peterPng: chrome.runtime.getURL("assets/default/PETERRRRR.png"),
-            logo: 'https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/mooodle.png',
+            iconoPDF: chrome.runtime.getURL("assets/default/PETERRRRR.png"),
+            logo: chrome.runtime.getURL("assets/mooodle.png"),
             userProfile: 'https://www.thispersondoesnotexist.com/',
             screamer1:'https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/screamer1.jpeg'
         },
@@ -37,7 +37,6 @@
             enableHideElements: true,
             enableCustomParagraph: true,
             enableCustomFont: true,
-            enableLiquidGlass: true,
             enableOneko: true
         },
         selectors: {
@@ -117,48 +116,79 @@
             navbarColorStyles = `background-color: ${config.navbarColor} !important;`;
         }
         
-        // Aplicar estilos avanzados solo si está habilitado
-        let advancedNavbarStyles = '';
-        if (config.features.enableLiquidGlass) {
-            advancedNavbarStyles = `
-            .nav-link {
-                color: #878787b1 !important;
-                border-radius: 4px !important;
-                padding: 8px 12px !important;
-                margin: 0 2px !important;
-                transition: all 0.3s ease !important;
+        // Estilos básicos (sin la opción 'liquid glass')
+        let advancedNavbarStyles = (() => {
+            function parseColor(str) {
+                if (!str) return null;
+                str = str.trim();
+                // rgb/rgba
+                const rgbMatch = str.match(/rgba?\(\s*(\d+),\s*(\d+),\s*(\d+)/i);
+                if (rgbMatch) return { r: +rgbMatch[1], g: +rgbMatch[2], b: +rgbMatch[3] };
+                // hex #rrggbb or #rgb
+                const hexMatch = str.match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i);
+                if (hexMatch) {
+                    let hex = hexMatch[1];
+                    if (hex.length === 3) hex = hex.split('').map(c => c + c).join('');
+                    return {
+                        r: parseInt(hex.slice(0, 2), 16),
+                        g: parseInt(hex.slice(2, 4), 16),
+                        b: parseInt(hex.slice(4, 6), 16)
+                    };
+                }
+                return null;
             }
-            .nav-link:hover {
-                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-                background-color: rgba(255, 255, 255, 0.2) !important;
+
+            function getNavbarBaseColor() {
+                // Prefer explicit config.navbarColor, si no existe intentar leer el estilo computado
+                if (config.navbarColor && config.navbarColor.trim()) return config.navbarColor.trim();
+                const el = document.querySelector('.bg-primary') || document.querySelector('.navbar') || document.querySelector('.navbar.navbar-dark');
+                if (!el) return null;
+                return window.getComputedStyle(el).backgroundColor;
             }
-            .nav-link.active, .nav-link[aria-current="page"] {
-                background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05)) !important;
-                backdrop-filter: blur(15px) !important;
-                -webkit-backdrop-filter: blur(15px) !important;
-                border-radius: 50px !important;
-                border: 1px solid rgba(255, 255, 255, 0.15) !important;
-                padding: 0.8rem 1.5rem !important;
-                overflow: hidden !important;
-                transition: all 0.3s ease !important;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+
+            const base = getNavbarBaseColor();
+            const rgb = parseColor(base);
+            // contraste por luminancia: si luminancia alta -> texto oscuro, si baja -> texto claro
+            let textColor = '#fff';
+            if (rgb) {
+                const L = (0.2126 * rgb.r + 0.7152 * rgb.g + 0.0722 * rgb.b) / 255;
+                textColor = L > 0.6 ? '#111' : '#fff';
+            } else {
+                // fallback si no se puede determinar
+                textColor = '#fff';
             }
-            .bg-primary {
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
-            }`;
-        } else {
-            // Estilos básicos cuando los efectos avanzados están desactivados
-            advancedNavbarStyles = `
-            .nav-link {
-                color: #767676ff !important;
-            }
-            .nav-link:hover {
-                background-color: rgba(255, 255, 255, 0.1) !important;
-            }
-            .nav-link.active, .nav-link[aria-current="page"] {
-                background-color: rgba(255, 255, 255, 0.2) !important;
-            }`;
-        }
+
+            const shadow = textColor === '#fff' ? '0 1px 2px rgba(0,0,0,0.65)' : '0 1px 0 rgba(255,255,255,0.6)';
+            const hoverBg = textColor === '#fff' ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.12)';
+            const activeBg = textColor === '#fff' ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.18)';
+
+            // Scopear las reglas a .navbar para no romper otros elementos que compartan la clase .nav-link
+            return `
+                .navbar .nav-link {
+                    color: ${textColor} !important;
+                    text-shadow: ${shadow} !important;
+                    border-radius: 6px !important;
+                    padding: 8px 12px !important;
+                    margin: 0 2px !important;
+                    transition: background-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease !important;
+                    /* Fondo semitransparente para asegurar contraste sobre imágenes */
+                    background-color: rgba(255,255,255,0.03) !important;
+                    backdrop-filter: blur(6px) saturate(120%) !important;
+                    -webkit-backdrop-filter: blur(6px) saturate(120%) !important;
+                }
+                .navbar .nav-link:hover {
+                    background-color: ${hoverBg} !important;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+                    color: ${textColor} !important;
+                }
+                .navbar .nav-link.active, .navbar .nav-link[aria-current="page"] {
+                    background-color: ${activeBg} !important;
+                    backdrop-filter: blur(8px) !important;
+                    -webkit-backdrop-filter: blur(8px) !important;
+                    border: 1px solid rgba(0,0,0,0.06) !important;
+                    padding: 0.8rem 1.5rem !important;
+                }`;
+        })();
         
         style.textContent = `
             body {
@@ -250,7 +280,7 @@
         const replacements = [
             {
                 elements: document.querySelectorAll(config.selectors.pdfIcons),
-                newSrc: config.images.peterPng,
+                newSrc: config.images.iconoPDF,
                 condition: null
             },
             {
