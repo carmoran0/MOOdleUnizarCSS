@@ -36,17 +36,33 @@
 
 ## **Estructura del Proyecto**
 ```
-├── fextension/               # Extensión de Firefox
-│   ├── manifest.json     
-│   ├── content.js            # Contenido principal
-│   ├── options.html/css/js   # Panel de configuración
-│   └── assets/           
-├── MOOdle Unizar...user.js   # Userscript para Tampermonkey (VERSIÓN VIEJA, SE ROMPE A PARTIR DE 1.5)
-└── assets/               
+├── fextension/                      # Extensión de Firefox
+│   ├── manifest.json                # Manifest de la extensión
+│   ├── content.js                   # Script principal
+│   ├── options.html                 # Panel de configuración (HTML)
+│   ├── options.css                  # Estilos del panel de configuración
+│   ├── options.js                   # Lógica del panel de configuración
+│   ├── oneko.js / oneko.gif         # Script y recurso extra
+│   ├── icon-16.png                  # Iconos de la extensión
+│   ├── icon-32.png
+│   ├── icon-48.png
+│   ├── icon-128.png
+│   └── assets/                      # Imágenes y recursos de los temas
+├── MOOdle Unizar Personalizado-2025-09-09.user.js   # Userscript para Tampermonkey (versión legacy)
+├── assets/                          # Recursos generales (imágenes, previews)
+├── updates.json                     # Indicador de versiones para actualizaciones automáticas
+└── README.md                        # Este archivo
 ```
 
 ---
 
 ## Contribuir
 Sientete libre de pedir cualquier cosa o añadir cualquier cosa con algun pull request: [Issues](https://github.com/carmoran0/MOOdleUnizarCSS/issues)
+
+
+## Licencia y activos de terceros
+
+Este repositorio contiene código y recursos visuales. El código está cubierto por la licencia que aparece en `LICENSE` (actualmente Mozilla Public License 2.0).
+
+Algunos recursos (logos, iconos y otras imágenes) pueden ser propiedad de terceros y no están licenciados por el autor del repositorio. Consulta `NOTICE` y `assets/THIRD-PARTY-NOTICE.txt` para detalles y recomendaciones.
 

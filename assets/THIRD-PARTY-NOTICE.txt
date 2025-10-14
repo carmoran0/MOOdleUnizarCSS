@@ -1,0 +1,5 @@
+THIRD-PARTY ASSETS NOTICE
+==========================
+
+Este directorio contiene recursos que pueden ser propiedad de terceros (por ejemplo, logos, iconos y otras imágenes).
+El autor del repositorio NO afirma tener derechos para relicenciar marcas de terceros. Las licencias en la raíz del repositorio (por ejemplo `LICENSE`) aplican solo al código y a los archivos que explícitamente se indiquen.
