@@ -59,7 +59,7 @@ const PREDEFINED_THEMES = {
             screamer1: ''
         },
         fontFamily: '',
-        navbarColor: '',
+        navbarColor: '#213C70',
         features: {
             enableBackgroundImages: false,
             enableImageReplacements: false,
@@ -105,7 +105,7 @@ const PREDEFINED_THEMES = {
             screamer1: ''
         },
         fontFamily: '',
-        navbarColor: '',
+        navbarColor: '#213C70',
         features: {
             enableBackgroundImages: true,
             enableImageReplacements: true,
@@ -121,10 +121,10 @@ const PREDEFINED_THEMES = {
             background: chrome.runtime.getURL("assets/pesoe/background.png"),
             navbarBg: '',
             calendarBg: '',
-            tarjeta: '',
-            iconoPDF: '',
+            tarjeta: chrome.runtime.getURL("assets/pesoe/fondo.jpeg"),
+            iconoPDF: 'https://s1.qwant.com/thumbr/474x474/3/3/1a5ac4a6d12c5508b4d3b67e84487120de463b4ab4c1e5dd307a887c3556f6/OIP.k0deVH9kL4UdzKpGOPX3qwHaHa.jpg?u=https%3A%2F%2Ftse4.explicit.bing.net%2Fth%2Fid%2FOIP.k0deVH9kL4UdzKpGOPX3qwHaHa%3Fcb%3D12%26pid%3DApi&q=0&b=1&p=0&a=0',
             logo: chrome.runtime.getURL("assets/pesoe/aragon_horizontal-linea-blanco.png"),
-            userProfile: '',
+            userProfile: 'https://s1.qwant.com/thumbr/474x474/3/3/1a5ac4a6d12c5508b4d3b67e84487120de463b4ab4c1e5dd307a887c3556f6/OIP.k0deVH9kL4UdzKpGOPX3qwHaHa.jpg?u=https%3A%2F%2Ftse4.explicit.bing.net%2Fth%2Fid%2FOIP.k0deVH9kL4UdzKpGOPX3qwHaHa%3Fcb%3D12%26pid%3DApi&q=0&b=1&p=0&a=0',
             screamer1: ''
         },
         fontFamily: '',
@@ -141,162 +141,185 @@ const PREDEFINED_THEMES = {
     'boykisser': {
         name: 'boykisser',
         images: {
-            background: '',
-            navbarBg: '',
+            background: chrome.runtime.getURL("assets/boykisser/navbar.gif"),
+            navbarBg: chrome.runtime.getURL("assets/boykisser/navbar.jpeg"),
             calendarBg: '',
             tarjeta: '',
             iconoPDF: '',
-            logo: '',
+            logo: chrome.runtime.getURL("assets/boykisser/logo.jpeg"),
             userProfile: '',
             screamer1: ''
         },
         fontFamily: '',
         navbarColor: '',
         features: {
-            enableBackgroundImages: false,
-            enableImageReplacements: false,
-            enableHideElements: false,
-            enableCustomParagraph: false,
-            enableCustomFont: false,
-            enableOneko: false
-        }
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: true,
+            enableOneko: true
+        }   
     },
     'hatsune-miku': {
         name: 'hatsune miku',
         images: {
-            background: '',
+            background: chrome.runtime.getURL("assets/miku/background.jpeg"),
             navbarBg: '',
             calendarBg: '',
             tarjeta: '',
             iconoPDF: '',
-            logo: '',
-            userProfile: '',
+            logo: chrome.runtime.getURL("assets/miku/logo.svg"),
+            userProfile: chrome.runtime.getURL("assets/miku/pfp.jpeg"),
             screamer1: ''
         },
         fontFamily: '',
-        navbarColor: '',
+        navbarColor: '#86CECB',
         features: {
-            enableBackgroundImages: false,
-            enableImageReplacements: false,
-            enableHideElements: false,
-            enableCustomParagraph: false,
-            enableCustomFont: false,
-            enableOneko: false
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: true,
+            enableOneko: true
         }
     },
     'doctor-house': {
         name: 'doctor house',
         images: {
-            background: '',
-            navbarBg: '',
-            calendarBg: '',
+            background: chrome.runtime.getURL("assets/house/background.png"),
+            navbarBg: chrome.runtime.getURL("assets/house/navbar.jpeg"),
+            calendarBg: chrome.runtime.getURL("assets/house/calendar.jpeg"),
             tarjeta: '',
             iconoPDF: '',
-            logo: '',
-            userProfile: '',
+            logo: chrome.runtime.getURL("assets/house/logo.jpeg"),
+            userProfile: chrome.runtime.getURL("assets/house/pfp.jpeg"),
             screamer1: ''
         },
         fontFamily: '',
-        navbarColor: '',
+        navbarColor: '#213C70',
         features: {
-            enableBackgroundImages: false,
-            enableImageReplacements: false,
-            enableHideElements: false,
-            enableCustomParagraph: false,
-            enableCustomFont: false,
-            enableOneko: false
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: true,
+            enableOneko: true
         }
     },
     'breaking-bad': {
         name: 'breaking bad',
         images: {
-            background: '',
-            navbarBg: '',
+            background: chrome.runtime.getURL("assets/breakingbad/fondo.png"),
+            navbarBg: chrome.runtime.getURL("assets/breakingbad/navbar.png"),
             calendarBg: '',
-            tarjeta: '',
-            iconoPDF: '',
-            logo: '',
-            userProfile: '',
+            tarjeta: chrome.runtime.getURL("assets/breakingbad/tarjeta.png"),
+            iconoPDF: chrome.runtime.getURL("assets/breakingbad/pdf.png"),
+            logo: chrome.runtime.getURL("assets/breakingbad/logo.svg"),
+            userProfile: chrome.runtime.getURL("assets/breakingbad/pfp.png"),
             screamer1: ''
         },
         fontFamily: '',
-        navbarColor: '',
+        navbarColor: '#213C70',
         features: {
-            enableBackgroundImages: false,
-            enableImageReplacements: false,
-            enableHideElements: false,
-            enableCustomParagraph: false,
-            enableCustomFont: false,
-            enableOneko: false
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: true,
+            enableOneko: true
         }
     },
     'smiling-friends': {
         name: 'smiling friends',
         images: {
-            background: '',
-            navbarBg: '',
+            background: chrome.runtime.getURL("assets/smiling/fondo.gif"),
+            navbarBg: chrome.runtime.getURL("assets/smiling/navbar.png"),
             calendarBg: '',
-            tarjeta: '',
+            tarjeta: chrome.runtime.getURL("assets/smiling/tarjeta.png"),
             iconoPDF: '',
-            logo: '',
+            logo: chrome.runtime.getURL("assets/smiling/logo.png"),
             userProfile: '',
             screamer1: ''
         },
         fontFamily: '',
         navbarColor: '',
         features: {
-            enableBackgroundImages: false,
-            enableImageReplacements: false,
-            enableHideElements: false,
-            enableCustomParagraph: false,
-            enableCustomFont: false,
-            enableOneko: false
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: true,
+            enableOneko: true
         }
     },
     'rick-morty-irl': {
         name: 'rick y morty irl',
         images: {
-            background: '',
-            navbarBg: '',
+            background: chrome.runtime.getURL("assets/rym/fondo.png"),
+            navbarBg: chrome.runtime.getURL("assets/rym/navbar.png"),
             calendarBg: '',
             tarjeta: '',
             iconoPDF: '',
-            logo: '',
-            userProfile: '',
+            logo: chrome.runtime.getURL("assets/rym/logo.png"),
+            userProfile: chrome.runtime.getURL("assets/rym/rickkkk.png"),
             screamer1: ''
         },
         fontFamily: '',
         navbarColor: '',
         features: {
-            enableBackgroundImages: false,
-            enableImageReplacements: false,
-            enableHideElements: false,
-            enableCustomParagraph: false,
-            enableCustomFont: false,
-            enableOneko: false
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: true,
+            enableOneko: true
         }
     },
     'pipotam': {
         name: 'pipotam',
+        images: {
+            background: chrome.runtime.getURL("assets/pipotam/fondo.gif"),
+            navbarBg: chrome.runtime.getURL("assets/pipotam/navbar.png"),
+            calendarBg: chrome.runtime.getURL("assets/pipotam/fondo.gif"),
+            tarjeta: chrome.runtime.getURL("assets/pipotam/fondo.gif"),
+            iconoPDF: chrome.runtime.getURL("assets/pipotam/fondo.gif"),
+            logo: chrome.runtime.getURL("assets/pipotam/logo.gif"),
+            userProfile:chrome.runtime.getURL("assets/pipotam/fondo.gif"),
+            screamer1: chrome.runtime.getURL("assets/pipotam/fondo.gif")
+        },
+        fontFamily: '',
+        navbarColor: '',
+        features: {
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: true,
+            enableOneko: true
+        }
+    },
+    'whatsapp': {
+        name: 'whatsapp',
         images: {
             background: '',
             navbarBg: '',
             calendarBg: '',
             tarjeta: '',
             iconoPDF: '',
-            logo: '',
+            logo: chrome.runtime.getURL("assets/whatsapp/Digital_Inline_White.svg"),
             userProfile: '',
             screamer1: ''
         },
         fontFamily: '',
-        navbarColor: '',
+        navbarColor: '#25D366',
         features: {
-            enableBackgroundImages: false,
-            enableImageReplacements: false,
-            enableHideElements: false,
-            enableCustomParagraph: false,
-            enableCustomFont: false,
-            enableOneko: false
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: true,
+            enableOneko: true
         }
     },
 };
