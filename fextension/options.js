@@ -350,7 +350,8 @@ const DEFAULT_CONFIG = {
         enableCustomParagraph: true,
         enableCustomFont: true,
         enableOneko: false
-    }
+    },
+    enableAutoTheme: false
 };
 
 // Cargar configuración guardada
@@ -393,6 +394,12 @@ function fillForm(config) {
     const themeSelect = document.getElementById('selectedTheme');
     if (themeSelect && config.selectedTheme) {
         themeSelect.value = config.selectedTheme;
+    }
+    
+    // Auto-theme
+    const enableAutoThemeCheckbox = document.getElementById('enableAutoTheme');
+    if (enableAutoThemeCheckbox) {
+        enableAutoThemeCheckbox.checked = config.enableAutoTheme || false;
     }
     
     // Imágenes
@@ -458,6 +465,10 @@ function getFormConfig() {
     // Tema seleccionado
     const themeSelect = document.getElementById('selectedTheme');
     config.selectedTheme = themeSelect ? themeSelect.value : 'default';
+    
+    // Auto-theme
+    const enableAutoThemeCheckbox = document.getElementById('enableAutoTheme');
+    config.enableAutoTheme = enableAutoThemeCheckbox ? enableAutoThemeCheckbox.checked : false;
     
     // Imágenes (campos vacíos = sin personalización)
     Object.keys(DEFAULT_CONFIG.images).forEach(key => {
@@ -603,6 +614,20 @@ function importConfig(file) {
     reader.readAsText(file);
 }
 
+// Función para obtener un tema aleatorio (excluyendo 'custom' y 'moodle')
+function getRandomTheme() {
+    const availableThemes = Object.keys(PREDEFINED_THEMES).filter(
+        themeKey => themeKey !== 'custom' && themeKey !== 'moodle'
+    );
+    
+    if (availableThemes.length === 0) {
+        return 'default';
+    }
+    
+    const randomIndex = Math.floor(Math.random() * availableThemes.length);
+    return availableThemes[randomIndex];
+}
+
 // Inicialización cuando se carga la página
 document.addEventListener('DOMContentLoaded', async () => {
     // Cargar configuración actual
@@ -739,6 +764,27 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
+    // Manejar checkbox de auto-tema
+    document.getElementById('enableAutoTheme').addEventListener('change', (e) => {
+        const isEnabled = e.target.checked;
+        const themeSelect = document.getElementById('selectedTheme');
+        
+        if (isEnabled) {
+            showStatus('🎲 Auto-tema activado. Los cambios se aplicarán al refrescar Moodle.', 'info', 4000);
+            // Deshabilitar selector de tema cuando auto-tema está activo
+            if (themeSelect) {
+                themeSelect.disabled = true;
+                themeSelect.style.opacity = '0.5';
+            }
+        } else {
+            // Habilitar selector de tema cuando auto-tema está inactivo
+            if (themeSelect) {
+                themeSelect.disabled = false;
+                themeSelect.style.opacity = '1';
+            }
+        }
+    });
+
     // Manejar menú colapsable de configuración avanzada
     document.getElementById('advancedConfigHeader').addEventListener('click', () => {
         const content = document.getElementById('advancedConfigContent');
@@ -817,6 +863,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         advancedContent.style.display = 'none';
         toggleIcon.textContent = '▼';
         toggleIcon.style.transform = 'rotate(0deg)';
+    }
+    
+    // Aplicar estado inicial del selector de tema basado en auto-tema
+    const themeSelect = document.getElementById('selectedTheme');
+    const enableAutoThemeCheckbox = document.getElementById('enableAutoTheme');
+    if (themeSelect && enableAutoThemeCheckbox && enableAutoThemeCheckbox.checked) {
+        themeSelect.disabled = true;
+        themeSelect.style.opacity = '0.5';
     }
     
     showStatus('⚙️ Configuración cargada', 'info', 2000);

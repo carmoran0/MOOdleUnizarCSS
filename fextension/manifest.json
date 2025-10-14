@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "MOOdle Unizar Personalizado",
-  "version": "1.8.1",
+  "version": "1.9.0",
   "description": "Personaliza el aspecto de Moodle Unizar automáticamente",
   "action": {
     "default_icon": {
@@ -23,6 +23,19 @@
   "host_permissions": [
     "https://moodle.unizar.es/*"
   ],
+  "page_action": {
+    "default_icon": {
+      "16": "icon-16.png",
+      "32": "icon-32.png",
+      "48": "icon-48.png",
+      "128": "icon-128.png"
+    },
+    "default_popup": "options.html"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "scripts": ["background.js"]
+  },
   "content_scripts": [
     {
       "matches": ["https://moodle.unizar.es/*"],

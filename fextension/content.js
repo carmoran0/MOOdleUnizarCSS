@@ -39,6 +39,7 @@
             enableCustomFont: true,
             enableOneko: true
         },
+        enableAutoTheme: false,
         selectors: {
             navbar: '.navbar .nav-link, .navbar .dropdown-toggle, .navbar a',
             dropdowns: '.dropdown-menu .dropdown-item, .nav-item',
@@ -85,6 +86,34 @@
             return DEFAULT_CONFIG;
         }
     }
+
+    // Lista de temas disponibles para auto-tema (excluyendo 'custom' y 'moodle')
+    const AVAILABLE_THEMES = [
+        'default',
+        'dark',
+        'bar-atrio',
+        'vaca',
+        'psoe',
+        'boykisser',
+        'hatsune-miku',
+        'doctor-house',
+        'breaking-bad',
+        'smiling-friends',
+        'rick-morty-irl',
+        'pipotam',
+        'whatsapp'
+    ];
+
+    // Función para obtener un tema aleatorio
+    function getRandomTheme() {
+        if (AVAILABLE_THEMES.length === 0) {
+            return 'default';
+        }
+        
+        const randomIndex = Math.floor(Math.random() * AVAILABLE_THEMES.length);
+        return AVAILABLE_THEMES[randomIndex];
+    }
+
 
     // Aplicar estilos CSS personalizados
     function applyCustomStyles(config) {
@@ -497,7 +526,37 @@
 
         // Cargar configuración desde storage
         try {
-            const savedConfig = await loadConfig();
+            let savedConfig = await loadConfig();
+            
+            // Si el auto-tema está activado y el tema actual no coincide con el seleccionado
+            // (esto puede pasar después de un refresh), forzar la aplicación del tema
+            if (savedConfig.enableAutoTheme) {
+                const randomThemeKey = getRandomTheme();
+                console.log('Auto-tema activado. Solicitando cambio a tema aleatorio:', randomThemeKey);
+                
+                // Enviar mensaje a background script para cambiar el tema
+                try {
+                    if (typeof browser !== 'undefined' && browser.runtime) {
+                        await browser.runtime.sendMessage({
+                            action: 'applyRandomTheme',
+                            theme: randomThemeKey
+                        });
+                    } else if (typeof chrome !== 'undefined' && chrome.runtime) {
+                        await new Promise((resolve) => {
+                            chrome.runtime.sendMessage({
+                                action: 'applyRandomTheme',
+                                theme: randomThemeKey
+                            }, resolve);
+                        });
+                    }
+                    
+                    // Recargar la configuración después de cambiar el tema
+                    savedConfig = await loadConfig();
+                } catch (e) {
+                    console.log('No se pudo cambiar el tema:', e);
+                }
+            }
+            
             currentConfig = { ...DEFAULT_CONFIG, ...savedConfig };
             console.log('Configuración cargada:', currentConfig);
         } catch (error) {

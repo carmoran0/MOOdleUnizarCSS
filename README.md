@@ -39,6 +39,21 @@
 ├── fextension/                      # Extensión de Firefox
 │   ├── manifest.json                # Manifest de la extensión
 │   ├── content.js                   # Script principal
+│   ├── background.js                # Service worker (auto-tema)
+│   ├── options.html                 # Panel de configuración (HTML)
+│   ├── options.css                  # Estilos del panel de configuración
+│   ├── options.js                   # Lógica del panel de configuración
+│   ├── oneko.js / oneko.gif         # Script y recurso extra
+│   ├── icon-16.png                  # Iconos de la extensión
+│   ├── icon-32.png
+│   ├── icon-48.png
+│   ├── icon-128.png
+│   └── assets/                      # Imágenes y recursos de los temas
+├── sync-themes.js                   # Script para sincronizar temas (desarrollo)
+├── MOOdle Unizar Personalizado-2025-09-09.user.js   # Userscript para Tampermonkey (versión legacy)
+├── fextension/                      # Extensión de Firefox
+│   ├── manifest.json                # Manifest de la extensión
+│   ├── content.js                   # Script principal
 │   ├── options.html                 # Panel de configuración (HTML)
 │   ├── options.css                  # Estilos del panel de configuración
 │   ├── options.js                   # Lógica del panel de configuración
@@ -58,6 +73,24 @@
 
 ## Contribuir
 Sientete libre de pedir cualquier cosa o añadir cualquier cosa con algun pull request: [Issues](https://github.com/carmoran0/MOOdleUnizarCSS/issues)
+
+
+### Añadir o Modificar Temas
+
+Los temas están definidos en `fextension/options.js` en el objeto `PREDEFINED_THEMES`. 
+
+**IMPORTANTE**: Debido a la arquitectura de extensiones, `background.js` también necesita una copia de los temas para que la función de auto-tema funcione correctamente.
+
+**Proceso para añadir/modificar temas:**
+
+1. Edita **SOLO** `fextension/options.js` → Objeto `PREDEFINED_THEMES`
+2. Ejecuta el script de sincronización:
+   ```bash
+   node sync-themes.js
+   ```
+3. Si añades un nuevo tema, actualiza también `fextension/content.js` → Array `AVAILABLE_THEMES`
+
+**No edites manualmente `background.js`** - El script de sincronización lo hace por ti.
 
 
 ## Licencia y activos de terceros
