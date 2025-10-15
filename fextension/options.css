@@ -5,10 +5,12 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #ffffff 0%, #535353 100%);
+font-family: 'Segoe UI', 'SegoeUI', Inter, sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    text-decoration: none;
+    text-transform: none;
     max-width: 350px;
-    font-size: 16px;
 }
 
 .container {
@@ -19,15 +21,17 @@ body {
 }
 
 header {
-    background: linear-gradient(135deg, #ff3838, #af1717);
+    background: #0062fa;
     color: white;
     text-align: center;
 }
 
 header h1 {
-    font-size: 1.6em;
-    margin-bottom: 6px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+font-family: 'Segoe UI', 'SegoeUI', Inter, sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  text-decoration: none;
+  text-transform: none;
 }
 
 header p {
@@ -47,9 +51,9 @@ header p {
 
 .config-section h2 {
     font-size: 1.1em;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     color: #2c3e50;
-    border-left: 4px solid #ff3838;
+    border-left: 4px solid  #e2f7ff;
     padding-left: 10px;
 }
 
@@ -103,34 +107,114 @@ header p {
     box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
 }
 
-.config-item input[type="checkbox"] {
+/* Toggle Switch Styles (Firefox Acorn style)
+   Applied to both inline config-item checkboxes and the header toggle (.header-toggle input) */
+.config-item input[type="checkbox"],
+.header-toggle input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 32px;
+    height: 16px;
+    background-color: #d7d7db;
+    border-radius: 8px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
     margin-right: 10px;
-    transform: scale(1.2);
-    accent-color: #fff86b;
+    flex-shrink: 0;
 }
 
-.config-item label:has(input[type="checkbox"]) {
+.config-item input[type="checkbox"]::before,
+.header-toggle input[type="checkbox"]::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: white;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.config-item input[type="checkbox"]:checked,
+.header-toggle input[type="checkbox"]:checked {
+    background-color: #0060df;
+}
+
+.config-item input[type="checkbox"]:checked::before,
+.header-toggle input[type="checkbox"]:checked::before {
+    transform: translateX(16px);
+}
+
+.config-item input[type="checkbox"]:hover:not(:disabled),
+.header-toggle input[type="checkbox"]:hover:not(:disabled) {
+    background-color: #b1b1b3;
+}
+
+.config-item input[type="checkbox"]:checked:hover:not(:disabled),
+.header-toggle input[type="checkbox"]:checked:hover:not(:disabled) {
+    background-color: #0250bb;
+}
+
+.config-item input[type="checkbox"]:focus,
+.header-toggle input[type="checkbox"]:focus {
+    outline: 2px solid #0060df;
+    outline-offset: 2px;
+}
+
+.config-item input[type="checkbox"]:disabled,
+.header-toggle input[type="checkbox"]:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.config-item label:has(input[type="checkbox"]),
+.header-toggle {
     flex-direction: row;
+    display: flex;
     align-items: center;
     cursor: pointer;
 }
 
+.input-with-preview {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.input-with-preview input[type="url"] {
+    flex: 1;
+}
+
 .preview-btn {
-    padding: 5px 10px;
-    background: linear-gradient(135deg, #74b9ff, #0984e3);
+    padding: 8px;
+    background: #3f94ff;
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 11px;
     transition: all 0.3s ease;
-    align-self: flex-start;
-    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
 }
 
 .preview-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(116, 185, 255, 0.4);
+    background: #157aff;
+}
+
+.preview-btn img {
+    width: 16px;
+    height: 16px;
+    filter: brightness(0) invert(1);
+    pointer-events: none;
 }
 
 .actions {
@@ -140,11 +224,44 @@ header p {
     gap: 7px;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
+}
+
+.icon-buttons {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.btn-icon {
+    padding: 8px;
+    background: #3f94ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+}
+
+.btn-icon:hover {
+    transform: translateY(-2px);
+    background: #157aff;
+}
+
+.btn-icon img {
+    width: 16px;
+    height: 16px;
+    filter: brightness(0) invert(1);
 }
 
 .btn-primary {
     padding: 8px 18px;
-    background: linear-gradient(135deg, #ff3838, #af1717);
+    background: #0062fa;
     color: white;
     border: none;
     border-radius: 8px;
@@ -152,17 +269,16 @@ header p {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
 }
 
 .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+    background: #0053cb;
 }
 
 .btn-secondary {
     padding: 8px 14px;
-    background: linear-gradient(135deg, #74b9ff, #0984e3);
+    background:  #3f94ff ;
     color: white;
     border: none;
     border-radius: 8px;
@@ -170,12 +286,11 @@ header p {
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(116, 185, 255, 0.3);
 }
 
 .btn-secondary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(116, 185, 255, 0.4);
+    background: #157aff;
 }
 
 .status {
@@ -309,9 +424,6 @@ header p {
     border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #af1717, #ff3838);
-}
 
 /* Estilos para menú colapsable */
 .collapsible-header {
@@ -326,10 +438,6 @@ header p {
     margin-bottom: 15px;
 }
 
-.collapsible-header:hover {
-    background-color: rgba(255, 56, 56, 0.05);
-    transform: translateY(-1px);
-}
 
 .toggle-icon {
     font-size: 0.8em;

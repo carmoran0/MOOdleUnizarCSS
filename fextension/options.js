@@ -529,26 +529,35 @@ function showImagePreview(url) {
 
     // Sanitize the URL before using it
     let safeUrl = '';
-    try {
-        const parsedUrl = new URL(url, window.location.origin);
-        // Allow only http, https, chrome-extension protocols
-        if (
-            parsedUrl.protocol === 'http:' ||
-            parsedUrl.protocol === 'https:' ||
-            parsedUrl.protocol === 'chrome-extension:'
-        ) {
-            safeUrl = parsedUrl.href;
-        } 
-    } catch (e) {
-        // Invalid URL
-        safeUrl = '';
+    const trimmed = (url || '').trim();
+
+    // Allow data: and blob: URLs directly (useful for pasted images or local blobs)
+    if (/^data:image\/[a-zA-Z0-9.+-]+;base64,/.test(trimmed) || trimmed.startsWith('blob:')) {
+        safeUrl = trimmed;
+    } else {
+        try {
+            const parsedUrl = new URL(trimmed, window.location.origin);
+            // Allow http, https and known extension schemes (chrome/moz/ms-browser)
+            if (
+                parsedUrl.protocol === 'http:' ||
+                parsedUrl.protocol === 'https:' ||
+                parsedUrl.protocol === 'chrome-extension:' ||
+                parsedUrl.protocol === 'moz-extension:' ||
+                parsedUrl.protocol === 'ms-browser-extension:'
+            ) {
+                safeUrl = parsedUrl.href;
+            }
+        } catch (e) {
+            // Invalid URL -> leave safeUrl empty
+            safeUrl = '';
+        }
     }
 
     // If the URL is not safe, show error
     if (!safeUrl) {
         previewImg.style.display = 'none';
         previewError.style.display = 'block';
-        previewError.textContent = 'Error: URL inválida o no permitida. Solo se permiten imágenes de http(s) u origenes conocidos.';
+        previewError.textContent = 'Error: URL inválida o no permitida. Solo se permiten imágenes de http(s), data:, blob: o URIs de extensión conocidos.';
         modal.style.display = 'block';
         return;
     }

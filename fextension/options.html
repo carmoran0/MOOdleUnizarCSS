@@ -10,13 +10,29 @@
     <div class="container">
 
         <header>
-            <h1>MOOdle 2: Premium Edition</h1>
-            <p>(Puede que para algunos cambios sea necesario recargar la página)</p>
+            <h1>MOOdle 2</h1>
+            <p style="font-family: 'Segoe UI', 'SegoeUI', Inter, sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  text-decoration: none;
+  text-transform: none;
+  margin-bottom: 5px;">Premium edition</p>
+            <p style="font-family: 'Segoe UI', 'SegoeUI', Inter, sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  text-decoration: none;
+  text-transform: none;
+  text-align: left;">Para algunos cambios es necesario recargar la página</p>
         </header>
 
         <!-- Auto-theme section -->
-        <div class="config-section" style="border: 2px solid #4CAF50; background-color: #f0f8ff;">
-            <h2><input type="checkbox" id="enableAutoTheme"> Turbo swag eXXXtreme XL</h2>
+        <div class="config-section" style="background-color: #e2f7ff;">
+            <h2>
+                <label class="header-toggle">
+                    <input type="checkbox" id="enableAutoTheme">
+                    <span class="toggle-label">Turbo swag eXXXtreme XL</span>
+                </label>
+            </h2>
             <div class="config-item">
                 <label>
                     <small style="color: #666;">
@@ -28,10 +44,18 @@
         </div>
 
         <div class="actions">
-            <button id="saveConfig" class="btn-primary">💾 Guardar configuración</button>
-            <button id="resetConfig" class="btn-secondary">🔄 Restaurar valores por defecto</button>
-            <button id="exportConfig" class="btn-secondary">📤 Exportar configuración</button>
-            <button id="importConfig" class="btn-secondary">📥 Importar configuración</button>
+            <button id="saveConfig" class="btn-primary">Guardar configuración</button>
+            <div class="icon-buttons">
+                <button id="exportConfig" class="btn-icon" title="Exportar configuración">
+                    <img src="assets/export-data-16.svg" alt="Exportar">
+                </button>
+                <button id="importConfig" class="btn-icon" title="Importar configuración">
+                    <img src="assets/import-data-16.svg" alt="Importar">
+                </button>
+                <button id="resetConfig" class="btn-icon" title="Restaurar valores por defecto">
+                    <img src="assets/sync-16.svg" alt="Restaurar">
+                </button>
+            </div>
             <input type="file" id="importFile" accept=".json" style="display: none;">
         </div>
 
@@ -67,44 +91,72 @@
             
             <div class="config-item">
                 <label for="background">Imagen de fondo:</label>
-                <input type="url" id="background" placeholder="URL de la imagen de fondo">
-                <button class="preview-btn" data-target="background">Vista previa</button>
+                <div class="input-with-preview">
+                    <input type="url" id="background" placeholder="URL de la imagen de fondo">
+                    <button class="preview-btn" data-target="background" title="Vista previa">
+                        <img src="assets/preview-16.svg" alt="Preview">
+                    </button>
+                </div>
             </div>
 
             <div class="config-item">
                 <label for="navbarBg">Fondo de barra de navegación:</label>
-                <input type="url" id="navbarBg" placeholder="URL del fondo de la navbar">
-                <button class="preview-btn" data-target="navbarBg">Vista previa</button>
+                <div class="input-with-preview">
+                    <input type="url" id="navbarBg" placeholder="URL del fondo de la navbar">
+                    <button class="preview-btn" data-target="navbarBg" title="Vista previa">
+                        <img src="assets/preview-16.svg" alt="Preview">
+                    </button>
+                </div>
             </div>
 
             <div class="config-item">
                 <label for="calendarBg">Fondo del calendario:</label>
-                <input type="url" id="calendarBg" placeholder="URL del fondo del calendario">
-                <button class="preview-btn" data-target="calendarBg">Vista previa</button>
+                <div class="input-with-preview">
+                    <input type="url" id="calendarBg" placeholder="URL del fondo del calendario">
+                    <button class="preview-btn" data-target="calendarBg" title="Vista previa">
+                        <img src="assets/preview-16.svg" alt="Preview">
+                    </button>
+                </div>
             </div>
 
             <div class="config-item">
                 <label for="tarjeta">Imagen de tarjetas:</label>
-                <input type="url" id="tarjeta" placeholder="URL de imagen para fondos">
-                <button class="preview-btn" data-target="tarjeta">Vista previa</button>
+                <div class="input-with-preview">
+                    <input type="url" id="tarjeta" placeholder="URL de imagen para fondos">
+                    <button class="preview-btn" data-target="tarjeta" title="Vista previa">
+                        <img src="assets/preview-16.svg" alt="Preview">
+                    </button>
+                </div>
             </div>
 
             <div class="config-item">
                 <label for="iconoPDF">Imagen de Peter PNG (iconos PDF):</label>
-                <input type="url" id="iconoPDF" placeholder="URL de imagen PNG para PDFs">
-                <button class="preview-btn" data-target="iconoPDF">Vista previa</button>
+                <div class="input-with-preview">
+                    <input type="url" id="iconoPDF" placeholder="URL de imagen PNG para PDFs">
+                    <button class="preview-btn" data-target="iconoPDF" title="Vista previa">
+                        <img src="assets/preview-16.svg" alt="Preview">
+                    </button>
+                </div>
             </div>
 
             <div class="config-item">
                 <label for="logo">Logo personalizado:</label>
-                <input type="url" id="logo" placeholder="URL del logo personalizado">
-                <button class="preview-btn" data-target="logo">Vista previa</button>
+                <div class="input-with-preview">
+                    <input type="url" id="logo" placeholder="URL del logo personalizado">
+                    <button class="preview-btn" data-target="logo" title="Vista previa">
+                        <img src="assets/preview-16.svg" alt="Preview">
+                    </button>
+                </div>
             </div>
 
             <div class="config-item">
                 <label for="userProfile">Imagen de perfil de usuario:</label>
-                <input type="url" id="userProfile" placeholder="URL de imagen de perfil">
-                <button class="preview-btn" data-target="userProfile">Vista previa</button>
+                <div class="input-with-preview">
+                    <input type="url" id="userProfile" placeholder="URL de imagen de perfil">
+                    <button class="preview-btn" data-target="userProfile" title="Vista previa">
+                        <img src="assets/preview-16.svg" alt="Preview">
+                    </button>
+                </div>
             </div>
         </div>
 
