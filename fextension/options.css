@@ -50,11 +50,14 @@ header p {
 }
 
 .config-section h2 {
-    font-size: 1.1em;
-    margin-bottom: 10px;
-    color: #2c3e50;
+    font-family: 'Segoe UI', 'SegoeUI', Inter, sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    text-transform: none;
     border-left: 4px solid  #e2f7ff;
     padding-left: 10px;
+    margin-bottom: 10px;
 }
 
 
@@ -103,8 +106,6 @@ header p {
 .config-item input[type="text"]:focus,
 .config-item select:focus {
     outline: none;
-    border-color: #ff3838;
-    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
 }
 
 /* Toggle Switch Styles (Firefox Acorn style)
@@ -294,15 +295,31 @@ header p {
 }
 
 .status {
-    padding: 7px 10px;
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    padding: 10px 16px;
     text-align: center;
     font-weight: 600;
-    font-size: 0.9em;
-    transition: all 0.3s ease;
+    font-size: 0.95em;
+    border-radius: 8px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    z-index: 1100;
+    display: none;
+    opacity: 0;
+    box-shadow: 0 -6px 18px rgba(0,0,0,0.12);
+    max-width: calc(100% - 40px);
+}
+
+.status.visible {
+    display: block;
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
 }
 
 .status.success {
-    background: #d4edda;
+    background: #e1ffe1; /* color pedido */
     color: #155724;
     border-top: 2px solid #28a745;
 }
@@ -420,7 +437,7 @@ header p {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #ff3838, #af1717);
+    background: #c1c1c1;
     border-radius: 4px;
 }
 
@@ -442,6 +459,12 @@ header p {
 .toggle-icon {
     font-size: 0.8em;
     transition: transform 0.3s ease;
+    margin-left: 10px;
+}
+
+.collapsible-header .toggle-icon {
+    width: 16px;
+    height: 16px;
     margin-left: 10px;
 }
 

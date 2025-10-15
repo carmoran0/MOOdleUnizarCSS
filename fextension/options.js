@@ -377,14 +377,52 @@ async function saveConfig(config) {
 }
 
 // Mostrar estado
+// Mostrar estado (popup superior)
+let _statusTimeout = null;
 function showStatus(message, type = 'info', duration = 3000) {
     const statusDiv = document.getElementById('status');
-    statusDiv.textContent = message;
-    statusDiv.className = `status ${type}`;
-    statusDiv.style.display = 'block';
-    
-    setTimeout(() => {
-        statusDiv.style.display = 'none';
+    if (!statusDiv) return;
+
+    // Limpiar timeout previo
+    if (_statusTimeout) {
+        clearTimeout(_statusTimeout);
+        _statusTimeout = null;
+    }
+
+    // Mapear iconos por tipo
+    const icons = {
+        success: 'assets/checkmark-16.svg',
+        error: 'assets/error-16.svg',
+        info: 'assets/information-16.svg'
+    };
+
+    // Insertar imagen y texto
+    statusDiv.innerHTML = '';
+    const img = document.createElement('img');
+    img.src = icons[type] || icons.info;
+    img.alt = type;
+    img.style.width = '16px';
+    img.style.height = '16px';
+    img.style.marginRight = '8px';
+    img.style.verticalAlign = 'middle';
+
+    const span = document.createElement('span');
+    span.textContent = message;
+
+    statusDiv.appendChild(img);
+    statusDiv.appendChild(span);
+    // Reset clases y añadir la clase visible
+    statusDiv.className = `status ${type} visible`;
+
+    // Ocultar después de duration ms
+    _statusTimeout = setTimeout(() => {
+        statusDiv.classList.remove('visible');
+        // Después de la transición, limpiar texto
+        setTimeout(() => {
+            statusDiv.innerHTML = '';
+            statusDiv.className = 'status';
+        }, 300);
+        _statusTimeout = null;
     }, duration);
 }
 
@@ -651,7 +689,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const success = await saveConfig(config);
         
         if (success) {
-            showStatus('✅ Configuración guardada correctamente', 'success');
+            showStatus('Configuración guardada correctamente', 'success');
             // Notificar a content script para actualizar
             try {
                 const tabs = await browser.tabs.query({ url: "https://moodle.unizar.es/*" });
@@ -779,7 +817,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const themeSelect = document.getElementById('selectedTheme');
         
         if (isEnabled) {
-            showStatus('🎲 Auto-tema activado. Los cambios se aplicarán al refrescar Moodle.', 'info', 4000);
+            showStatus('Tema aleatorio activado. Los cambios se aplicarán al refrescar Moodle.', 'info', 4000);
             // Deshabilitar selector de tema cuando auto-tema está activo
             if (themeSelect) {
                 themeSelect.disabled = true;
@@ -882,5 +920,5 @@ document.addEventListener('DOMContentLoaded', async () => {
         themeSelect.style.opacity = '0.5';
     }
     
-    showStatus('⚙️ Configuración cargada', 'info', 2000);
+    showStatus('Configuración cargada', 'info', 2000);
 });
