@@ -141,7 +141,7 @@ El script se actualizará automáticamente desde GitHub. Puedes verificar actual
 
 ## 📄 Licencia
 
-Este proyecto mantiene la misma licencia que el proyecto principal. Consulta el archivo [LICENSE](../LICENSE) para más detalles.
+Este proyecto mantiene la misma licencia que el proyecto principal. Consulta el archivo [LICENSE](./LICENSE) para más detalles.
 
 ---
   

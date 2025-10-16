@@ -4,18 +4,18 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/carmoran0/MOOdleUnizarCSS)
 ![GitHub issues](https://img.shields.io/github/issues/carmoran0/MOOdleUnizarCSS)
 
-**Una extensión estética para personalizar la interfaz de Moodle Unizar con estilo.** Esta extensión es únicamente visual y no afecta a la funcionalidad de Moodle. Al menos debería.
+**Una extensión para personalizar la interfaz de Moodle Unizar.** Esta extensión es únicamente visual y no afecta a la funcionalidad de Moodle. Al menos debería.
 
-![](https://github.com/carmoran0/MOOdleUnizarCSS/blob/main/assets/preview.png?raw=true)
+![](/assets/preview.png)
 <p align="center"><em>Vista previa de la extensión en acción, hay otros temas disponibles</em></p>
 
 ## Cómo instalar en firefox (fácil) :shipit:
 1. Ve a [releases](https://github.com/carmoran0/MOOdleUnizarCSS/releases) a la derecha de esta página\
-   ![releases](https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/comof1.png)
+   <img src="https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/comof1.png" alt="releases" style="width:33%;height:auto;" />
 2. Descarga el archivo xpi (solamente descargando ya debería abrir la ventana de instalación)\
-   ![](https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/comof2.png)
+   <img src="https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/comof2.png" alt="instalacion" style="width:33%;height:auto;" />
 3. Termina la instalación y ya. Además, también debería actualizarse automáticamente.\
-   ![](https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/comof3.png)
+   <img src="https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/comof3.png" alt="finalizar" style="width:50%;height:auto;" />
 
 ## Cómo instalar con Tampermonkey (Chrome, Edge, Safari, Opera) 🎭
 
@@ -33,22 +33,20 @@
 
 3. **¡Listo!** Recarga Moodle y disfruta 🎉
 
-### Características del Userscript:
-- ✅ **14 temas predefinidos** (todos los de la extensión)
-- ✅ **Tema aleatorio** en cada recarga
-- ✅ **Gato Oneko** animado
-- ✅ **Configuración mediante menú** de Tampermonkey
-- ✅ **Actualizaciones automáticas** desde GitHub
-
 Para más información, consulta [**USERSCRIPT-README.md**](USERSCRIPT-README.md)
 
 ## Lista de funciones 
-- Todos los usuarios tienen la misma foto de una persona que no existe
+
+- Foto de perfil unificada
 - Barra de navegación mejorada
-- Fuente más guay (Inter, siguiendo las guías de Acorn Design System)
-- Ahora la interfaz no es una mierda y no se te limita solo al centro de la pantalla
-- TODO ESTO AHORA ES OPCIONAL Y CUSTOMIZABLE **CON TEMAS PERSONALIZADOS PREDETERMINADOS Y LA OPCIÓN DE EXPORTARLOS**
-- **Diseño basado en Acorn Design System de Mozilla Firefox** para una experiencia profesional y accesible
+- Fuente mejorada
+- Interfaz mejorada
+- **Modo oscuro automático**: Detecta y adapta la interfaz según las preferencias del sistema/navegador
+- Temas personalizables: 14 temas predefinidos, posibilidad de exportar/importar temas y activar un tema aleatorio en cada recarga.
+- Componentes opcionales: elementos visuales y mejoras activables/desactivables desde la configuración (userscript/extension).
+- Oneko
+- Actualizaciones automáticas.
+- Instalación flexible: disponible como extensión (xpi) y como userscript para Tampermonkey (Chrome, Edge, Safari, Opera, Firefox).
 
 ## **Estructura del Proyecto**
 ```
@@ -63,9 +61,9 @@ Para más información, consulta [**USERSCRIPT-README.md**](USERSCRIPT-README.md
 │   ├── oneko.js / oneko.gif           # Script y recurso extra
 │   ├── icon-*.png                     # Iconos de la extensión
 │   └── assets/                        # Imágenes y recursos de los temas
-├── MOOdle-Unizar-Personalizado.user.js  # 🆕 Userscript para Tampermonkey
-├── USERSCRIPT-README.md               # 🆕 Documentación del userscript
-├── ADAPTATION-NOTES.md                # 🆕 Notas técnicas de adaptación
+├── MOOdle-Unizar-Personalizado.user.js  # Userscript para Tampermonkey
+├── USERSCRIPT-README.md               # Documentación del userscript
+├── ADAPTATION-NOTES.md                # Notas técnicas de adaptación
 ├── sync-themes.js                     # Script para sincronizar temas
 ├── assets/                            # Recursos generales (imágenes, previews)
 ├── updates.json                       # Indicador de versiones
