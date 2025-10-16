@@ -717,7 +717,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (confirm('¿Estás seguro de que quieres restaurar la configuración por defecto?')) {
             fillForm(DEFAULT_CONFIG);
             await saveConfig(DEFAULT_CONFIG);
-            showStatus('🔄 Configuración restaurada a valores por defecto', 'info');
+            showStatus('Configuración restaurada a valores por defecto', 'info');
         }
     });
     

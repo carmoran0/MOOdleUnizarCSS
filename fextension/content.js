@@ -285,6 +285,8 @@
         if (!config.features.enableHideElements) return;
 
         const allElements = document.querySelectorAll(`${config.selectors.navbar}, ${config.selectors.dropdowns}`);
+        const textsToHide = config.textsToHide;
+        const urlsToHide = config.urlsToHide;
 
         allElements.forEach(element => {
             if (processedElements.has(element)) return;
@@ -292,8 +294,16 @@
             const text = element.textContent.trim();
             const href = element.getAttribute('href') || '';
 
-            const shouldHide = config.textsToHide.some(hideText => text.includes(hideText)) ||
-                             config.urlsToHide.some(hideUrl => href.includes(hideUrl));
+            // Cache-friendly comparison - avoid recalculating .some() each iteration
+            let shouldHide = false;
+            for (let i = 0; i < textsToHide.length && !shouldHide; i++) {
+                if (text.includes(textsToHide[i])) shouldHide = true;
+            }
+            if (!shouldHide) {
+                for (let i = 0; i < urlsToHide.length && !shouldHide; i++) {
+                    if (href.includes(urlsToHide[i])) shouldHide = true;
+                }
+            }
 
             if (shouldHide) {
                 element.style.display = 'none';
@@ -308,34 +318,35 @@
 
         const replacements = [
             {
-                elements: document.querySelectorAll(config.selectors.pdfIcons),
+                selector: config.selectors.pdfIcons,
                 newSrc: config.images.iconoPDF,
                 condition: null
             },
             {
-                elements: document.querySelectorAll(config.selectors.userPictures),
+                selector: config.selectors.userPictures,
                 newSrc: config.images.userProfile,
                 condition: (img) => img.src.includes('moodle.unizar.es/add/pluginfile.php')
             },
             {
-                elements: document.querySelectorAll(config.selectors.logo),
+                selector: config.selectors.logo,
                 newSrc: config.images.logo,
                 condition: null
             }
         ];
 
-        replacements.forEach(({ elements, newSrc, condition }) => {
+        replacements.forEach(({ selector, newSrc, condition }) => {
             // Solo aplicar reemplazo si la URL no está vacía
             if (!newSrc || !newSrc.trim()) return;
             
-            elements.forEach(img => {
-                if (processedElements.has(img)) return;
+            const elements = document.querySelectorAll(selector);
+            for (const img of elements) {
+                if (processedElements.has(img)) continue;
 
                 if (!condition || condition(img)) {
                     img.src = newSrc;
                     processedElements.add(img);
                 }
-            });
+            }
         });
     }
 
@@ -346,19 +357,23 @@
         // Solo aplicar fondos si la imagen no está vacía
         if (!config.images.tarjeta || !config.images.tarjeta.trim()) return;
 
-        config.selectors.backgroundElements.forEach(selector => {
-            const elements = document.querySelectorAll(selector);
-            elements.forEach(element => {
-                if (processedElements.has(element)) return;
+        // Concatenar todos los selectores en una sola consulta
+        const combinedSelector = config.selectors.backgroundElements.join(', ');
+        const elements = document.querySelectorAll(combinedSelector);
+        
+        // Pre-crear el string de CSS para reutilizar
+        const bgImage = `url("${config.images.tarjeta}")`;
+        
+        elements.forEach(element => {
+            if (processedElements.has(element)) return;
 
-                Object.assign(element.style, {
-                    backgroundImage: `url("${config.images.tarjeta}")`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat'
-                });
-                processedElements.add(element);
-            });
+            const style = element.style;
+            style.backgroundImage = bgImage;
+            style.backgroundSize = 'cover';
+            style.backgroundPosition = 'center';
+            style.backgroundRepeat = 'no-repeat';
+            
+            processedElements.add(element);
         });
     }
 
@@ -460,28 +475,39 @@
     // Observer más eficiente con debounce incorporado
     function setupDOMObserver() {
         let isObserving = false;
+        let pendingChanges = false;
 
         const observer = new MutationObserver((mutations) => {
-            if (isObserving) return;
-            isObserving = true;
+            if (isObserving) {
+                pendingChanges = true;
+                return;
+            }
 
-            const hasRelevantChanges = mutations.some(mutation =>
-                mutation.type === 'childList' &&
-                mutation.addedNodes.length > 0 &&
-                Array.from(mutation.addedNodes).some(node =>
-                    node.nodeType === Node.ELEMENT_NODE &&
-                    (node.matches?.('img, .nav-link, .navbar, .card-img-top') ||
-                     node.querySelector?.('img, .nav-link, .navbar, .card-img-top'))
-                )
-            );
+            const hasRelevantChanges = mutations.some(mutation => {
+                if (mutation.type !== 'childList' || mutation.addedNodes.length === 0) return false;
+                
+                for (const node of mutation.addedNodes) {
+                    if (node.nodeType !== Node.ELEMENT_NODE) continue;
+                    if (node.matches?.('img, .nav-link, .navbar, .card-img-top')) return true;
+                    if (node.querySelector?.('img, .nav-link, .navbar, .card-img-top')) return true;
+                }
+                return false;
+            });
 
             if (hasRelevantChanges) {
+                isObserving = true;
+                pendingChanges = false;
+                
                 requestAnimationFrame(() => {
                     applyAllModifications();
                     isObserving = false;
+                    
+                    // Check if new changes arrived during processing
+                    if (pendingChanges) {
+                        pendingChanges = false;
+                        requestAnimationFrame(() => applyAllModifications());
+                    }
                 });
-            } else {
-                isObserving = false;
             }
         });
 
