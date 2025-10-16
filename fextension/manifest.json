@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "MOOdle Unizar Personalizado",
-  "version": "1.9.1",
+  "version": "1.9.2",
   "description": "Personaliza el aspecto de Moodle Unizar automáticamente",
   "action": {
     "default_icon": {
