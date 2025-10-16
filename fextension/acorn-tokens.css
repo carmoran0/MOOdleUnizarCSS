@@ -1,0 +1,195 @@
+/**
+ * Acorn Design System Tokens
+ * Based on Mozilla Firefox's Acorn Design System
+ * https://acorn.firefox.com
+ */
+
+:root {
+  /* ===== Color Tokens ===== */
+  
+  /* Base Colors - Blue (primary brand color) */
+  --color-blue-05: oklch(97% 0.05 260);
+  --color-blue-10: oklch(90% 0.13 260);
+  --color-blue-20: oklch(83% 0.17 260);
+  --color-blue-30: oklch(74% 0.21 260);
+  --color-blue-40: oklch(66% 0.23 260);
+  --color-blue-50: oklch(62% 0.24 260);
+  --color-blue-60: oklch(55% 0.24 260);
+  --color-blue-70: oklch(48% 0.2 260);
+  --color-blue-80: oklch(37% 0.15 260);
+  --color-blue-90: oklch(25% 0.1 260);
+  
+  /* Base Colors - Gray */
+  --color-gray-05: oklch(98% 0 0);
+  --color-gray-10: oklch(96% 0 0);
+  --color-gray-20: oklch(90% 0 0);
+  --color-gray-30: oklch(84% 0 0);
+  --color-gray-40: oklch(74% 0 0);
+  --color-gray-50: oklch(65% 0 0);
+  --color-gray-60: oklch(52% 0 0);
+  --color-gray-70: oklch(42% 0 0);
+  --color-gray-80: oklch(29% 0 0);
+  --color-gray-90: oklch(18% 0 0);
+  --color-gray-100: oklch(8% 0 0);
+  
+  /* Base Colors - Cyan (dark mode accent) */
+  --color-cyan-20: oklch(90% 0.11 210);
+  --color-cyan-30: oklch(80% 0.15 210);
+  --color-cyan-40: oklch(70% 0.18 210);
+  
+  /* Base Colors - Green (success) */
+  --color-green-50: oklch(65% 0.16 155);
+  --color-green-60: oklch(55% 0.14 155);
+  --color-green-70: oklch(45% 0.12 155);
+  
+  /* Base Colors - Red (error) */
+  --color-red-50: oklch(65% 0.22 25);
+  --color-red-60: oklch(55% 0.22 25);
+  --color-red-70: oklch(45% 0.19 25);
+  
+  /* Base Colors - Yellow (warning) */
+  --color-yellow-50: oklch(75% 0.15 85);
+  --color-yellow-60: oklch(65% 0.16 85);
+  
+  /* Application Colors - Accent */
+  --color-accent-primary: var(--color-blue-60);
+  --color-accent-primary-hover: var(--color-blue-70);
+  --color-accent-primary-active: var(--color-blue-80);
+  
+  /* Application Colors - Background */
+  --color-background-primary: var(--color-gray-05);
+  --color-background-secondary: var(--color-gray-10);
+  --color-background-tertiary: var(--color-gray-20);
+  
+  /* Application Colors - Text */
+  --color-text-primary: var(--color-gray-90);
+  --color-text-secondary: var(--color-gray-70);
+  --color-text-tertiary: var(--color-gray-60);
+  --color-text-link: var(--color-accent-primary);
+  
+  /* Application Colors - Border */
+  --color-border-default: var(--color-gray-30);
+  --color-border-interactive: var(--color-gray-40);
+  
+  /* Application Colors - Icon */
+  --icon-color: var(--color-gray-70);
+  --icon-color-secondary: var(--color-gray-60);
+  
+  /* Application Colors - Status */
+  --color-success-background: oklch(95% 0.05 155);
+  --color-success-text: var(--color-green-70);
+  --color-error-background: oklch(95% 0.05 25);
+  --color-error-text: var(--color-red-70);
+  --color-warning-background: oklch(95% 0.05 85);
+  --color-warning-text: var(--color-yellow-60);
+  --color-info-background: var(--color-blue-05);
+  --color-info-text: var(--color-blue-70);
+  
+  /* ===== Typography Tokens ===== */
+  
+  /* Font Family */
+  --font-family-default: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-family-monospace: "SF Mono", Monaco, "Cascadia Code", "Courier New", monospace;
+  
+  /* Font Size */
+  --font-size-root: 15px;
+  --font-size-small: 0.867rem; /* 13px */
+  --font-size-default: 1rem; /* 15px */
+  --font-size-large: 1.133rem; /* 17px */
+  --font-size-xlarge: 1.467rem; /* 22px */
+  --font-size-xxlarge: 1.6rem; /* 24px */
+  
+  /* Font Weight */
+  --font-weight-default: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 600;
+  
+  /* Line Height */
+  --line-height-default: 1.5;
+  --line-height-heading: 1.2;
+  
+  /* ===== Size Tokens ===== */
+  
+  /* Item Sizes */
+  --size-item-small: 16px;
+  --size-item-medium: 24px;
+  --size-item-large: 32px;
+  --size-item-xlarge: 48px;
+  
+  /* ===== Spacing Tokens ===== */
+  
+  --space-xsmall: 4px;
+  --space-small: 8px;
+  --space-medium: 12px;
+  --space-large: 16px;
+  --space-xlarge: 24px;
+  --space-xxlarge: 32px;
+  
+  /* ===== Border Tokens ===== */
+  
+  --border-width: 1px;
+  --border-width-thick: 2px;
+  
+  --border-radius-small: 4px;
+  --border-radius-medium: 8px;
+  --border-radius-large: 12px;
+  --border-radius-circle: 9999px;
+  
+  --border-color: var(--color-border-default);
+  --border-color-interactive: var(--color-border-interactive);
+  
+  /* ===== Focus Outline ===== */
+  
+  --focus-outline-width: 2px;
+  --focus-outline-color: var(--color-accent-primary);
+  --focus-outline-offset: 2px;
+  --focus-outline: var(--focus-outline-width) solid var(--focus-outline-color);
+  
+  /* ===== Shadow Tokens ===== */
+  
+  --shadow-small: 0 1px 4px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-large: 0 8px 24px rgba(0, 0, 0, 0.2);
+  
+  /* ===== Component Tokens ===== */
+  
+  /* Button */
+  --button-background: var(--color-accent-primary);
+  --button-background-hover: var(--color-accent-primary-hover);
+  --button-background-active: var(--color-accent-primary-active);
+  --button-text-color: white;
+  --button-padding-block: var(--space-small);
+  --button-padding-inline: var(--space-large);
+  --button-border-radius: var(--border-radius-medium);
+  --button-font-weight: var(--font-weight-bold);
+  
+  --button-secondary-background: light-dark(var(--color-gray-10), var(--color-gray-70));
+  --button-secondary-background-hover: light-dark(var(--color-gray-20), var(--color-gray-60));
+  --button-secondary-text-color: var(--color-text-primary);
+  
+  /* Toggle */
+  --toggle-width: 32px;
+  --toggle-height: 16px;
+  --toggle-border-radius: var(--border-radius-circle);
+  --toggle-background-color: light-dark(var(--color-gray-30), var(--color-gray-60));
+  --toggle-background-color-hover: light-dark(var(--color-gray-40), var(--color-gray-50));
+  --toggle-background-color-pressed: var(--color-accent-primary);
+  --toggle-background-color-pressed-hover: var(--color-accent-primary-hover);
+  --toggle-knob-size: 12px;
+  --toggle-knob-offset: 2px;
+  --toggle-knob-translate: 16px;
+  
+  /* Input */
+  --input-background: var(--color-background-primary);
+  --input-border-color: var(--color-border-interactive);
+  --input-border-radius: var(--border-radius-medium);
+  --input-padding-block: 7px;
+  --input-padding-inline: 10px;
+  --input-text-color: var(--color-text-primary);
+  
+  /* Card */
+  --card-background: var(--color-background-primary);
+  --card-border-radius: var(--border-radius-medium);
+  --card-padding: var(--space-large);
+  --card-shadow: var(--shadow-small);
+}

@@ -6,6 +6,8 @@
 
 **Una extensión estética para personalizar la interfaz de Moodle Unizar con estilo.** Esta extensión es únicamente visual y no afecta a la funcionalidad de Moodle. Al menos debería.
 
+**Diseñada siguiendo el [Acorn Design System](https://acorn.firefox.com) de Mozilla Firefox** para garantizar una experiencia profesional, accesible y consistente.
+
 ![](https://github.com/carmoran0/MOOdleUnizarCSS/blob/main/assets/preview.png?raw=true)
 <p align="center"><em>Vista previa de la extensión en acción, hay otros temas disponibles</em></p>
 
@@ -30,9 +32,10 @@
 ## Lista de funciones 
 - Todos los usuarios tienen la misma foto de una persona que no existe
 - Barra de navegación mejorada
-- Fuente más guay
+- Fuente más guay (Inter, siguiendo las guías de Acorn Design System)
 - Ahora la interfaz no es una mierda y no se te limita solo al centro de la pantalla
 - TODO ESTO AHORA ES OPCIONAL Y CUSTOMIZABLE **CON TEMAS PERSONALIZADOS PREDETERMINADOS Y LA OPCIÓN DE EXPORTARLOS**
+- **Diseño basado en Acorn Design System de Mozilla Firefox** para una experiencia profesional y accesible
 
 ## **Estructura del Proyecto**
 ```
@@ -41,7 +44,8 @@
 │   ├── content.js                   # Script principal
 │   ├── background.js                # Service worker (auto-tema)
 │   ├── options.html                 # Panel de configuración (HTML)
-│   ├── options.css                  # Estilos del panel de configuración
+│   ├── options.css                  # Estilos del panel de configuración (Acorn Design System)
+│   ├── acorn-tokens.css             # Design tokens de Acorn (NUEVO)
 │   ├── options.js                   # Lógica del panel de configuración
 │   ├── oneko.js / oneko.gif         # Script y recurso extra
 │   ├── icon-16.png                  # Iconos de la extensión
@@ -50,19 +54,6 @@
 │   ├── icon-128.png
 │   └── assets/                      # Imágenes y recursos de los temas
 ├── sync-themes.js                   # Script para sincronizar temas (desarrollo)
-├── MOOdle Unizar Personalizado-2025-09-09.user.js   # Userscript para Tampermonkey (versión legacy)
-├── fextension/                      # Extensión de Firefox
-│   ├── manifest.json                # Manifest de la extensión
-│   ├── content.js                   # Script principal
-│   ├── options.html                 # Panel de configuración (HTML)
-│   ├── options.css                  # Estilos del panel de configuración
-│   ├── options.js                   # Lógica del panel de configuración
-│   ├── oneko.js / oneko.gif         # Script y recurso extra
-│   ├── icon-16.png                  # Iconos de la extensión
-│   ├── icon-32.png
-│   ├── icon-48.png
-│   ├── icon-128.png
-│   └── assets/                      # Imágenes y recursos de los temas
 ├── MOOdle Unizar Personalizado-2025-09-09.user.js   # Userscript para Tampermonkey (versión legacy)
 ├── assets/                          # Recursos generales (imágenes, previews)
 ├── updates.json                     # Indicador de versiones para actualizaciones automáticas

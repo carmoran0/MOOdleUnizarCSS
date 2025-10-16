@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOOdle Personalizado - Configuración</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="options.css">
 </head>
 <body>
@@ -11,22 +14,12 @@
 
         <header>
             <h1>MOOdle 2</h1>
-            <p style="font-family: 'Segoe UI', 'SegoeUI', Inter, sans-serif;
-  font-weight: 600;
-  font-size: 17px;
-  text-decoration: none;
-  text-transform: none;
-  margin-bottom: 5px;">Premium edition</p>
-            <p style="font-family: 'Segoe UI', 'SegoeUI', Inter, sans-serif;
-  font-weight: 400;
-  font-size: 13px;
-  text-decoration: none;
-  text-transform: none;
-  text-align: left;">Para algunos cambios es necesario recargar la página</p>
+            <p style="font-weight: var(--font-weight-bold); font-size: var(--font-size-large); margin-bottom: 5px;">Premium edition</p>
+            <p style="font-size: var(--font-size-small); text-align: left;">Para algunos cambios es necesario recargar la página</p>
         </header>
 
         <!-- Auto-theme section -->
-        <div class="config-section" style="background-color: #e2f7ff;">
+        <div class="config-section" style="background-color: var(--color-blue-05);">
             <h2>
                 <label class="header-toggle">
                     <input type="checkbox" id="enableAutoTheme">
@@ -35,7 +28,7 @@
             </h2>
             <div class="config-item">
                 <label>
-                    <small style="color: #666;">
+                    <small style="color: var(--color-text-secondary);">
                     Lo mejor de cada mundo: Cada vez que recargues la página, se aplicará un tema aleatorio
                     
                     </small>
@@ -80,7 +73,7 @@
                     <option value="whatsapp">whatsapp</option>
                     <option value="custom">Personalizado</option>
                 </select>
-                <small style="display: block; margin-top: 5px; color: #666;">
+                <small style="display: block; margin-top: 5px; color: var(--color-text-secondary);">
                     Selecciona un tema predeterminado o "Personalizado" para configurar manualmente
                 </small>
             </div>
@@ -166,8 +159,8 @@
             <div class="config-item">
                 <label for="navbarColor">Color de fondo de la navbar:</label>
                 <input type="text" id="navbarColor" value="#213C70" placeholder="#213C70" pattern="^#[0-9A-Fa-f]{6}$">
-                <div id="navbarColorPreview" style="width: 30px; height: 30px; border: 1px solid #ccc; display: inline-block; margin-left: 10px; border-radius: 4px; background-color: #213C70;"></div>
-                <small style="display: block; margin-top: 5px; color: #666;">
+                <div id="navbarColorPreview" style="width: 30px; height: 30px; border: var(--border-width) solid var(--color-border-default); display: inline-block; margin-left: var(--space-medium); border-radius: var(--border-radius-small); background-color: #213C70;"></div>
+                <small style="display: block; margin-top: 5px; color: var(--color-text-secondary);">
                     Introduce un color hexadecimal (ej: #213C70) para la barra de navegación
                 </small>
             </div>
@@ -187,7 +180,7 @@
                     <input type="checkbox" id="enableCustomFont" checked> 
                     Habilitar fuente personalizada
                 </label>
-                <small style="display: block; margin-top: 5px; color: #666;">
+                <small style="display: block; margin-top: 5px; color: var(--color-text-secondary);">
                     Desmarcar para usar la fuente predeterminada de Moodle
                 </small>
             </div>
@@ -272,7 +265,7 @@
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <img id="previewImage" src="" alt="Vista previa">
-                <p id="previewError" style="display: none; color: red;">Error al cargar la imagen</p>
+                <p id="previewError" style="display: none; color: var(--color-error-text);">Error al cargar la imagen</p>
             </div>
         </div>
     </div>
