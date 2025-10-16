@@ -6,8 +6,6 @@
 
 **Una extensión estética para personalizar la interfaz de Moodle Unizar con estilo.** Esta extensión es únicamente visual y no afecta a la funcionalidad de Moodle. Al menos debería.
 
-**Diseñada siguiendo el [Acorn Design System](https://acorn.firefox.com) de Mozilla Firefox** para garantizar una experiencia profesional, accesible y consistente.
-
 ![](https://github.com/carmoran0/MOOdleUnizarCSS/blob/main/assets/preview.png?raw=true)
 <p align="center"><em>Vista previa de la extensión en acción, hay otros temas disponibles</em></p>
 
