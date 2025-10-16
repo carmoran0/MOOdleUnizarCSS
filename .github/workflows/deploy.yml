@@ -44,6 +44,22 @@ jobs:
           mkdir -p build
           zip -r build/extension.zip fextension
 
+      - name: Sync themes from options.js
+        run: |
+          # Ejecuta el script de sincronización que copia PREDEFINED_THEMES de options.js a background.js
+          node sync-themes.js
+
+          # Si background.js cambió, commitea y haz push para que la release incluya los temas sincronizados
+          if ! git diff --quiet -- fextension/background.js; then
+            git config user.name "github-actions"
+            git config user.email "actions@github.com"
+            git add fextension/background.js
+            git commit -m "chore: sync PREDEFINED_THEMES from options.js to background.js"
+            git push
+          else
+            echo "No changes to background.js after sync"
+          fi
+
       - name: Sign extension on AMO (unlisted)
         run: |
           web-ext sign \
