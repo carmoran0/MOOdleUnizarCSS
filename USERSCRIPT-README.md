@@ -138,13 +138,11 @@ El script se actualizará automáticamente desde GitHub. Puedes verificar actual
 
 - **Repositorio**: https://github.com/carmoran0/MOOdleUnizarCSS
 - **Reportar problemas**: https://github.com/carmoran0/MOOdleUnizarCSS/issues
-- **Extensión original**: [fextension](../fextension/)
 
 ## 📄 Licencia
 
 Este proyecto mantiene la misma licencia que el proyecto principal. Consulta el archivo [LICENSE](../LICENSE) para más detalles.
 
 ---
-
-**Autor**: Carlos Moreno (Calo)  
+  
 **Versión**: 2025-10-16
