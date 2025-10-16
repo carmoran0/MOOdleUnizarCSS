@@ -19,15 +19,30 @@
 3. Termina la instalación y ya. Además, también debería actualizarse automáticamente.\
    ![](https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/comof3.png)
 
-## Cómo instalar en Chrome (díficil)
-1. Necesitas alguna extensión para inyectar userscript. Yo uso tampermonkey. Usa tampermonkey.
-   Tienes que buscar y **descargar la extensión Tampermonkey**
-   (En Chrome es un poco más díficil de aplicar)
-   - [Descargar tampermonkey Chrome](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
-   - [Descargar tampermonkey Firefox](https://addons.mozilla.org/es-ES/firefox/addon/tampermonkey/)
-3. Una vez descargado tampermonkey, simplementa haciendo clic en el [enlace](https://github.com/carmoran0/MOOdleUnizarCSS/raw/refs/heads/main/MOOdle%20Unizar%20Personalizado-2025-09-09.user.js) con el código, ya te debería dar la opción de instalar.
-4. Puedes activar y desactivar la extensión o simplemente el script desde el menú de la extensión
-   ![cómo desactivar](https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/assets/howto.png)
+## Cómo instalar con Tampermonkey (Chrome, Edge, Safari, Opera) 🎭
+
+**¡NUEVO!** Ahora disponible como userscript completo para Tampermonkey con todos los temas y funcionalidades.
+
+### Instalación Rápida:
+
+1. **Instala Tampermonkey** en tu navegador:
+   - [Chrome/Edge](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
+   - [Firefox](https://addons.mozilla.org/es-ES/firefox/addon/tampermonkey/)
+   - [Safari](https://apps.apple.com/us/app/tampermonkey/id1482490089)
+   - [Opera](https://addons.opera.com/es/extensions/details/tampermonkey-beta/)
+
+2. **Instala el userscript**: Haz clic en este enlace → [**MOOdle-Unizar-Personalizado.user.js**](https://raw.githubusercontent.com/carmoran0/MOOdleUnizarCSS/refs/heads/main/MOOdle-Unizar-Personalizado.user.js)
+
+3. **¡Listo!** Recarga Moodle y disfruta 🎉
+
+### Características del Userscript:
+- ✅ **14 temas predefinidos** (todos los de la extensión)
+- ✅ **Tema aleatorio** en cada recarga
+- ✅ **Gato Oneko** animado
+- ✅ **Configuración mediante menú** de Tampermonkey
+- ✅ **Actualizaciones automáticas** desde GitHub
+
+Para más información, consulta [**USERSCRIPT-README.md**](USERSCRIPT-README.md)
 
 ## Lista de funciones 
 - Todos los usuarios tienen la misma foto de una persona que no existe
@@ -39,25 +54,24 @@
 
 ## **Estructura del Proyecto**
 ```
-├── fextension/                      # Extensión de Firefox
-│   ├── manifest.json                # Manifest de la extensión
-│   ├── content.js                   # Script principal
-│   ├── background.js                # Service worker (auto-tema)
-│   ├── options.html                 # Panel de configuración (HTML)
-│   ├── options.css                  # Estilos del panel de configuración (Acorn Design System)
-│   ├── acorn-tokens.css             # Design tokens de Acorn (NUEVO)
-│   ├── options.js                   # Lógica del panel de configuración
-│   ├── oneko.js / oneko.gif         # Script y recurso extra
-│   ├── icon-16.png                  # Iconos de la extensión
-│   ├── icon-32.png
-│   ├── icon-48.png
-│   ├── icon-128.png
-│   └── assets/                      # Imágenes y recursos de los temas
-├── sync-themes.js                   # Script para sincronizar temas (desarrollo)
-├── MOOdle Unizar Personalizado-2025-09-09.user.js   # Userscript para Tampermonkey (versión legacy)
-├── assets/                          # Recursos generales (imágenes, previews)
-├── updates.json                     # Indicador de versiones para actualizaciones automáticas
-└── README.md                        # Este archivo
+├── fextension/                        # Extensión de Firefox/Chrome
+│   ├── manifest.json                  # Manifest de la extensión
+│   ├── content.js                     # Script principal
+│   ├── background.js                  # Service worker (auto-tema)
+│   ├── options.html                   # Panel de configuración (HTML)
+│   ├── options.css                    # Estilos del panel (Acorn Design System)
+│   ├── acorn-tokens.css               # Design tokens de Acorn
+│   ├── options.js                     # Lógica del panel de configuración
+│   ├── oneko.js / oneko.gif           # Script y recurso extra
+│   ├── icon-*.png                     # Iconos de la extensión
+│   └── assets/                        # Imágenes y recursos de los temas
+├── MOOdle-Unizar-Personalizado.user.js  # 🆕 Userscript para Tampermonkey
+├── USERSCRIPT-README.md               # 🆕 Documentación del userscript
+├── ADAPTATION-NOTES.md                # 🆕 Notas técnicas de adaptación
+├── sync-themes.js                     # Script para sincronizar temas
+├── assets/                            # Recursos generales (imágenes, previews)
+├── updates.json                       # Indicador de versiones
+└── README.md                          # Este archivo
 ```
 
 ---
