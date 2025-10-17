@@ -41,7 +41,6 @@ Para más información, consulta [**USERSCRIPT-README.md**](USERSCRIPT-README.md
 - Barra de navegación mejorada
 - Fuente mejorada
 - Interfaz mejorada
-- **Modo oscuro automático**: Detecta y adapta la interfaz según las preferencias del sistema/navegador
 - Temas personalizables: 14 temas predefinidos, posibilidad de exportar/importar temas y activar un tema aleatorio en cada recarga.
 - Componentes opcionales: elementos visuales y mejoras activables/desactivables desde la configuración (userscript/extension).
 - Oneko
