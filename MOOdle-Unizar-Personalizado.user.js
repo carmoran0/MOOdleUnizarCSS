@@ -23,329 +23,329 @@
 
     // Temas predefinidos (adaptados de la extensión)
     const PREDEFINED_THEMES = {
-        default: {
-            name: 'Family guy claro (default)',
-            images: {
-                background: `${GITHUB_BASE}/assets/default/peterIRL.png`,
-                navbarBg: `${GITHUB_BASE}/assets/default/giggity.png`,
-                calendarBg: "https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/gatos.gif",
-                tarjeta: 'https://github.com/carmoran0/MOOdleUnizarCSS/blob/main/fextension/assets/default/peter.jpg?raw=true',
-                iconoPDF: `${GITHUB_BASE}/assets/default/PETERRRRR.png`,
-                logo: `${GITHUB_ASSETS}/mooodle.png`,
-                userProfile: 'https://www.thispersondoesnotexist.com/',
-                screamer1:'https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/screamer1.jpeg'
-            },
-            fontFamily: 'Comic Sans MS',
-            navbarColor: '#213C70',
-            features: {
-                enableBackgroundImages: true,
-                enableImageReplacements: true,
-                enableHideElements: true,
-                enableCustomParagraph: true,
-                enableCustomFont: true,
-                enableOneko: true
-            }
+    default: {
+        name: 'Family guy claro (default)',
+        images: {
+            background: `${GITHUB_BASE}/assets/default/peterIRL.png`,
+            navbarBg: `${GITHUB_BASE}/assets/default/giggity.png`,
+            calendarBg: "https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/gatos.gif",
+            tarjeta: 'https://github.com/carmoran0/MOOdleUnizarCSS/blob/main/fextension/assets/default/peter.jpg?raw=true',
+            iconoPDF: `${GITHUB_BASE}/assets/default/PETERRRRR.png`,
+            logo: `${GITHUB_BASE}/assets/mooodle.png`,
+            userProfile: 'https://www.thispersondoesnotexist.com/',
+            screamer1:'https://raw.githubusercontent.com/carmoran0/carmoran0.github.io/refs/heads/main/images/screamer1.jpeg'
         },
-        dark: {
-            name: 'Family guy oscuro',
-            images: {
-                background: `${GITHUB_BASE}/assets/dark/background.png`,
-                navbarBg: `${GITHUB_BASE}/assets/dark/clevnavb.jpeg`,
-                calendarBg: `${GITHUB_BASE}/assets/dark/calendar.png`,
-                tarjeta: 'https://github.com/carmoran0/MOOdleUnizarCSS/blob/main/fextension/assets/dark/cocje.png?raw=true',
-                iconoPDF: `${GITHUB_BASE}/assets/dark/pdf.png`,
-                logo: `${GITHUB_ASSETS}/mooodle.png`,
-                userProfile: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
-                screamer1: ''
-            },
-            fontFamily: 'Comic Sans MS',
-            navbarColor: '#2c3e50',
+        fontFamily: 'Comic Sans MS',
+        navbarColor: '#213C70',
             features: {
-                enableBackgroundImages: true,
-                enableImageReplacements: true,
-                enableHideElements: true,
-                enableCustomParagraph: true,
-                enableCustomFont: true,
-                enableOneko: false
-            }
-        },
-        moodle: {
-            name: 'Moodle Base',
-            images: {
-                background: '',
-                navbarBg: '',
-                calendarBg: '',
-                tarjeta: '',
-                iconoPDF: '',
-                logo: '',
-                userProfile: '',
-                screamer1: ''
-            },
-            fontFamily: '',
-            navbarColor: '#213C70',
-            features: {
-                enableBackgroundImages: false,
-                enableImageReplacements: false,
-                enableHideElements: false,
-                enableCustomParagraph: true,
-                enableCustomFont: false,
-                enableOneko: false
-            }
-        },
-        'bar-atrio': {
-            name: 'bar atrio',
-            images: {
-                background: `${GITHUB_BASE}/assets/atrio/cocteles.png`,
-                navbarBg: '',
-                calendarBg: '',
-                tarjeta: '',
-                iconoPDF: `${GITHUB_BASE}/assets/atrio/chupitos.png`,
-                logo: `${GITHUB_BASE}/assets/atrio/logo.png`,
-                userProfile: '',
-                screamer1: ''
-            },
-            fontFamily: '',
-            navbarColor: '#702121',
-            features: {
-                enableBackgroundImages: true,
-                enableImageReplacements: true,
-                enableHideElements: true,
-                enableCustomParagraph: true,
-                enableCustomFont: false,
-                enableOneko: true
-            }
-        },
-        'vaca': {
-            name: 'vaca',
-            images: {
-                background: `${GITHUB_BASE}/assets/vaca/vacapatin.jpeg`,
-                navbarBg: `${GITHUB_BASE}/assets/vaca/navbar.jpeg`,
-                calendarBg: '',
-                tarjeta: '',
-                iconoPDF: '',
-                logo: `${GITHUB_BASE}/assets/vaca/logo.JPG`,
-                userProfile: '',
-                screamer1: ''
-            },
-            fontFamily: '',
-            navbarColor: '#213C70',
-            features: {
-                enableBackgroundImages: true,
-                enableImageReplacements: true,
-                enableHideElements: true,
-                enableCustomParagraph: true,
-                enableCustomFont: true,
-                enableOneko: true
-            }
-        },
-        'psoe': {
-            name: 'psoe',
-            images: {
-                background: `${GITHUB_BASE}/assets/pesoe/background.png`,
-                navbarBg: '',
-                calendarBg: '',
-                tarjeta: `${GITHUB_BASE}/assets/pesoe/fondo.jpeg`,
-                iconoPDF: 'https://s1.qwant.com/thumbr/474x474/3/3/1a5ac4a6d12c5508b4d3b67e84487120de463b4ab4c1e5dd307a887c3556f6/OIP.k0deVH9kL4UdzKpGOPX3qwHaHa.jpg?u=https%3A%2F%2Ftse4.explicit.bing.net%2Fth%2Fid%2FOIP.k0deVH9kL4UdzKpGOPX3qwHaHa%3Fcb%3D12%26pid%3DApi&q=0&b=1&p=0&a=0',
-                logo: `${GITHUB_BASE}/assets/pesoe/aragon_horizontal-linea-blanco.png`,
-                userProfile: 'https://s1.qwant.com/thumbr/474x474/3/3/1a5ac4a6d12c5508b4d3b67e84487120de463b4ab4c1e5dd307a887c3556f6/OIP.k0deVH9kL4UdzKpGOPX3qwHaHa.jpg?u=https%3A%2F%2Ftse4.explicit.bing.net%2Fth%2Fid%2FOIP.k0deVH9kL4UdzKpGOPX3qwHaHa%3Fcb%3D12%26pid%3DApi&q=0&b=1&p=0&a=0',
-                screamer1: ''
-            },
-            fontFamily: '',
-            navbarColor: '#E20025',
-            features: {
-                enableBackgroundImages: true,
-                enableImageReplacements: true,
-                enableHideElements: true,
-                enableCustomParagraph: true,
-                enableCustomFont: true,
-                enableOneko: true
-            }
-        },
-        'boykisser': {
-            name: 'boykisser',
-            images: {
-                background: `${GITHUB_BASE}/assets/boykisser/navbar.gif`,
-                navbarBg: `${GITHUB_BASE}/assets/boykisser/navbar.jpeg`,
-                calendarBg: '',
-                tarjeta: '',
-                iconoPDF: '',
-                logo: `${GITHUB_BASE}/assets/boykisser/logo.jpeg`,
-                userProfile: '',
-                screamer1: ''
-            },
-            fontFamily: '',
-            navbarColor: '',
-            features: {
-                enableBackgroundImages: true,
-                enableImageReplacements: true,
-                enableHideElements: true,
-                enableCustomParagraph: true,
-                enableCustomFont: true,
-                enableOneko: true
-            }   
-        },
-        'hatsune-miku': {
-            name: 'hatsune miku',
-            images: {
-                background: `${GITHUB_BASE}/assets/miku/background.jpeg`,
-                navbarBg: '',
-                calendarBg: '',
-                tarjeta: '',
-                iconoPDF: '',
-                logo: `${GITHUB_BASE}/assets/miku/logo.svg`,
-                userProfile: `${GITHUB_BASE}/assets/miku/pfp.jpeg`,
-                screamer1: ''
-            },
-            fontFamily: '',
-            navbarColor: '#86CECB',
-            features: {
-                enableBackgroundImages: true,
-                enableImageReplacements: true,
-                enableHideElements: true,
-                enableCustomParagraph: true,
-                enableCustomFont: true,
-                enableOneko: true
-            }
-        },
-        'doctor-house': {
-            name: 'doctor house',
-            images: {
-                background: `${GITHUB_BASE}/assets/house/background.png`,
-                navbarBg: `${GITHUB_BASE}/assets/house/navbar.jpeg`,
-                calendarBg: `${GITHUB_BASE}/assets/house/calendar.jpeg`,
-                tarjeta: '',
-                iconoPDF: '',
-                logo: `${GITHUB_BASE}/assets/house/logo.jpeg`,
-                userProfile: `${GITHUB_BASE}/assets/house/pfp.jpeg`,
-                screamer1: ''
-            },
-            fontFamily: '',
-            navbarColor: '#213C70',
-            features: {
-                enableBackgroundImages: true,
-                enableImageReplacements: true,
-                enableHideElements: true,
-                enableCustomParagraph: true,
-                enableCustomFont: true,
-                enableOneko: true
-            }
-        },
-        'breaking-bad': {
-            name: 'breaking bad',
-            images: {
-                background: `${GITHUB_BASE}/assets/breakingbad/fondo.png`,
-                navbarBg: `${GITHUB_BASE}/assets/breakingbad/navbar.png`,
-                calendarBg: '',
-                tarjeta: `${GITHUB_BASE}/assets/breakingbad/tarjeta.png`,
-                iconoPDF: `${GITHUB_BASE}/assets/breakingbad/pdf.png`,
-                logo: `${GITHUB_BASE}/assets/breakingbad/logo.svg`,
-                userProfile: `${GITHUB_BASE}/assets/breakingbad/pfp.png`,
-                screamer1: ''
-            },
-            fontFamily: '',
-            navbarColor: '#213C70',
-            features: {
-                enableBackgroundImages: true,
-                enableImageReplacements: true,
-                enableHideElements: true,
-                enableCustomParagraph: true,
-                enableCustomFont: true,
-                enableOneko: true
-            }
-        },
-        'smiling-friends': {
-            name: 'smiling friends',
-            images: {
-                background: `${GITHUB_BASE}/assets/smiling/fondo.gif`,
-                navbarBg: `${GITHUB_BASE}/assets/smiling/navbar.png`,
-                calendarBg: '',
-                tarjeta: `${GITHUB_BASE}/assets/smiling/tarjeta.png`,
-                iconoPDF: '',
-                logo: `${GITHUB_BASE}/assets/smiling/logo.png`,
-                userProfile: '',
-                screamer1: ''
-            },
-            fontFamily: '',
-            navbarColor: '',
-            features: {
-                enableBackgroundImages: true,
-                enableImageReplacements: true,
-                enableHideElements: true,
-                enableCustomParagraph: true,
-                enableCustomFont: true,
-                enableOneko: true
-            }
-        },
-        'rick-morty-irl': {
-            name: 'rick y morty irl',
-            images: {
-                background: `${GITHUB_BASE}/assets/rym/fondo.png`,
-                navbarBg: `${GITHUB_BASE}/assets/rym/navbar.png`,
-                calendarBg: '',
-                tarjeta: '',
-                iconoPDF: '',
-                logo: `${GITHUB_BASE}/assets/rym/logo.png`,
-                userProfile: `${GITHUB_BASE}/assets/rym/rickkkk.png`,
-                screamer1: ''
-            },
-            fontFamily: '',
-            navbarColor: '',
-            features: {
-                enableBackgroundImages: true,
-                enableImageReplacements: true,
-                enableHideElements: true,
-                enableCustomParagraph: true,
-                enableCustomFont: true,
-                enableOneko: true
-            }
-        },
-        'pipotam': {
-            name: 'pipotam',
-            images: {
-                background: `${GITHUB_BASE}/assets/pipotam/fondo.gif`,
-                navbarBg: `${GITHUB_BASE}/assets/pipotam/navbar.png`,
-                calendarBg: `${GITHUB_BASE}/assets/pipotam/fondo.gif`,
-                tarjeta: `${GITHUB_BASE}/assets/pipotam/fondo.gif`,
-                iconoPDF: `${GITHUB_BASE}/assets/pipotam/fondo.gif`,
-                logo: `${GITHUB_BASE}/assets/pipotam/logo.gif`,
-                userProfile:`${GITHUB_BASE}/assets/pipotam/fondo.gif`,
-                screamer1: `${GITHUB_BASE}/assets/pipotam/fondo.gif`
-            },
-            fontFamily: '',
-            navbarColor: '',
-            features: {
-                enableBackgroundImages: true,
-                enableImageReplacements: true,
-                enableHideElements: true,
-                enableCustomParagraph: true,
-                enableCustomFont: true,
-                enableOneko: true
-            }
-        },
-        'whatsapp': {
-            name: 'whatsapp',
-            images: {
-                background: '',
-                navbarBg: '',
-                calendarBg: '',
-                tarjeta: '',
-                iconoPDF: '',
-                logo: `${GITHUB_BASE}/assets/whatsapp/Digital_Inline_White.svg`,
-                userProfile: '',
-                screamer1: ''
-            },
-            fontFamily: '',
-            navbarColor: '#25D366',
-            features: {
-                enableBackgroundImages: true,
-                enableImageReplacements: true,
-                enableHideElements: true,
-                enableCustomParagraph: true,
-                enableCustomFont: true,
-                enableOneko: true
-            }
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: true,
+            enableOneko: true
         }
-    };
+    },
+        dark: {
+        name: 'Family guy oscuro',
+        images: {
+            background: `${GITHUB_BASE}/assets/dark/background.png`,
+            navbarBg: `${GITHUB_BASE}/assets/dark/clevnavb.jpeg`,
+            calendarBg: `${GITHUB_BASE}/assets/dark/calendar.png`,
+            tarjeta: 'https://github.com/carmoran0/MOOdleUnizarCSS/blob/main/fextension/assets/dark/cocje.png?raw=true', //ESTA SON LAS TARJETAS
+            iconoPDF: `${GITHUB_BASE}/assets/dark/pdf.png`, // ESTE ES EL PDF
+            logo: `${GITHUB_BASE}/assets/mooodle.png`,
+            userProfile: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
+            screamer1: ''
+        },
+        fontFamily: 'Comic Sans MS',
+        navbarColor: '#2c3e50',
+        features: {
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: true,
+            enableOneko: false
+        }
+    },
+    moodle: {
+        name: 'Moodle Base',
+        images: {
+            background: '',
+            navbarBg: '',
+            calendarBg: '',
+            tarjeta: '',
+            iconoPDF: '',
+            logo: '',
+            userProfile: '',
+            screamer1: ''
+        },
+        fontFamily: '',
+        navbarColor: '#213C70',
+        features: {
+            enableBackgroundImages: false,
+            enableImageReplacements: false,
+            enableHideElements: false,
+            enableCustomParagraph: true,
+            enableCustomFont: false,
+            enableOneko: false
+        }
+    },
+    'bar-atrio': {
+        name: 'bar atrio',
+        images: {
+            background: `${GITHUB_BASE}/assets/atrio/cocteles.png`,
+            navbarBg: '',
+            calendarBg: '',
+            tarjeta: '',
+            iconoPDF: `${GITHUB_BASE}/assets/atrio/chupitos.png`,
+            logo: `${GITHUB_BASE}/assets/atrio/logo.png`,
+            userProfile: '',
+            screamer1: ''
+        },
+        fontFamily: '',
+        navbarColor: '#702121',
+        features: {
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: false,
+            enableOneko: true
+        }
+    },
+    'vaca': {
+        name: 'vaca',
+        images: {
+            background: `${GITHUB_BASE}/assets/vaca/vacapatin.jpeg`,
+            navbarBg: `${GITHUB_BASE}/assets/vaca/navbar.jpeg`,
+            calendarBg: '',
+            tarjeta: '',
+            iconoPDF: '',
+            logo: `${GITHUB_BASE}/assets/vaca/logo.JPG`,
+            userProfile: '',
+            screamer1: ''
+        },
+        fontFamily: '',
+        navbarColor: '#213C70',
+        features: {
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: true,
+            enableOneko: true
+        }
+    },
+    'psoe': {
+        name: 'psoe',
+        images: {
+            background: `${GITHUB_BASE}/assets/pesoe/background.png`,
+            navbarBg: '',
+            calendarBg: '',
+            tarjeta: `${GITHUB_BASE}/assets/pesoe/fondo.jpeg`,
+            iconoPDF: 'https://s1.qwant.com/thumbr/474x474/3/3/1a5ac4a6d12c5508b4d3b67e84487120de463b4ab4c1e5dd307a887c3556f6/OIP.k0deVH9kL4UdzKpGOPX3qwHaHa.jpg?u=https%3A%2F%2Ftse4.explicit.bing.net%2Fth%2Fid%2FOIP.k0deVH9kL4UdzKpGOPX3qwHaHa%3Fcb%3D12%26pid%3DApi&q=0&b=1&p=0&a=0',
+            logo: `${GITHUB_BASE}/assets/pesoe/aragon_horizontal-linea-blanco.png`,
+            userProfile: 'https://s1.qwant.com/thumbr/474x474/3/3/1a5ac4a6d12c5508b4d3b67e84487120de463b4ab4c1e5dd307a887c3556f6/OIP.k0deVH9kL4UdzKpGOPX3qwHaHa.jpg?u=https%3A%2F%2Ftse4.explicit.bing.net%2Fth%2Fid%2FOIP.k0deVH9kL4UdzKpGOPX3qwHaHa%3Fcb%3D12%26pid%3DApi&q=0&b=1&p=0&a=0',
+            screamer1: ''
+        },
+        fontFamily: '',
+        navbarColor: '#E20025',
+        features: {
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: true,
+            enableOneko: true
+        }
+    },
+    'boykisser': {
+        name: 'boykisser',
+        images: {
+            background: `${GITHUB_BASE}/assets/boykisser/navbar.gif`,
+            navbarBg: `${GITHUB_BASE}/assets/boykisser/navbar.jpeg`,
+            calendarBg: '',
+            tarjeta: '',
+            iconoPDF: '',
+            logo: `${GITHUB_BASE}/assets/boykisser/logo.jpeg`,
+            userProfile: '',
+            screamer1: ''
+        },
+        fontFamily: '',
+        navbarColor: '',
+        features: {
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: true,
+            enableOneko: true
+        }   
+    },
+    'hatsune-miku': {
+        name: 'hatsune miku',
+        images: {
+            background: `${GITHUB_BASE}/assets/miku/background.jpeg`,
+            navbarBg: '',
+            calendarBg: '',
+            tarjeta: '',
+            iconoPDF: '',
+            logo: `${GITHUB_BASE}/assets/miku/logo.svg`,
+            userProfile: `${GITHUB_BASE}/assets/miku/pfp.jpeg`,
+            screamer1: ''
+        },
+        fontFamily: '',
+        navbarColor: '#86CECB',
+        features: {
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: true,
+            enableOneko: true
+        }
+    },
+    'doctor-house': {
+        name: 'doctor house',
+        images: {
+            background: `${GITHUB_BASE}/assets/house/background.png`,
+            navbarBg: `${GITHUB_BASE}/assets/house/navbar.jpeg`,
+            calendarBg: `${GITHUB_BASE}/assets/house/calendar.jpeg`,
+            tarjeta: '',
+            iconoPDF: '',
+            logo: `${GITHUB_BASE}/assets/house/logo.jpeg`,
+            userProfile: `${GITHUB_BASE}/assets/house/pfp.jpeg`,
+            screamer1: ''
+        },
+        fontFamily: '',
+        navbarColor: '#213C70',
+        features: {
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: true,
+            enableOneko: true
+        }
+    },
+    'breaking-bad': {
+        name: 'breaking bad',
+        images: {
+            background: `${GITHUB_BASE}/assets/breakingbad/fondo.png`,
+            navbarBg: `${GITHUB_BASE}/assets/breakingbad/navbar.png`,
+            calendarBg: '',
+            tarjeta: `${GITHUB_BASE}/assets/breakingbad/tarjeta.png`,
+            iconoPDF: `${GITHUB_BASE}/assets/breakingbad/pdf.png`,
+            logo: `${GITHUB_BASE}/assets/breakingbad/logo.svg`,
+            userProfile: `${GITHUB_BASE}/assets/breakingbad/pfp.png`,
+            screamer1: ''
+        },
+        fontFamily: '',
+        navbarColor: '#213C70',
+        features: {
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: true,
+            enableOneko: true
+        }
+    },
+    'smiling-friends': {
+        name: 'smiling friends',
+        images: {
+            background: `${GITHUB_BASE}/assets/smiling/fondo.gif`,
+            navbarBg: `${GITHUB_BASE}/assets/smiling/navbar.png`,
+            calendarBg: '',
+            tarjeta: `${GITHUB_BASE}/assets/smiling/tarjeta.png`,
+            iconoPDF: '',
+            logo: `${GITHUB_BASE}/assets/smiling/logo.png`,
+            userProfile: '',
+            screamer1: ''
+        },
+        fontFamily: '',
+        navbarColor: '',
+        features: {
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: true,
+            enableOneko: true
+        }
+    },
+    'rick-morty-irl': {
+        name: 'rick y morty irl',
+        images: {
+            background: `${GITHUB_BASE}/assets/rym/fondo.png`,
+            navbarBg: `${GITHUB_BASE}/assets/rym/navbar.png`,
+            calendarBg: '',
+            tarjeta: '',
+            iconoPDF: '',
+            logo: `${GITHUB_BASE}/assets/rym/logo.png`,
+            userProfile: `${GITHUB_BASE}/assets/rym/rickkkk.png`,
+            screamer1: ''
+        },
+        fontFamily: '',
+        navbarColor: '',
+        features: {
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: true,
+            enableOneko: true
+        }
+    },
+    'pipotam': {
+        name: 'pipotam',
+        images: {
+            background: `${GITHUB_BASE}/assets/pipotam/fondo.gif`,
+            navbarBg: `${GITHUB_BASE}/assets/pipotam/navbar.png`,
+            calendarBg: `${GITHUB_BASE}/assets/pipotam/fondo.gif`,
+            tarjeta: `${GITHUB_BASE}/assets/pipotam/fondo.gif`,
+            iconoPDF: `${GITHUB_BASE}/assets/pipotam/fondo.gif`,
+            logo: `${GITHUB_BASE}/assets/pipotam/logo.gif`,
+            userProfile:`${GITHUB_BASE}/assets/pipotam/fondo.gif`,
+            screamer1: `${GITHUB_BASE}/assets/pipotam/fondo.gif`
+        },
+        fontFamily: '',
+        navbarColor: '',
+        features: {
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: true,
+            enableOneko: true
+        }
+    },
+    'whatsapp': {
+        name: 'whatsapp',
+        images: {
+            background: '',
+            navbarBg: '',
+            calendarBg: '',
+            tarjeta: '',
+            iconoPDF: '',
+            logo: `${GITHUB_BASE}/assets/whatsapp/Digital_Inline_White.svg`,
+            userProfile: '',
+            screamer1: ''
+        },
+        fontFamily: '',
+        navbarColor: '#25D366',
+        features: {
+            enableBackgroundImages: true,
+            enableImageReplacements: true,
+            enableHideElements: true,
+            enableCustomParagraph: true,
+            enableCustomFont: true,
+            enableOneko: true
+        }
+    },
+};
 
     // Configuración por defecto
     const DEFAULT_CONFIG = {

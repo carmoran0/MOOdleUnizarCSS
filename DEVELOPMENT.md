@@ -2,14 +2,17 @@
 
 ## El Problema de la Duplicación
 
-Debido a la arquitectura de extensiones de Chrome/Firefox:
-- `options.js` define los temas para la interfaz de usuario
+Debido a la arquitectura de extensiones de Chrome/Firefox y el userscript de Tampermonkey:
+- `options.js` define los temas para la interfaz de usuario de la extensión
 - `background.js` **necesita** una copia de los temas para aplicar el auto-tema
-- No pueden compartir módulos directamente (limitación de Manifest V3)
+- `MOOdle-Unizar-Personalizado.user.js` **necesita** una copia con URLs de GitHub para el userscript
+- No pueden compartir módulos directamente (limitación de Manifest V3 y Tampermonkey)
 
 ## Solución: Script de Sincronización
 
-Hemos creado `sync-themes.js` que copia automáticamente `PREDEFINED_THEMES` de `options.js` a `background.js`.
+Hemos creado `sync-themes.js` que copia automáticamente `PREDEFINED_THEMES` de `options.js` a:
+1. **`background.js`** - Copia exacta para la extensión
+2. **`MOOdle-Unizar-Personalizado.user.js`** - Copia transformada (convierte `chrome.runtime.getURL()` a URLs de GitHub)
 
 ## Flujo de Trabajo para Añadir/Modificar Temas
 
@@ -37,7 +40,7 @@ const PREDEFINED_THEMES = {
 };
 ```
 
-### 2. Sincronizar a `background.js`
+### 2. Sincronizar a `background.js` y al userscript
 
 Ejecuta el script de sincronización desde la raíz del proyecto:
 
@@ -47,11 +50,21 @@ node sync-themes.js
 
 Verás:
 ```
-Sincronizando temas desde options.js a background.js...
-PREDEFINED_THEMES extraído de options.js
-PREDEFINED_THEMES actualizado en background.js
-Sincronización completada exitosamente!
+Sincronizando temas desde options.js...
+✓ PREDEFINED_THEMES extraído de options.js
+✓ background.js actualizado
+✓ userscript actualizado (URLs transformadas a GitHub)
+
+✓ Sincronización completada exitosamente!
+
+Archivos sincronizados:
+  - options.js (fuente) → background.js
+  - options.js (fuente) → userscript (con URLs transformadas)
 ```
+
+**Transformaciones automáticas:**
+- `chrome.runtime.getURL("assets/tema/imagen.png")` → `` `${GITHUB_BASE}/assets/tema/imagen.png` ``
+- URLs externas se mantienen sin cambios
 
 ### 3. Actualizar Lista de Temas en `content.js`
 
@@ -76,16 +89,17 @@ const AVAILABLE_THEMES = [
 
 ## Reglas Importantes
 
-1. **NUNCA edites manualmente `PREDEFINED_THEMES` en `background.js`**
-   - Será sobrescrito por el script de sincronización
+1. **NUNCA edites manualmente `PREDEFINED_THEMES` en `background.js` o en el userscript**
+   - Serán sobrescritos por el script de sincronización
    
 2. **SIEMPRE ejecuta `node sync-themes.js` después de editar temas**
-   - De lo contrario, el auto-tema no funcionará correctamente
+   - De lo contrario, el auto-tema y el userscript no funcionarán correctamente
    
-3. **Mantén sincronizados los 3 archivos:**
-   - `options.js` → Definición completa del tema
+3. **Mantén sincronizados los 4 archivos:**
+   - `options.js` → Definición completa del tema (FUENTE)
    - `background.js` → Copia automática (via script)
-   - `content.js` → Lista de nombres de temas disponibles
+   - `MOOdle-Unizar-Personalizado.user.js` → Copia automática con URLs de GitHub (via script)
+   - `content.js` → Lista de nombres de temas disponibles (manual)
 
 ## Troubleshooting
 
@@ -93,6 +107,11 @@ const AVAILABLE_THEMES = [
 
 → Probablemente olvidaste ejecutar `sync-themes.js`  
 → Solución: Ejecuta `node sync-themes.js` y recarga la extensión
+
+### El userscript no muestra los temas actualizados
+
+→ Olvidaste ejecutar `sync-themes.js`  
+→ Solución: Ejecuta `node sync-themes.js` y actualiza el userscript en Tampermonkey
 
 ### El nuevo tema no aparece en el selector
 
@@ -103,7 +122,7 @@ const AVAILABLE_THEMES = [
 
 → Verifica que Node.js esté instalado  
 → Verifica que estés en la raíz del proyecto  
-→ Verifica que `options.js` y `background.js` existan
+→ Verifica que `options.js`, `background.js` y el userscript existan
 
 ## Estructura de un Tema
 

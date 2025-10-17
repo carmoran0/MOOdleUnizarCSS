@@ -46,18 +46,18 @@ jobs:
 
       - name: Sync themes from options.js
         run: |
-          # Ejecuta el script de sincronización que copia PREDEFINED_THEMES de options.js a background.js
+          # Ejecuta el script de sincronización que copia PREDEFINED_THEMES de options.js a background.js y al userscript
           node sync-themes.js
 
-          # Si background.js cambió, commitea y haz push para que la release incluya los temas sincronizados
-          if ! git diff --quiet -- fextension/background.js; then
+          # Si background.js o el userscript cambiaron, commitea y haz push para que la release incluya los temas sincronizados
+          if ! git diff --quiet -- fextension/background.js MOOdle-Unizar-Personalizado.user.js; then
             git config user.name "github-actions"
             git config user.email "actions@github.com"
-            git add fextension/background.js
-            git commit -m "chore: sync PREDEFINED_THEMES from options.js to background.js"
+            git add fextension/background.js MOOdle-Unizar-Personalizado.user.js
+            git commit -m "chore: sync PREDEFINED_THEMES from options.js"
             git push
           else
-            echo "No changes to background.js after sync"
+            echo "No changes after theme sync"
           fi
 
       - name: Sign extension on AMO (unlisted)
