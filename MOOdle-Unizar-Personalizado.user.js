@@ -677,7 +677,7 @@
         const customParagraph = document.createElement('div');
         customParagraph.className = 'custom-info-paragraph';
         customParagraph.innerHTML = `
-            <div>"MOODLE 2: Premium edition" HECHO POR Carlos Moreno</div>
+            <div>"MOODLE 2: Premium edition" Hecho con amor</div>
             <br>
             <a href="https://github.com/carmoran0/MOOdleUnizarCSS/issues" target="_blank" class="custom-suggestions-link">
                 Sugerencias y reportes
