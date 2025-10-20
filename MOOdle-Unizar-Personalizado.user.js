@@ -347,35 +347,6 @@
     },
 };
 
-    // Configuración por defecto
-    const DEFAULT_CONFIG = {
-        selectedTheme: 'default',
-        images: PREDEFINED_THEMES.default.images,
-        fontFamily: 'Comic Sans MS',
-        customFont: '',
-        navbarColor: '#213C70',
-        textsToHide: ['Recursos y manuales', 'ADD', 'Política de privacidad'],
-        urlsToHide: ['add.unizar.es', 'privacidad', 'recursos', 'manuales'],
-        features: {
-            enableBackgroundImages: true,
-            enableImageReplacements: true,
-            enableHideElements: true,
-            enableCustomParagraph: true,
-            enableCustomFont: true,
-            enableOneko: true
-        },
-        enableAutoTheme: false,
-        selectors: {
-            navbar: '.navbar .nav-link, .navbar .dropdown-toggle, .navbar a',
-            dropdowns: '.dropdown-menu .dropdown-item, .nav-item',
-            backgroundElements: ['.rounded.list-image.mw-100', '.summary-image.rounded.mw-100', '.card-img-top'],
-            pdfIcons: 'img[src*="theme/image.php/boost_union/core"][src*="/f/pdf"]',
-            userPictures: 'img.userpicture',
-            logo: 'img.logo',
-            banner: '#themeboostunioninfobanner1'
-        }
-    };
-
     // Configuración actual
     let currentConfig = { ...DEFAULT_CONFIG };
 
