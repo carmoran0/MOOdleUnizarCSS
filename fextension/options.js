@@ -569,18 +569,31 @@ function showImagePreview(url) {
     let safeUrl = '';
     const trimmed = (url || '').trim();
 
-    // Only allow http, https, and known extension protocols to mitigate XSS
+    // Normalize and allow a set of safe protocols: http(s), data, blob, file and known extension schemes
     try {
-        const parsedUrl = new URL(trimmed, window.location.origin);
-        // Allow http, https and known extension schemes (chrome/moz/ms-browser)
-        if (
-            parsedUrl.protocol === 'http:' ||
-            parsedUrl.protocol === 'https:' ||
-            parsedUrl.protocol === 'chrome-extension:' ||
-            parsedUrl.protocol === 'moz-extension:' ||
-            parsedUrl.protocol === 'ms-browser-extension:'
-        ) {
+        let urlToParse = trimmed;
+
+        // Handle protocol-relative URLs (//example.com) -> assume https
+        if (urlToParse.startsWith('//')) {
+            urlToParse = 'https:' + urlToParse;
+        }
+
+        // Handle schemeless URLs like 'www.example.com/path' -> assume https
+        // Only do this when it looks like a hostname (contains a dot and no spaces)
+        if (!/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(urlToParse) && /\./.test(urlToParse) && !/\s/.test(urlToParse)) {
+            urlToParse = 'https://' + urlToParse;
+        }
+
+        const parsedUrl = new URL(urlToParse, window.location.origin);
+
+        // Allow listed safe protocols
+        const safeProtocols = new Set(['http:', 'https:', 'data:', 'blob:', 'file:', 'chrome-extension:', 'moz-extension:', 'ms-browser-extension:']);
+
+        if (safeProtocols.has(parsedUrl.protocol)) {
+            // For file: URLs, keep the original input if the browser permits it; otherwise parsedUrl.href may be useful
             safeUrl = parsedUrl.href;
+        } else {
+            safeUrl = '';
         }
     } catch (e) {
         // Invalid URL -> leave safeUrl empty
@@ -591,7 +604,7 @@ function showImagePreview(url) {
     if (!safeUrl) {
         previewImg.style.display = 'none';
         previewError.style.display = 'block';
-        previewError.textContent = 'Error: URL inválida o no permitida. Solo se permiten imágenes de http(s), data:, blob: o URIs de extensión conocidos.';
+        previewError.textContent = 'Error: URL inválida o no permitida. Solo se permiten imágenes de http(s), data:, blob:, file: o URIs de extensión conocidos.';
         modal.style.display = 'block';
         return;
     }
