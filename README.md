@@ -62,7 +62,6 @@ Para más información, consulta [**USERSCRIPT-README.md**](USERSCRIPT-README.md
 │   └── assets/                        # Imágenes y recursos de los temas
 ├── MOOdle-Unizar-Personalizado.user.js  # Userscript para Tampermonkey
 ├── USERSCRIPT-README.md               # Documentación del userscript
-├── ADAPTATION-NOTES.md                # Notas técnicas de adaptación
 ├── sync-themes.js                     # Script para sincronizar temas
 ├── assets/                            # Recursos generales (imágenes, previews)
 ├── updates.json                       # Indicador de versiones
