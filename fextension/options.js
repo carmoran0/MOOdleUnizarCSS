@@ -569,26 +569,22 @@ function showImagePreview(url) {
     let safeUrl = '';
     const trimmed = (url || '').trim();
 
-    // Allow data: and blob: URLs directly (useful for pasted images or local blobs)
-    if (/^data:image\/[a-zA-Z0-9.+-]+;base64,/.test(trimmed) || trimmed.startsWith('blob:')) {
-        safeUrl = trimmed;
-    } else {
-        try {
-            const parsedUrl = new URL(trimmed, window.location.origin);
-            // Allow http, https and known extension schemes (chrome/moz/ms-browser)
-            if (
-                parsedUrl.protocol === 'http:' ||
-                parsedUrl.protocol === 'https:' ||
-                parsedUrl.protocol === 'chrome-extension:' ||
-                parsedUrl.protocol === 'moz-extension:' ||
-                parsedUrl.protocol === 'ms-browser-extension:'
-            ) {
-                safeUrl = parsedUrl.href;
-            }
-        } catch (e) {
-            // Invalid URL -> leave safeUrl empty
-            safeUrl = '';
+    // Only allow http, https, and known extension protocols to mitigate XSS
+    try {
+        const parsedUrl = new URL(trimmed, window.location.origin);
+        // Allow http, https and known extension schemes (chrome/moz/ms-browser)
+        if (
+            parsedUrl.protocol === 'http:' ||
+            parsedUrl.protocol === 'https:' ||
+            parsedUrl.protocol === 'chrome-extension:' ||
+            parsedUrl.protocol === 'moz-extension:' ||
+            parsedUrl.protocol === 'ms-browser-extension:'
+        ) {
+            safeUrl = parsedUrl.href;
         }
+    } catch (e) {
+        // Invalid URL -> leave safeUrl empty
+        safeUrl = '';
     }
 
     // If the URL is not safe, show error
