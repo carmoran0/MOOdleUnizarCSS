@@ -6,6 +6,9 @@
 
 **Una extensión para personalizar la interfaz de Moodle Unizar.** Esta extensión es únicamente visual y no afecta a la funcionalidad de Moodle. Al menos debería.
 
+> [!NOTE]  
+> Esta extensión solo funciona para el moodle de Unizar, pero es bien de facil adaptarla co! Seguramente haya cosas que no funcionen, puedes hacerlo cambiando el @match en el manifest de /fextension/manifest.json 
+
 ![](/assets/preview.png)
 <p align="center"><em>Vista previa de la extensión en acción, hay otros temas disponibles</em></p>
 
