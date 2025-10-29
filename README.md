@@ -14,7 +14,7 @@
 
 ---
 
-## 📋 Tabla de Contenidos
+## Tabla de Contenidos
 
 - [Instalación](#-instalación)
   - [Firefox (Extensión)](#firefox-extensión-fácil-)
