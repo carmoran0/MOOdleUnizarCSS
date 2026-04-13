@@ -3,6 +3,7 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/carmoran0/MOOdleUnizarCSS)
 ![GitHub last commit](https://img.shields.io/github/last-commit/carmoran0/MOOdleUnizarCSS)
 ![GitHub issues](https://img.shields.io/github/issues/carmoran0/MOOdleUnizarCSS)
+[![listed on awesome-aragon](https://img.shields.io/badge/listed%20on-awesome--aragon-FFD700?style=flat&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNCAxNCI+PGcgZmlsbD0iI0ZGRDcwMCI+PHJlY3QgeD0iMiIgeT0iMCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjIiLz48cmVjdCB4PSIyIiB5PSI0IiB3aWR0aD0iMTAiIGhlaWdodD0iMiIvPjxyZWN0IHg9IjIiIHk9IjgiIHdpZHRoPSIxMCIgaGVpZ2h0PSIyIi8+PHJlY3QgeD0iMiIgeT0iMTIiIHdpZHRoPSIxMCIgaGVpZ2h0PSIyIi8+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjIiIGhlaWdodD0iMTQiLz48L2c+PC9zdmc+&labelColor=D40000)](https://github.com/GeiserX/awesome-aragon#readme)
 
 **Una extensión para personalizar la interfaz de Moodle Unizar.** Esta extensión es únicamente visual y no afecta a la funcionalidad de Moodle. Al menos debería.
 
